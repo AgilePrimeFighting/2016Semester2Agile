@@ -3,12 +3,15 @@ package com.prime.question;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 
-@ManagedBean(name="createQuestionBean")
-@ViewScoped
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import com.prime.question.service.QuestionService;
+
+@Controller
+@Scope("request")
 public class CreateQuestionBean implements Serializable {
 	
 	/**
@@ -20,9 +23,14 @@ public class CreateQuestionBean implements Serializable {
 	
 	private String questionBody;
 	
-	@ManagedProperty(value = "#{viewQuestionsBean}")
+	@Autowired
 	private ViewQuestionsBean viewQuestionsBean;
 	
+	@Autowired
+	private QuestionService questionService;
+	
+
+
 	public void setViewQuestionBean(ViewQuestionsBean viewQuestionBean) {
 		this.viewQuestionsBean = viewQuestionBean;
 	}
@@ -30,7 +38,7 @@ public class CreateQuestionBean implements Serializable {
 	public String onSave(){
 		logger.info("onSave");
 		logger.info("question body = " + getQuestionBody());
-		viewQuestionsBean.addQuestion(questionBody);
+		questionService.createNewStory(questionBody);
 		return "ViewQuestions";
 	}
 
@@ -50,6 +58,12 @@ public class CreateQuestionBean implements Serializable {
 		this.viewQuestionsBean = viewQuestionsBean;
 	}
 	
-	
+	public QuestionService getQuestionService() {
+		return questionService;
+	}
+
+	public void setQuestionService(QuestionService questionService) {
+		this.questionService = questionService;
+	}
 
 }
