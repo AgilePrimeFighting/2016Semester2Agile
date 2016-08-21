@@ -13,8 +13,9 @@
 	<h1>Please enter the question body</h1>
 
 	<h:form>
-	   <p:inputTextarea value="#{createQuestionBean.questionBody}"/>
-	   <p:commandButton value="save" action="#{createQuestionBean.onSave}" />
+		<div><p:inputTextarea value="#{createQuestionBean.questionBody}"/></div>
+	  	<div><p:commandButton value="save" action="#{createQuestionBean.onSave}" target="ViewQuestions" /></div>
+	   
 	</h:form>
 
 </h:body>
