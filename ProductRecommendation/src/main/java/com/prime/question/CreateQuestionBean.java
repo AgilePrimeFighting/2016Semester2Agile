@@ -19,7 +19,7 @@ public class CreateQuestionBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger logger = Logger.getLogger( CreateQuestionBean.class.getName() );
+	private static final Logger logger = Logger.getLogger( CreateResponseBean.class.getName() );
 	
 	private String questionBody;
 	
