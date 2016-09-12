@@ -1,31 +1,55 @@
 package com.prime.question;
 
-import java.util.logging.Logger;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
+import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.question.service.ResponseService;
 
+@Controller
+@Scope("session")
 public class CreateResponseBean {
-	private static final Logger logger = Logger
-			.getLogger(CreateQuestionBean.class.getName());
+	private static final Log log = LogFactory.getLog(CreateResponseBean.class);
 
 	private int customerId;
 
 	private int questionId;
 
 	private boolean answer;
+	
+	private String step;
+
+	private List<Question> questions;
 
 	@Autowired
 	private ResponseService responseService;
 
+	@Autowired
+	private QuestionService questionSerice;
+
+	@PostConstruct
+	public void init() {
+		log.info("initiating");
+		setQuestions(questionSerice.listAll());
+		log.info(questions.size());
+	}
+
 	public String onSave() {
-		logger.info("onSave");
-		logger.info("customer id = " + getCustomerId());
-		logger.info("question id = " + getQuestionId());
-		logger.info("answer = " + isAnswer());
-		responseService.createNewStory(customerId,questionId,answer);
+		log.info("onSave");
+		log.info("customer id = " + getCustomerId());
+		log.info("question id = " + getQuestionId());
+		log.info("answer = " + isAnswer());
+		responseService.createNewStory(customerId, questionId, answer);
+
 		return "ViewQuestions";
 	}
 
@@ -61,4 +85,43 @@ public class CreateResponseBean {
 		this.responseService = responseService;
 	}
 
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+	public String onFlowProcess(FlowEvent event) {
+		event.getNewStep();
+		log.info(step);
+		log.info(event.getOldStep());
+		log.info("processing");
+			return event.getNewStep();
+	}
+	
+	public String getAnswerString(){
+		if(answer){
+			return "True";
+		}else{
+			return "False";
+		}
+	}
+	
+	public void setAnswerString(String answerString){
+		if("True".equals(answerString)){
+			setAnswer(true);
+		}else{
+			setAnswer(false);
+		}
+	}
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
 }

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table
 public class Response {
 	@Id
-	@Column(name = "QUESTION_ID")
+	@Column(name = "RESPONSE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int responseId;
 
