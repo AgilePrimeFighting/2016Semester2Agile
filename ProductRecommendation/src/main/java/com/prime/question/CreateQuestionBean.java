@@ -19,21 +19,17 @@ public class CreateQuestionBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger logger = Logger.getLogger( CreateQuestionBean.class.getName() );
+	private static final Logger logger = Logger.getLogger( CreateResponseBean.class.getName() );
 	
 	private String questionBody;
 	
-	@Autowired
-	private ViewQuestionsBean viewQuestionsBean;
 	
 	@Autowired
 	private QuestionService questionService;
 	
 
 
-	public void setViewQuestionBean(ViewQuestionsBean viewQuestionBean) {
-		this.viewQuestionsBean = viewQuestionBean;
-	}
+
 
 	public String onSave(){
 		logger.info("onSave");
@@ -50,13 +46,7 @@ public class CreateQuestionBean implements Serializable {
 		this.questionBody = questionBody;
 	}
 
-	public ViewQuestionsBean getViewQuestionsBean() {
-		return viewQuestionsBean;
-	}
 
-	public void setViewQuestionsBean(ViewQuestionsBean viewQuestionsBean) {
-		this.viewQuestionsBean = viewQuestionsBean;
-	}
 	
 	public QuestionService getQuestionService() {
 		return questionService;
