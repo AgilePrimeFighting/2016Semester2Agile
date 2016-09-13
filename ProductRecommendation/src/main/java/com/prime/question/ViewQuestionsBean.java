@@ -24,6 +24,11 @@ public class ViewQuestionsBean implements Serializable{
 
 	private static final Logger logger = Logger.getLogger(ViewQuestionsBean.class.getName());
 	
+
+	private List<Question> questions = new ArrayList<Question>();
+	
+	private Question selectedQuestion;
+	
 	@Autowired
 	private QuestionService questionService;
 	
@@ -38,12 +43,16 @@ public class ViewQuestionsBean implements Serializable{
 		}
 	}
 
-
-	private List<Question> questions = new ArrayList<Question>();
+	public void onDelete(Question question){
+		logger.info("deleting question");
+		questions.remove(question);
+		questionService.delete(question);
+	}
 
 	public List<Question> getQuestions() {
 		return questions;
 	}
+	
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
@@ -56,6 +65,14 @@ public class ViewQuestionsBean implements Serializable{
 
 	public void setQuestionService(QuestionService questionService) {
 		this.questionService = questionService;
+	}
+
+	public Question getSelectedQuestion() {
+		return selectedQuestion;
+	}
+
+	public void setSelectedQuestion(Question selectedQuestion) {
+		this.selectedQuestion = selectedQuestion;
 	}
 
 }
