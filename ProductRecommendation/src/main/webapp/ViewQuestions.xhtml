@@ -13,20 +13,38 @@
 	<h1>Questions</h1>
 	<h:form>
 		<div>
-			<p:dataTable value="#{viewQuestionsBean.questions}" var="question"
-				rowIndexVar="rowIndex">
-				<p:column headerText="Id" width="50">
+			<p:dataTable id="questionTable"
+				value="#{viewQuestionsBean.questions}" var="question"
+				rowIndexVar="rowIndex"
+				selection="#{viewQuestionsBean.selectedQuestion}">
+				<p:column headerText="No." width="50">
 					<h:outputText value="#{rowIndex + 1}" />
 				</p:column>
 				<p:column headerText="Question Body">
 					<h:outputText value="#{question.questionBody}" />
 				</p:column>
+				<p:column width="80">
+					<p:commandButton value="Delete"
+						actionListener="#{viewQuestionsBean.onDelete(question)}"
+						update="questionTable">
+						<p:confirm header="Confirmation" 
+							message="Are you sure you want to delete this question?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
 			</p:dataTable>
 		</div>
 		<div>
-			<p:commandButton value="create new question" action="CreateQuestion"></p:commandButton>
-			<p:commandButton value="Delete selected question" action="CreateQuestion"></p:commandButton>
+			<p:commandButton value="create new question" action="CreateQuestion">
+			</p:commandButton>
 		</div>
+		<p:confirmDialog global="true">
+		<p:commandButton value="No" type="button" id="noButton"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			<p:commandButton value="Yes" type="button" style="float:left;"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			
+		</p:confirmDialog>
 	</h:form>
 </h:body>
 </html>
