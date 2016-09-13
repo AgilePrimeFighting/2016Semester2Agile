@@ -13,8 +13,7 @@
 	<h1>Please enter a yes or no question.</h1>
 
 	<h:form>
-		<div><p:inputTextarea value="#{createQuestionBean.questionBody}"/></div>
-	  	<div><p:commandButton value="save" action="#{createQuestionBean.onSave}" target="ViewQuestions" /></div>
+		<div><p:inputTextarea value="#{editQuestionBean.question.questionBody}"/></div>
 	   
 	</h:form>
 

@@ -8,35 +8,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 
 @Controller
 @Scope("request")
-public class CreateQuestionBean implements Serializable {
+public class EditQuestionBean implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger logger = Logger.getLogger( CreateQuestionBean.class.getName() );
+	private static final Logger logger = Logger.getLogger( EditQuestionBean.class.getName() );
 	
 	private String questionBody;
+	
+	private Question question;
 	
 	
 	@Autowired
 	private QuestionService questionService;
 	
-
-
-
-
-	public String onSave(){
-		logger.info("onSave");
-		logger.info("question body = " + getQuestionBody());
-		questionService.createNewStory(questionBody);
-		return "ViewQuestions";
+	public void initEdit(Question question){
+		this.question = question;
 	}
+
+
+	
+
 
 	public String getQuestionBody() {
 		return questionBody;
@@ -54,6 +54,14 @@ public class CreateQuestionBean implements Serializable {
 
 	public void setQuestionService(QuestionService questionService) {
 		this.questionService = questionService;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 
 }
