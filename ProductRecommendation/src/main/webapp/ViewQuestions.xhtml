@@ -23,8 +23,14 @@
 				<p:column headerText="Question Body">
 					<h:outputText value="#{question.questionBody}" />
 				</p:column>
-				<p:column width="80">
-					<p:commandButton value="Delete"
+				<p:column width="50" headerText="Edit">
+					<p:commandButton  icon="ui-icon-close"
+						actionListener="#{editQuestionBean.initEdit(question)}"
+						action="EditQuestion">
+					</p:commandButton>
+				</p:column>
+				<p:column width="50" headerText="Delete">
+					<p:commandButton  icon="ui-icon-close"
 						actionListener="#{viewQuestionsBean.onDelete(question)}"
 						update="questionTable">
 						<p:confirm header="Confirmation" 
