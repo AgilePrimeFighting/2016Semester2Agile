@@ -13,19 +13,20 @@
 	<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out of
 		#{answerQuestionBean.totalNumberOfQuestions}</h1>
 	<h:form>
-		<div>
+		<p:panelGrid columns="1" layout="grid" id="questionPanel">
+		<p:row>
 			<h:outputText
 				value="#{answerQuestionBean.questions.get(answerQuestionBean.currentQuestionIndex).questionBody}" />
-		</div>
-		<div>
+		</p:row>
+		<p:row>
 			<p:selectOneRadio id="options" value="#{answerQuestionBean.response}">
 				<f:selectItem itemLabel="Yes" itemValue="Yes" />
 				<f:selectItem itemLabel="No" itemValue="No" />
 			</p:selectOneRadio>
-		</div>
-		<div>
-			<p:commandButton value="next" action="#{answerQuestionBean.doNext}"></p:commandButton>
-		</div>
+		</p:row>
+			
+		</p:panelGrid>
+		<p:commandButton value="next" action="#{answerQuestionBean.doNext}" update="questionPanel"></p:commandButton>
 	</h:form>
 </h:body>
 </html>

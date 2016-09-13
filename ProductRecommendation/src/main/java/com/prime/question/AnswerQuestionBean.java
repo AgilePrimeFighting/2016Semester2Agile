@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -66,8 +67,11 @@ public class AnswerQuestionBean implements Serializable {
 		
 		currentQuestionIndex ++;
 		if(currentQuestionIndex == questions.size() ){
+			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			return "ThankYou";
+			
 		}
+		response=null;
 		return "AnswerQuestions";
 	}
 
