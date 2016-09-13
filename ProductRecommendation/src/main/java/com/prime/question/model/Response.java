@@ -14,12 +14,15 @@ public class Response {
 	@Column(name = "RESPONSE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int responseId;
-
+	
+	@Column(name = "CUSTOMER_ID")
 	private int customerId;
 
+	@Column(name = "QUESTION_ID")
 	private int questionId;
 
-	private boolean answer;
+	@Column(name = "ANSWER")
+	private String answer;
 
 	public int getResponseId() {
 		return responseId;
@@ -45,11 +48,11 @@ public class Response {
 		this.questionId = questionId;
 	}
 
-	public boolean isAnswer() {
+	public String getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(boolean answer) {
+	public void setAnswer(String answer2) {
 		this.answer = answer;
 	}
 

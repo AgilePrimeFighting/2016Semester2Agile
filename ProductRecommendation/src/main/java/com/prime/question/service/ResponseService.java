@@ -22,7 +22,7 @@ public class ResponseService {
 	}
 
 	@Transactional
-	public void createNewStory(int customerId, int questionId, boolean answer) {
+	public void createNewStory(int customerId, int questionId, String answer) {
 		Response response = new Response();
 		response.setCustomerId(customerId);
 		response.setQuestionId(questionId);
