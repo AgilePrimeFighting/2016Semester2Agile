@@ -13,15 +13,11 @@
 	<h1>Please edit the question</h1>
 
 	<h:form>
-		<p:panelGrid columns="1" layout="grid">
-			<p:row>
-				<p:inputTextarea value="#{editQuestionBean.question.questionBody}" cols="120"/>
-			</p:row>
-				<p:row>
-				<p:commandButton value="save" />
-				<p:button value="cancel" outcome="ViewQuestions" />
-			</p:row>
-		</p:panelGrid>
+		<p:inputTextarea value="#{editQuestionBean.question.questionBody}" style="display:block; width:80%"/>
+		<br/>
+		
+		<p:commandButton value="save" action="#{editQuestionBean.doSave}" />
+		<p:button value="cancel" outcome="ViewQuestions" />
 	</h:form>
 
 </h:body>

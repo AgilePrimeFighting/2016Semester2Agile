@@ -33,5 +33,13 @@ public class QuestionService {
 		}
 		em.remove(question);
 	}
+	@Transactional
+	public void update(Question question) {
+		if(!em.contains(question)){
+			question = em.merge(question);
+		}
+		em.flush();
+		
+	}
 
 }
