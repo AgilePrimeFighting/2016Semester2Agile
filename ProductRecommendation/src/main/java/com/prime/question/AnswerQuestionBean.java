@@ -60,7 +60,6 @@ public class AnswerQuestionBean implements Serializable {
 
 
 
-
 	public String doNext(){
 		
 		responseService.createNewStory(customer.getCustomerId(), questions.get(currentQuestionIndex).getQuestionId(), response);
@@ -75,6 +74,10 @@ public class AnswerQuestionBean implements Serializable {
 		return "AnswerQuestions";
 	}
 
+	
+	public Question getCurrentQuestion(){
+		return this.getQuestions().get(currentQuestionIndex);
+	}
 
 	
 	public QuestionService getQuestionService() {
