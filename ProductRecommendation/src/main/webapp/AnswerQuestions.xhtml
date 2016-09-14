@@ -11,10 +11,12 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out of
-		#{answerQuestionBean.totalNumberOfQuestions}</h1>
+	
 	<h:form>
+	<p:messages autoUpdate="true" />
 		<p:panelGrid columns="1" layout="grid" id="questionPanel">
+		<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out of
+		#{answerQuestionBean.totalNumberOfQuestions}</h1>
 			<p:row>
 				<h:outputText
 					value="#{answerQuestionBean.getCurrentQuestion().questionBody}" />

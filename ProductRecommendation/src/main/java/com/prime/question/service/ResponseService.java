@@ -22,10 +22,10 @@ public class ResponseService {
 	}
 
 	@Transactional
-	public void createNewStory(int customerId, int questionId, String answer) {
+	public void createNewResponse(int customerId, String questionBody, String answer) {
 		Response response = new Response();
 		response.setCustomerId(customerId);
-		response.setQuestionId(questionId);
+		response.setQuestionBody(questionBody);
 		response.setAnswer(answer);
 		em.persist(response);
 	}

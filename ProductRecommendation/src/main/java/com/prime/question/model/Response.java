@@ -18,8 +18,8 @@ public class Response {
 	@Column(name = "CUSTOMER_ID")
 	private int customerId;
 
-	@Column(name = "QUESTION_ID")
-	private int questionId;
+	@Column(name = "QUESTION_BODY")
+	private String questionBody;
 
 	@Column(name = "ANSWER")
 	private String answer;
@@ -40,12 +40,12 @@ public class Response {
 		this.customerId = customerId;
 	}
 
-	public int getQuestionId() {
-		return questionId;
+	public String getQuestionBody() {
+		return questionBody;
 	}
 
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
+	public void setQuestionBody(String questionId) {
+		this.questionBody = questionId;
 	}
 
 	public String getAnswer() {

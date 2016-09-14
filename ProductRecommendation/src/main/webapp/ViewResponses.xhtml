@@ -10,11 +10,11 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Questions</h1>
+	<h1>Responses</h1>
 	<h:form>
 		<div>
-			<p:dataTable id="questionTable"
-				value="#{viewQuestionsBean.questions}" var="question"
+			<p:dataTable id="responseTable"
+				value="#{viewResponseBean.questions}" var="response"
 				rowIndexVar="rowIndex"
 				selection="#{viewQuestionsBean.selectedQuestion}">
 				<p:column headerText="No." width="50">
@@ -23,18 +23,6 @@
 				<p:column headerText="Question Body">
 					<h:outputText value="#{question.questionBody}" />
 				</p:column>
-				<p:column headerText="Options">
-					<p:dataTable value="#{question.options}" var="option"
-						rowIndexVar="optionsRowIndex">
-						<p:column width="50">
-							<h:outputText value="#{optionsRowIndex + 1}" />
-						</p:column>
-						<p:column >
-							<h:outputText value="#{option.optionBody}" />
-						</p:column>
-					</p:dataTable>
-				</p:column>
-
 				<p:column width="50" headerText="Edit">
 					<p:commandButton icon="ui-icon-pencil"
 						actionListener="#{editQuestionBean.initEdit(question)}"
@@ -54,7 +42,7 @@
 		</div>
 		<div>
 			<p:button outcome="CreateQuestion" value="Create New Question" />
-
+			
 		</div>
 		<p:confirmDialog global="true">
 			<p:commandButton value="No" type="button" id="noButton"
