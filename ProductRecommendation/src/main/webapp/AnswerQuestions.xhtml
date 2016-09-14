@@ -24,11 +24,11 @@
 			<br />
 			<p:row>
 				<p:selectOneRadio id="options" required="true" layout="pageDirection" 
-					value="#{answerQuestionBean.response}">
+					value="#{answerQuestionBean.response}" label="Answers">
 					<f:selectItems
 						value="#{answerQuestionBean.getCurrentQuestion().options}"
 						var="option"
-						itemLabel="#{option.optionBody}" itemValue="#{options.optionBody}" />
+						itemLabel="#{option.optionBody}" itemValue="#{option.optionBody}" />
 				</p:selectOneRadio>
 			</p:row>
 

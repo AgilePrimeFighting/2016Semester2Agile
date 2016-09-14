@@ -44,8 +44,8 @@ public class Response {
 		return questionBody;
 	}
 
-	public void setQuestionBody(String questionId) {
-		this.questionBody = questionId;
+	public void setQuestionBody(String questionBody) {
+		this.questionBody = questionBody;
 	}
 
 	public String getAnswer() {
@@ -53,7 +53,7 @@ public class Response {
 	}
 
 	public void setAnswer(String answer2) {
-		this.answer = answer;
+		this.answer = answer2;
 	}
 
 }

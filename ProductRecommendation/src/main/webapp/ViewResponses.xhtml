@@ -19,7 +19,7 @@
 				<p:column headerText="No." width="50">
 					<h:outputText value="#{rowIndex + 1}" />
 				</p:column>
-				<p:column headerText="Customer No">
+				<p:column headerText="Customer No"  width="100">
 					<h:outputText value="#{customer.customerId}" />
 				</p:column>
 				<p:column headerText="Responses">
@@ -27,11 +27,11 @@
 						rowIndexVar="responseRowIndex">
 						<p:column width="50">
 							<h:outputText value="#{responseRowIndex + 1}" />
-						</p:column>
-						<p:column >
+						</p:column >
+						<p:column headerText="Question">
 							<h:outputText value="#{response.questionBody}" />
 						</p:column>
-						<p:column >
+						<p:column  headerText="Answer">
 							<h:outputText value="#{response.answer}" />
 						</p:column>
 					</p:dataTable>
@@ -39,7 +39,7 @@
 			</p:dataTable>
 		</div>
 		<div>
-			<p:button outcome="CreateQuestion" value="Create New Question" />
+			<p:commandButton action="#{viewResponseBean.doExport}" value="export" />
 			
 		</div>
 		<p:confirmDialog global="true">
