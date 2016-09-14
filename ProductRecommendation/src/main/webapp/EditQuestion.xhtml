@@ -10,11 +10,18 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Please enter a yes or no question.</h1>
+	<h1>Please edit the question</h1>
 
 	<h:form>
-		<div><p:inputTextarea value="#{editQuestionBean.question.questionBody}"/></div>
-	   
+		<p:panelGrid columns="1" layout="grid">
+			<p:row>
+				<p:inputTextarea value="#{editQuestionBean.question.questionBody}" cols="120"/>
+			</p:row>
+				<p:row>
+				<p:commandButton value="save" />
+				<p:button value="cancel" outcome="ViewQuestions" />
+			</p:row>
+		</p:panelGrid>
 	</h:form>
 
 </h:body>
