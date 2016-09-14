@@ -24,7 +24,7 @@ public class QuestionService {
 	}
 
 	@Transactional
-	public void createNewStory(String body, List<Option> options) {
+	public void createNewQuestion(String body, List<Option> options) {
 		Question question = new Question();
 		question.setQuestionBody(body);
 		question.setOptions(options);
@@ -54,6 +54,21 @@ public class QuestionService {
 	}
 	@Transactional
 	public void update(Question question) {
+		if(question.getOptions() ==null){
+			question.setOptions(new ArrayList<Option>());
+		}
+		if(question.getOptions().isEmpty()){
+			Option yesOption = new Option();
+			yesOption.setOptionBody("Yes");
+			Option noOption = new Option();
+			noOption.setOptionBody("No");
+			question.getOptions().add(yesOption);
+			question.getOptions().add(noOption);
+			
+		}
+		for(Option option: question.getOptions()){
+			option.setQuestion(question);
+		}
 		if(!em.contains(question)){
 			question = em.merge(question);
 		}

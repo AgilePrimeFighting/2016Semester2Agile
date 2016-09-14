@@ -56,7 +56,7 @@ public class CreateQuestionBean implements Serializable {
 	public String onSave(){
 		logger.info("onSave");
 		logger.info("question body = " + getQuestionBody());
-		questionService.createNewStory(questionBody, options);
+		questionService.createNewQuestion(questionBody, options);
 		initBean();
 		return "ViewQuestions?faces-redirect=true";
 	}

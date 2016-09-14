@@ -17,14 +17,15 @@
 		#{createQuestionBean.initBean()}
 		<p:messages autoUpdate="true"/>
 		<p:inputTextarea value="#{createQuestionBean.questionBody}"
-			style="display:block; width:80%" rowIndexVar="rowIndex" required="true" label="Question Body"
+			style="display:block; width:80%" required="true" label="Question Body"
 			maxlength="400"/>
 		<br />
 		<p:commandButton value="Add Option" action="#{createQuestionBean.addOption}" update="optionsTable"/>
+		<br />
 		<h2>Options:</h2>
-		
+		<br />
 		<p:dataTable id="optionsTable" value="#{createQuestionBean.options}"
-			var="option">
+			var="option"  rowIndexVar="rowIndex">
 			<p:column headerText="No." width="50">
 				<h:outputText value="#{rowIndex + 1}" />
 			</p:column>
