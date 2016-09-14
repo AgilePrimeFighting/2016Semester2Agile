@@ -27,6 +27,7 @@ public class EditQuestionBean implements Serializable {
 	private static final Logger logger = Logger.getLogger(EditQuestionBean.class.getName());
 
 	private Question question;
+	
 
 	@Autowired
 	private QuestionService questionService;
@@ -42,6 +43,8 @@ public class EditQuestionBean implements Serializable {
 	}
 
 	public String doSave() {
+		
+		
 		if (question != null) {
 			questionService.update(question);
 		}

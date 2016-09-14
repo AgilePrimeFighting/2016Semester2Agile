@@ -72,7 +72,6 @@ public class QuestionService {
 		if(!em.contains(question)){
 			question = em.merge(question);
 		}
-		em.flush();
 		
 	}
 

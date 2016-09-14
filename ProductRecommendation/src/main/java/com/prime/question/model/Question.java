@@ -25,7 +25,8 @@ public class Question {
 	@Column(name = "QUESTION_BODY")
 	private String questionBody;
 
-	@OneToMany(mappedBy = "questionId", targetEntity = Option.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "questionId", targetEntity = Option.class, orphanRemoval=true,
+			fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Option> options;
 
 	
