@@ -14,29 +14,27 @@
 	<h:form>
 		<div>
 			<p:dataTable id="responseTable"
-				value="#{viewResponseBean.questions}" var="response"
-				rowIndexVar="rowIndex"
-				selection="#{viewQuestionsBean.selectedQuestion}">
+				value="#{viewResponsesBean.customers}" var="customer"
+				rowIndexVar="rowIndex">
 				<p:column headerText="No." width="50">
 					<h:outputText value="#{rowIndex + 1}" />
 				</p:column>
-				<p:column headerText="Question Body">
-					<h:outputText value="#{question.questionBody}" />
+				<p:column headerText="Customer No">
+					<h:outputText value="#{customer.customerId}" />
 				</p:column>
-				<p:column width="50" headerText="Edit">
-					<p:commandButton icon="ui-icon-pencil"
-						actionListener="#{editQuestionBean.initEdit(question)}"
-						action="EditQuestion">
-					</p:commandButton>
-				</p:column>
-				<p:column width="50" headerText="Delete">
-					<p:commandButton icon="ui-icon-close"
-						actionListener="#{viewQuestionsBean.onDelete(question)}"
-						update="questionTable">
-						<p:confirm header="Confirmation"
-							message="Are you sure you want to delete this question?"
-							icon="ui-icon-alert" />
-					</p:commandButton>
+				<p:column headerText="Responses">
+					<p:dataTable value="#{customer.responses}" var="response"
+						rowIndexVar="responseRowIndex">
+						<p:column width="50">
+							<h:outputText value="#{responseRowIndex + 1}" />
+						</p:column>
+						<p:column >
+							<h:outputText value="#{response.questionBody}" />
+						</p:column>
+						<p:column >
+							<h:outputText value="#{response.answer}" />
+						</p:column>
+					</p:dataTable>
 				</p:column>
 			</p:dataTable>
 		</div>

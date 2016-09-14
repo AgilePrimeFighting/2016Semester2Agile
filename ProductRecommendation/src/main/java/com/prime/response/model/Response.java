@@ -1,4 +1,4 @@
-package com.prime.question.model;
+package com.prime.response.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
