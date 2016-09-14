@@ -17,10 +17,8 @@ public class Option {
 	@Id
 	@Column(name = "OPTION_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int optionId;
+	private Integer optionId;
 
-	@Column(name = "QUESTION_ID", updatable=false, insertable=false)
-	private int questionId;
 
 	@Column(name = "OPTION_BODY")
 	private String optionBody;
@@ -37,21 +35,14 @@ public class Option {
 		this.question = question;
 	}
 
-	public int getOptionId() {
+	public Integer getOptionId() {
 		return optionId;
 	}
 
-	public void setOptionId(int optionId) {
+	public void setOptionId(Integer optionId) {
 		this.optionId = optionId;
 	}
 
-	public int getQuestionId() {
-		return questionId;
-	}
-
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
 
 	public String getOptionBody() {
 		return optionBody;

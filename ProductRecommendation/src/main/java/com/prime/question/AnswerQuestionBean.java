@@ -63,7 +63,8 @@ public class AnswerQuestionBean implements Serializable {
 	public String doNext(){
 		
 		logger.info("response : " + getResponse());
-		responseService.createNewResponse(customer.getCustomerId(), questions.get(currentQuestionIndex).getQuestionBody(), response);
+		Question question = questions.get(currentQuestionIndex);
+		responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(), question.getQuestionBody(), response);
 		
 		currentQuestionIndex ++;
 		if(currentQuestionIndex == questions.size() ){

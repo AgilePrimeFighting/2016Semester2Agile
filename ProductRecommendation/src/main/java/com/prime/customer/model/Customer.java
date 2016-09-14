@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.prime.question.model.Option;
 import com.prime.response.model.Response;
@@ -25,17 +26,21 @@ public class Customer {
 	@Id
 	@Column(name = "CUSTOMER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int customerId;
+	private Integer customerId;
 	
 	@Column(name = "PRODUCT")
 	private String product;
 	
-	@Column(name = "HAS_TRAIL")
+	@Column(name = "HAS_TRIAL")
 	private String hasTrial;
 	
 	@Column(name = "DATE")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date  date;
+	
+	@OneToMany(mappedBy = "customer", targetEntity = Response.class, orphanRemoval=true,
+			fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Response> responses;
 	
 	public Date getDate() {
 		return date;
@@ -61,13 +66,11 @@ public class Customer {
 		this.product = product;
 	}
 
-	public int getCustomerId() {
+	public Integer getCustomerId() {
 		return customerId;
 	}
 	
-	@OneToMany(mappedBy = "customerId", targetEntity = Response.class, orphanRemoval=true,
-			fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Response> responses;
+
 
 	public List<Response> getResponses() {
 		return responses;
@@ -77,7 +80,7 @@ public class Customer {
 		this.responses = responses;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
 	

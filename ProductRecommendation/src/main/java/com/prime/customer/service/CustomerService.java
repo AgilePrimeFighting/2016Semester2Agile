@@ -1,5 +1,6 @@
 package com.prime.customer.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -24,6 +25,7 @@ public class CustomerService {
 	 public Customer createNewCustomer(){
 		 Customer customer = new Customer();
 		 customer.setProduct("MYOB EXO");
+		 customer.setDate(new Date());
 		 em.persist(customer);
 		 return customer;
 	 }
