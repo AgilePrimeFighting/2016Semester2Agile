@@ -23,6 +23,7 @@ public class CustomerService {
 	 @Transactional
 	 public Customer createNewCustomer(){
 		 Customer customer = new Customer();
+		 customer.setProduct("MYOB EXO");
 		 em.persist(customer);
 		 return customer;
 	 }
