@@ -27,7 +27,7 @@ public class QuestionService {
 	public void createNewQuestion(String body, List<Option> options) {
 		Question question = new Question();
 		question.setQuestionBody(body);
-		question.setOptions(options);
+		
 		if(options ==null ){
 			options = new ArrayList<Option>();
 		}
@@ -43,6 +43,7 @@ public class QuestionService {
 		for(Option option: options){
 			option.setQuestion(question);
 		}
+		question.setOptions(options);
 		em.persist(question);
 	}
 	@Transactional

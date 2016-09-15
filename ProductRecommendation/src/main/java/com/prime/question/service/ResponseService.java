@@ -1,6 +1,8 @@
 package com.prime.question.service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,11 +10,14 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.prime.question.model.Response;
+import com.prime.customer.model.Customer;
+import com.prime.question.AnswerQuestionBean;
+import com.prime.response.model.Response;
 
 @Service
 public class ResponseService {
 
+	private static final Logger logger = Logger.getLogger( ResponseService.class.getName() );
 	@PersistenceContext
 	private EntityManager em;
 
@@ -22,11 +27,15 @@ public class ResponseService {
 	}
 
 	@Transactional
-	public void createNewResponse(int customerId, String questionBody, String answer) {
+	public void createNewResponse(int customerId, int questionId, String questionBody, String answer) {
+		Customer customer = em.find(Customer.class, customerId);
 		Response response = new Response();
-		response.setCustomerId(customerId);
+		response.setCustomer(customer);
+		response.setQuestionId(questionId);
 		response.setQuestionBody(questionBody);
 		response.setAnswer(answer);
+		response.setDate(new Date());
+		logger.info("answer " + answer);
 		em.persist(response);
 	}
 }
