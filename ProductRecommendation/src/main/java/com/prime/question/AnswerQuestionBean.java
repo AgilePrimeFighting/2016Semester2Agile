@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -60,12 +62,14 @@ public class AnswerQuestionBean implements Serializable {
 
 
 
-
 	public String doNext(){
 		
-		responseService.createNewStory(customer.getCustomerId(), questions.get(currentQuestionIndex).getQuestionId(), response);
+		logger.info("response : " + getResponse());
+		Question question = questions.get(currentQuestionIndex);
+		responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(), question.getQuestionBody(), response);
 		
 		currentQuestionIndex ++;
+		//System.out.println("currentQuestionIndex " + currentQuestionIndex);
 		if(currentQuestionIndex == questions.size() ){
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			return "ThankYou";
@@ -74,7 +78,50 @@ public class AnswerQuestionBean implements Serializable {
 		response=null;
 		return "AnswerQuestions";
 	}
+	
 
+	public String doForward(){
+		
+		if(currentQuestionIndex == 0 ){
+			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+			return "StartToAnswerQuestion";
+			
+		}
+		logger.info("response : " + getResponse());
+		Question question = questions.get(currentQuestionIndex);
+		responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(), question.getQuestionBody(), response);
+		System.out.println("currentQuestionIndex " + currentQuestionIndex);
+		currentQuestionIndex --;
+		System.out.println("currentQuestionIndex " + currentQuestionIndex);
+		
+		response=null;
+		return "AnswerQuestions";
+	}
+	
+	
+//	public void checkQuestionIndex() throws ValidatorException
+//	{
+//		logger.info("Cheeck method");
+//		if ( 0 == currentQuestionIndex ) 
+//		{
+//			FacesMessage message = addMessage("This is already the first question , cannot move forward.") ;
+//			System.out.println("This is already the first question , cannot move forward.");
+//			throw new ValidatorException(message) ; 
+//			
+//		}
+//	}
+
+//	
+//	public FacesMessage  addMessage(String summary) {
+//        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+//       // FacesContext.getCurrentInstance().addMessage(null, message);
+//        return  message ;
+//    }
+
+	
+	public Question getCurrentQuestion(){
+		return this.getQuestions().get(currentQuestionIndex);
+	}
 
 	
 	public QuestionService getQuestionService() {
@@ -124,6 +171,8 @@ public class AnswerQuestionBean implements Serializable {
 
 
 	public void setResponse(String response) {
+		
+		System.out.println("response " + response);
 		this.response = response;
 	}
 

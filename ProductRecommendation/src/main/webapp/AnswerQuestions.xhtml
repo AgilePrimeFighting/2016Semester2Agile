@@ -5,31 +5,50 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
+<style>
+.error {color:red}
+</style>
 </h:head>
-<h:body>
-	<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out of
-		#{answerQuestionBean.totalNumberOfQuestions}</h1>
-	<h:form>
-		<p:panelGrid columns="1" layout="grid" id="questionPanel">
-		<p:row>
-			<h:outputText
-				value="#{answerQuestionBean.questions.get(answerQuestionBean.currentQuestionIndex).questionBody}" />
-		</p:row>
-		<p:row>
-			<p:selectOneRadio id="options" value="#{answerQuestionBean.response}">
-				<f:selectItem itemLabel="Yes" itemValue="Yes" />
-				<f:selectItem itemLabel="No" itemValue="No" />
-			</p:selectOneRadio>
-		</p:row>
-			
-		</p:panelGrid>
-		<p:commandButton value="next" action="#{answerQuestionBean.doNext}" update="questionPanel"></p:commandButton>
 
+
+<h:body>
+
+	<h:form>
+	
+		<p:panelGrid columns="1" layout="grid" id="questionPanel">
+			
+			<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out
+				of #{answerQuestionBean.totalNumberOfQuestions}</h1>
+			<p:row>
+				<h:outputText
+					value="#{answerQuestionBean.getCurrentQuestion().questionBody}" />
+			</p:row>
+			<br />
+			<p:row>
+				<p:selectOneRadio id="options" required="true" layout="pageDirection"  
+				requiredMessage = "You must have a choice to do the next"
+					value="#{answerQuestionBean.response}" label="Answers">
+					<f:selectItems
+						value="#{answerQuestionBean.getCurrentQuestion().options}"
+						var="option"
+						itemLabel="#{option.optionBody}" itemValue="#{option.optionBody}" />
+				</p:selectOneRadio>
+				<h:message for = "options" styleClass = "error" />
+			</p:row>
+
+		</p:panelGrid>
+		
+		<p:commandButton value="next" action="#{answerQuestionBean.doNext()}"	update="questionPanel"></p:commandButton>
+		<p:commandButton value="forward" action="#{answerQuestionBean.doForward()}" update = "questionPanel" immediate = "true"></p:commandButton>
+		
 	</h:form>
-</h:body>
+ 		
+
+
+ 
+ </h:body>
 </html>

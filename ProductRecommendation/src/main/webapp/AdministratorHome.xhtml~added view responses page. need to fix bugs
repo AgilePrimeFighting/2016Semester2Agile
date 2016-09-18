@@ -10,10 +10,10 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Thank you for your input</h1>
-	
-	<h1>MYOB EXO is the recommended product for you.</h1>
+	<h:form>
+			<p:button outcome="ViewQuestions" value="Maintain Questions" />
+			<p:button outcome="ViewResponses" value="View Responses" />
 
-
+	</h:form>
 </h:body>
 </html>
