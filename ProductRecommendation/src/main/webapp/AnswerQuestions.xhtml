@@ -9,12 +9,23 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
+<style>
+.error {color:red}
+</style>
 </h:head>
+
+
 <h:body>
 
 	<h:form>
+<<<<<<< HEAD
 		<p:messages autoUpdate="true" />
 		<p:panelGrid columns="1" layout="grid" id="questionPanel">
+=======
+	
+		<p:panelGrid columns="1" layout="grid" id="questionPanel">
+			
+>>>>>>> Jack
 			<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out
 				of #{answerQuestionBean.totalNumberOfQuestions}</h1>
 			<p:row>
@@ -23,19 +34,38 @@
 			</p:row>
 			<br />
 			<p:row>
+<<<<<<< HEAD
 				<p:selectOneRadio id="options" required="true" layout="pageDirection" 
+=======
+				<p:selectOneRadio id="options" required="true" layout="pageDirection"  
+				requiredMessage = "You must have a choice to do the next"
+>>>>>>> Jack
 					value="#{answerQuestionBean.response}" label="Answers">
 					<f:selectItems
 						value="#{answerQuestionBean.getCurrentQuestion().options}"
 						var="option"
 						itemLabel="#{option.optionBody}" itemValue="#{option.optionBody}" />
 				</p:selectOneRadio>
+<<<<<<< HEAD
 			</p:row>
 
 		</p:panelGrid>
 		<p:commandButton value="next" action="#{answerQuestionBean.doNext}"
 			update="questionPanel"></p:commandButton>
+=======
+				<h:message for = "options" styleClass = "error" />
+			</p:row>
+>>>>>>> Jack
 
+		</p:panelGrid>
+		
+		<p:commandButton value="next" action="#{answerQuestionBean.doNext()}"	update="questionPanel"></p:commandButton>
+		<p:commandButton value="forward" action="#{answerQuestionBean.doForward()}" update = "questionPanel" immediate = "true"></p:commandButton>
+		
 	</h:form>
-</h:body>
+ 		
+
+
+ 
+ </h:body>
 </html>
