@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 
 import com.prime.customer.model.Customer;
 import com.prime.customer.service.CustomerService;
+import com.prime.email.service.EmailService;
 import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.question.service.ResponseService;
@@ -50,6 +51,9 @@ public class AnswerQuestionBean implements Serializable {
 	@Autowired
 	private CustomerService customerService;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	
 	@PostConstruct
 	public void init(){
@@ -58,7 +62,9 @@ public class AnswerQuestionBean implements Serializable {
 	}
 
 
-
+	public void sendEmailToDemandGenerationTeam(){
+		
+	}
 
 	public String doNext(){
 		

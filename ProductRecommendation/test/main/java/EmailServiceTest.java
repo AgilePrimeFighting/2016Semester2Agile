@@ -29,4 +29,9 @@ public class EmailServiceTest {
 	    		   "Testing123",
 	    		   "Testing only \n\n Hello Spring Email Sender");
 	}
+	
+	@Test
+	public void testFormatMessage(){
+		logger.info(emailService.formatMessage());
+	}
 }

@@ -1,25 +1,18 @@
 package com.prime.email.service;
 
+import java.io.StringWriter;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
+
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
-
-import com.prime.question.AnswerQuestionBean;
-
-import javax.annotation.PostConstruct;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 @Service
 public class EmailService {
@@ -41,6 +34,8 @@ public class EmailService {
 	private String GMAIL_PASSWORD;
 	
 	private JavaMailSenderImpl  mailSender = new JavaMailSenderImpl();
+	 @Autowired  
+	 private VelocityEngine velocityEngine;  
 
 
 
@@ -65,6 +60,7 @@ public class EmailService {
 		mailSender.setPassword(GMAIL_PASSWORD);
 		mailSender.setJavaMailProperties(props);
 		
+		velocityEngine.setProperty("spring.velocity.resource-loader-path", "classpath:/templates/");
 
 	}
 	
@@ -77,6 +73,14 @@ public class EmailService {
 		message.setSubject(subject);
 		message.setText(msg);
 		mailSender.send(message);
+	}
+	
+	public String formatMessage(){
+	    VelocityContext velocityContext = new VelocityContext();
+	    velocityContext.put("userName", "John Low");
+	    StringWriter stringWriter = new StringWriter();
+	    velocityEngine.mergeTemplate("CustomerResponse.vm", "UTF-8", velocityContext, stringWriter);
+	    return stringWriter.toString();
 	}
 
 }
