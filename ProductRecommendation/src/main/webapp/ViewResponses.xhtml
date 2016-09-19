@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Responses</h1>
+	<h:form>
+		<div>
+			<p:dataTable id="responseTable"
+				value="#{viewResponsesBean.responses}" var="response"
+				rowIndexVar="rowIndex">
+				<p:column headerText="No." width="50">
+					<h:outputText value="#{rowIndex + 1}" />
+				</p:column>
+				<p:column headerText="Customer No" width="100">
+
+					<h:outputText value="#{response.customer.customerId}"
+						rendered="#{not empty response.customer}" />
+				</p:column>
+				<p:column headerText="Response Date" width="100">
+					<h:outputText value="#{response.date}">
+						<f:convertDateTime pattern="YYYY-MM-dd HH:mm:ss" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Question Id"  width="100">
+					<h:outputText value="#{response.questionId}" />
+				</p:column>
+				<p:column headerText="Question">
+					<h:outputText value="#{response.questionBody}" />
+				</p:column>
+				<p:column headerText="Answer">
+					<h:outputText value="#{response.answer}" />
+				</p:column>
+				<p:column headerText="Recommended Product" width="150">
+					<h:outputText value="#{response.customer.product}"
+						rendered="#{not empty response.customer}" />
+				</p:column>
+				<p:column headerText="Trial Status" width="150">
+					<h:outputText value="Not Started" />
+				</p:column>
+			</p:dataTable>
+		</div>
+		<div>
+			<p:commandButton value="export" ajax="false">
+				<p:dataExporter type="csv" target="responseTable"
+					fileName="prospects" pageOnly="true" />
+			</p:commandButton>
+
+		</div>
+
+	</h:form>
+</h:body>
+</html>
