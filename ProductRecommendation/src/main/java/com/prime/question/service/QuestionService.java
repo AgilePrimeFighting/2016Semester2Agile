@@ -28,10 +28,12 @@ public class QuestionService {
 		Question question = new Question();
 		question.setQuestionBody(body);
 		
-		if(options ==null ){
+		if(options ==null )
+		{
 			options = new ArrayList<Option>();
 		}
-		if(options.isEmpty()){
+		if(options.isEmpty())
+		{
 			Option yesOption = new Option();
 			yesOption.setOptionBody("Yes");
 			Option noOption = new Option();
@@ -46,6 +48,8 @@ public class QuestionService {
 		question.setOptions(options);
 		em.persist(question);
 	}
+	
+	
 	@Transactional
 	public void delete(Question question) {
 		if(!em.contains(question)){
@@ -53,9 +57,13 @@ public class QuestionService {
 		}
 		em.remove(question);
 	}
+	
+	
 	@Transactional
-	public void update(Question question) {
-		if(question.getOptions() ==null){
+	public void update(Question question) 
+	{
+		if(question.getOptions() ==null)
+		{
 			question.setOptions(new ArrayList<Option>());
 		}
 		if(question.getOptions().isEmpty()){
