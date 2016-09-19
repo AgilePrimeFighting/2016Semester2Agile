@@ -28,7 +28,7 @@ public class Product
 	@Column (name = "PRODUCT_TRAIL")
 	private boolean productTrail ;
 	
-	@Column (name = "PRODUCT_RUL")
+	@Column (name = "PRODUCT_URL")
 	private String ProductURL ;
 
 	public String getProductID() {

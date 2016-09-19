@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Product</h1>
+	<h:form>
+
+		<p:dataTable id="productTable" value="#{viewProductsBean.products}"
+			var="product" rowIndexVar="rowIndex">
+			<p:column headerText="No." width="50">
+				<h:outputText value="#{rowIndex + 1}">
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Product name">
+				<h:outputText value="#{product.productName}">
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Product status">
+				<h:outputText value="#{product.productActive}">
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Procut Trail">
+				<h:outputText value="#{product.productTrail}"></h:outputText>
+			</p:column>
+
+			<p:column headerText="Procut URL">
+				<h:outputText value="#{product.ProductURL}"></h:outputText>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+	Hello world!
+</h:body>
+</html>
