@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<style>
+.error {color:red}
+</style>
+</h:head>
+<h:body>
+	<h1>Add a new Product.</h1>
+	
+	<h:form>
+		#{createProductBean.initBean()}
+		<h2>Product name </h2>
+	
+		<p:inputTextarea value="#{createProductBean.productName}"
+			style="display:block; width:80%"
+			label="Question Body" maxlength="100" />
+		<br />
+		
+		<h3>Product Active </h3>
+		<p:selectBooleanButton id="productActive" value="#{createProductBean.productActive}" onLabel="Yes" offLabel="No" style="width:60px" />
+		<br />
+		
+		<h3>Product Trail</h3>
+		<p:selectBooleanButton id="productTrail" value="#{createProductBean.productTrial}" onLabel="Yes" offLabel="No" style="width:60px" />
+		<br />
+		
+		<h3>The website of the product</h3>
+		<p:inputTextarea id = "URLinput" value="#{createProductBean.productURL}"
+			style="display:block; width:80%"   maxlength="200">
+		</p:inputTextarea>
+			<h:message for="URLinput" styleClass = "error"></h:message>
+			
+		<br />
+
+		<p:commandButton value="save" action="#{createProductBean.onSave}"
+			style="margin-top:15px;" />
+		<p:button value="cancel" outcome="ViewProducts"
+			style="margin-left:20px;" />
+		
+		
+	</h:form>
+
+</h:body>
+</html>

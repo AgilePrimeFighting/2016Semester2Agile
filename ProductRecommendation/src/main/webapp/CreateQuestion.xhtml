@@ -10,14 +10,13 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Please enter a question.</h1>
-	<h2>If you choose to enter no options for the question, the
-		question will be created as a "yes or no" question.</h2>
+	<h1>Add a new Product.</h1>
+	
 	<h:form>
 		#{createQuestionBean.initBean()}
 		<p:messages autoUpdate="true" />
 		<p:inputTextarea value="#{createQuestionBean.questionBody}"
-			style="display:block; width:80%" required="true"
+			style="display:block; width:50%" required="true"
 			label="Question Body" maxlength="400" />
 		<br />
 		<p:commandButton value="Add Option"
