@@ -24,8 +24,21 @@ public class ViewProductsBean
 	
 	
 	private List<Product> products = new ArrayList<Product>() ;
-	private static final Logger logger = Logger.getLogger(ViewQuestionsBean.class.getName());
-		
+	private static final Logger logger = Logger.getLogger(ViewProductsBean.class.getName());
+	
+	
+	
+	private Product selectedProduct;
+	
+
+	public Product getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	public void setSelectedProduct(Product selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
+
 	@Autowired
 	private ProductService productService;
 	
@@ -43,7 +56,8 @@ public class ViewProductsBean
 	}
 
 	public void onDelete(Product product){
-		logger.info("deleting question");
+		System.out.println("Start to delet a product");
+		logger.info("deleting product");
 		products.remove(product);
 		productService.delete(product);
 	}

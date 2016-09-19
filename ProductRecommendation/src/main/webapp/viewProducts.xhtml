@@ -10,42 +10,70 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Product</h1>
+	<h1>Product List</h1>
 	<h:form>
-	<dir>
-			<p:dataTable id="productTable"
-				value="#{viewProductsBean.products}" var="product"
-				rowIndexVar="rowIndex">
+		<dir>
+			<p:dataTable id="productTable" value="#{viewProductsBean.products}"
+				var="product" rowIndexVar="rowIndex">
 				<p:column headerText="No." width="50">
 					<h:outputText value="#{rowIndex + 1}" />
 				</p:column>
-				
+
 				<p:column headerText="Product name">
 					<h:outputText value="#{product.productName}" />
 				</p:column>
-				
+
 				<p:column headerText="Product status">
 					<h:outputText value="#{product.productActive}" />
 				</p:column>
+
+
+				<p:column headerText="Procut Trail">
+					<h:outputText value="#{product.productTrial}"></h:outputText>
+				</p:column>
+
+
+				<p:column headerText="Procut URL">
+<!-- 					<h:link value="#{product.productURL}" outcome = "#{product.productURL}"></h:link>
+ -->					<!-- <a href = "www.baidu.com" >www.baidu.com</a> -->
+ 						<h:outputText value = "#{product.productURL}" ></h:outputText>
 					
-				
-				<p:column headerText = "Procut Trail" >
-				<h:outputText value = "#{product.productTrail}" ></h:outputText>
+				</p:column>
+
+
+				<p:column width="50" headerText="Edit">
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{editProductBean.initEdit(product)}"
+						action="EditProduct">
+					</p:commandButton>
 				</p:column>
 				
 				
-				<p:column headerText = "Procut URL" >
-				<h:outputText value = "#{product.productURL}" ></h:outputText>
+				
+				<p:column width="50" headerText="Delete">
+					<p:commandButton icon="ui-icon-close"
+						actionListener="#{viewProductsBean.onDelete(product)}"
+						update="productTable">
+						<p:confirm header="Confirmation"
+							message="Are you sure you want to delete this product?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true">
+						<p:commandButton value="No" type="button" id="noButton"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						<p:commandButton value="Yes" type="button" style="float:left;"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					</p:confirmDialog>
 				</p:column>
 			</p:dataTable>
 		</dir>
 
-		<div>
-			<p:button outcome="AddProduct" value="Add new product"
-				style="margin-top:10px;" />
 
-		</div>
+		<p:button outcome="AddProduct" value="Add new product"
+			style="margin-top:10px;" />
+
+
 	</h:form>
-	
+
 </h:body>
 </html>

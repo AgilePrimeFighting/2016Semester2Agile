@@ -28,12 +28,12 @@ public class ProductService
 	 
 	 
 	 @Transactional
-	 public void createNewProduct ( String productName , boolean productActive , boolean productTrail  , String procutURL ) 
+	 public void createNewProduct ( String productName , boolean productActive , boolean productTrial  , String procutURL ) 
 	 {
 		 Product product = new Product() ;
 		 product.setProductName(productName);
 		 product.setProductActive(productActive);
-		 product.setProductTrail(productTrail);
+		 product.setProductTrial(productTrial);
 		 product.setProductURL(procutURL);
 		 em.persist(product);
 	 }
@@ -41,6 +41,7 @@ public class ProductService
 	 
 		@Transactional
 		public void delete(Product product) {
+			System.out.println("Product service : delete a product.");
 			if(!em.contains(product)){
 				product = em.merge(product);
 			}
@@ -49,28 +50,14 @@ public class ProductService
 		
 		
 		@Transactional
-		public void update(Question product) 
+		public void update(Product product) 
 		{
-//			if(question.getOptions() ==null)
+			//System.out.println("This is product update function.");
+//			if ( !em.contains(product)  )
 //			{
-//				question.setOptions(new ArrayList<Option>());
-//			}
-//			if(question.getOptions().isEmpty()){
-//				Option yesOption = new Option();
-//				yesOption.setOptionBody("Yes");
-//				Option noOption = new Option();
-//				noOption.setOptionBody("No");
-//				question.getOptions().add(yesOption);
-//				question.getOptions().add(noOption);
-//				
-//			}
-//			for(Option option: question.getOptions()){
-//				option.setQuestion(question);
-//			}
-//			if(!em.contains(question)){
-//				question = em.merge(question);
-//			}
-			
+//				em.merge(product) ;
+//			} 
+			em.merge(product) ;
 		}
 
 }
