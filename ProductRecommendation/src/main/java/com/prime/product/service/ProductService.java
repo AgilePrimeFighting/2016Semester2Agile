@@ -21,8 +21,11 @@ public class ProductService
 	
 	 public List<Product> listAll() 
 	 {
+		 	System.out.println("List all products");
 	        return em.createQuery("SELECT u FROM Product u", Product.class).getResultList();
 	 }
+	 
+	 
 	 
 	 @Transactional
 	 public void createNewProduct ( String productName , boolean productActive , boolean productTrail  , String procutURL ) 

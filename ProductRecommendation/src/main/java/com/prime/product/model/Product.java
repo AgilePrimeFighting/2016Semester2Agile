@@ -28,8 +28,8 @@ public class Product
 	@Column (name = "PRODUCT_TRAIL")
 	private boolean productTrail ;
 	
-	@Column (name = "PRODUCT_RUL")
-	private String ProductURL ;
+	@Column (name = "PRODUCT_URL")
+	private String productURL ;
 
 	public String getProductID() {
 		return productID;
@@ -64,12 +64,14 @@ public class Product
 	}
 
 	public String getProductURL() {
-		return ProductURL;
+		return productURL;
 	}
 
 	public void setProductURL(String productURL) {
-		ProductURL = productURL;
+		this.productURL = productURL;
 	}
+
+
 
 	
 	

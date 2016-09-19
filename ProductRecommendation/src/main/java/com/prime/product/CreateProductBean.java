@@ -27,10 +27,11 @@ public class CreateProductBean
 
 	public void initBean () 
 	{
-//		productName = null ;
-//		productActive = false ;
-//		productTrail  = false ;
-//		productRUL = null ;
+		System.out.println("start to init product bean");
+		productName = null ;
+		productActive = false ;
+		productTrail  = false ;
+		productURL = null ;
 	}
 
 	
@@ -67,10 +68,20 @@ public class CreateProductBean
 	public void setProductTrail(boolean productTrail) {
 		this.productTrail = productTrail;
 	}
-	public String getProductRUL() {
+
+
+	public String getProductURL() {
 		return productURL;
 	}
-	public void setProductRUL(String productRUL) {
+
+
+	public void setProductURL(String productURL) {
 		this.productURL = productURL;
-	} 
+	}
+
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
 }
