@@ -17,9 +17,10 @@ public class CustomerService {
 	@PersistenceContext
 	private EntityManager em;
 	
-	 public List<Customer> listAll() {
+	 public List<Customer> listAll() 
+	 {
 	        return em.createQuery("SELECT u FROM Customer u", Customer.class).getResultList();
-	    }
+	 }
 	 
 	 @Transactional
 	 public Customer createNewCustomer(){
