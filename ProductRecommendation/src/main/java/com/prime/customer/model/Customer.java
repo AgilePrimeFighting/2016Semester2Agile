@@ -14,9 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
-import com.prime.question.model.Option;
 import com.prime.response.model.Response;
 
 @Entity
@@ -41,41 +39,6 @@ public class Customer {
 	@Column(name = "FIRST_NAME")
 	private String  firstName;
 	
-	public Boolean getIsSubscribe() {
-		return isSubscribe;
-	}
-
-	public void setIsSubscribe(Boolean isSubscribe) {
-		this.isSubscribe = isSubscribe;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public void setBusinessType(String businessType) {
-		this.businessType = businessType;
-	}
-
-	public void setAddiMsg(String addiMsg) {
-		this.addiMsg = addiMsg;
-	}
 
 	@Column(name = "LAST_NAME")
 	private String  lastName;
@@ -83,6 +46,11 @@ public class Customer {
 	@Column(name = "EMAIL")
 	private String  email;
 	
+	
+	@Column(name = "PHONE")
+	private String  phone;
+
+
 	@Column(name = "COMPANY")
 	private String  company;
 	
@@ -175,4 +143,48 @@ public class Customer {
 		return isSubscribe;
 	}
 
+	public Boolean getIsSubscribe() {
+		return isSubscribe;
+	}
+
+	public void setIsSubscribe(Boolean isSubscribe) {
+		this.isSubscribe = isSubscribe;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public void setBusinessType(String businessType) {
+		this.businessType = businessType;
+	}
+
+	public void setAddiMsg(String addiMsg) {
+		this.addiMsg = addiMsg;
+	}
+	
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 }
