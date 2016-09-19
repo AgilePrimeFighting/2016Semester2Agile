@@ -38,6 +38,30 @@ public class Customer {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date  date;
 	
+	@Column(name = "FIRST_NAME")
+	private String  firstName;
+	
+	@Column(name = "LAST_NAME")
+	private String  lastName;
+	
+	@Column(name = "EMAIL")
+	private String  email;
+	
+	@Column(name = "COMPANY")
+	private String  company;
+	
+	@Column(name = "COUNTRY")
+	private String  country;
+	
+	@Column(name = "BUSINESS_TYPE")
+	private String  businessType;
+	
+	@Column(name = "ADDITIONAL_MSG")
+	private String  addiMsg;
+	
+	@Column(name = "IS_SUBSCRIBE")
+	private Boolean  isSubscribe;
+	
 	@OneToMany(mappedBy = "customer", targetEntity = Response.class, orphanRemoval=true,
 			fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Response> responses;
@@ -71,7 +95,6 @@ public class Customer {
 	}
 	
 
-
 	public List<Response> getResponses() {
 		return responses;
 	}
@@ -84,6 +107,36 @@ public class Customer {
 		this.customerId = customerId;
 	}
 	
-
+	public String getFirstName(){
+		return firstName;
+	}
+	
+	public String getLastName(){
+		return lastName;
+	}
+	
+	public String getEmail(){
+		return email;
+	}
+	
+	public String getCompany(){
+		return company;
+	}
+	
+	public String getCountry(){
+		return country;
+	}
+	
+	public String getBusinessType(){
+		return businessType;
+	}
+	
+	public String getAddiMsg(){
+		return addiMsg;
+	}
+	
+	public Boolean getIsSubcribe(){
+		return isSubscribe;
+	}
 
 }
