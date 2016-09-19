@@ -41,6 +41,42 @@ public class Customer {
 	@Column(name = "FIRST_NAME")
 	private String  firstName;
 	
+	public Boolean getIsSubscribe() {
+		return isSubscribe;
+	}
+
+	public void setIsSubscribe(Boolean isSubscribe) {
+		this.isSubscribe = isSubscribe;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public void setBusinessType(String businessType) {
+		this.businessType = businessType;
+	}
+
+	public void setAddiMsg(String addiMsg) {
+		this.addiMsg = addiMsg;
+	}
+
 	@Column(name = "LAST_NAME")
 	private String  lastName;
 	

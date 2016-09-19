@@ -16,7 +16,7 @@
 			<p:dataTable id="questionTable"
 				value="#{viewQuestionsBean.questions}" var="question"
 				rowIndexVar="rowIndex"
-				selection="#{viewQuestionsBean.selectedQuestion}">
+				>
 				<p:column headerText="No." width="50">
 					<h:outputText value="#{rowIndex + 1}" />
 				</p:column>
