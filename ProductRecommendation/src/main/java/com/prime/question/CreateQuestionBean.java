@@ -27,12 +27,10 @@ public class CreateQuestionBean implements Serializable {
 	private String questionBody;
 	private List<Option> options;
 	
-	
-	
-
-
 	@Autowired
 	private QuestionService questionService;
+	
+	
 	
 
 	public void initBean(){
@@ -40,7 +38,8 @@ public class CreateQuestionBean implements Serializable {
 		options = null;
 	}
 	
-	public void addOption(){
+	public void addOption()
+	{
 		if(options == null){
 		options = new ArrayList<Option>();
 		}
