@@ -16,30 +16,48 @@ import com.prime.question.ViewQuestionsBean;
 import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 
+
 @Controller
 @Scope("request")
-public class ViewProductsBean {
+public class ViewProductsBean 
+{
+	
+	
+	private List<Product> products = new ArrayList<Product>() ;
+	private static final Logger logger = Logger.getLogger(ViewProductsBean.class.getName());
+	
+	
+	
+	private Product selectedProduct;
+	
 
-	private List<Product> products = new ArrayList<Product>();
-	private static final Logger logger = Logger
-			.getLogger(ViewQuestionsBean.class.getName());
+	public Product getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	public void setSelectedProduct(Product selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
 
 	@Autowired
 	private ProductService productService;
-
+	
 	@PostConstruct
-	public void init() {
+	public void init(){
 		logger.info("initiating");
 		System.out.println("Initing ~~~");
-		if (productService != null) {
-			products = productService.listAll();
-		} else {
+		if(productService != null){
+		products = productService.listAll();
+		}
+		else{
 			logger.info("product service is null");
 		}
+		System.out.println("finish inititing");
 	}
 
-	public void onDelete(Product product) {
-		logger.info("deleting question");
+	public void onDelete(Product product){
+		System.out.println("Start to delet a product");
+		logger.info("deleting product");
 		products.remove(product);
 		productService.delete(product);
 	}
@@ -60,5 +78,7 @@ public class ViewProductsBean {
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
+
+
 
 }

@@ -25,11 +25,11 @@ public class Product
 	@Column (name = "PRODUCT_ACTIVE")
 	private boolean productActive ;
 	
-	@Column (name = "PRODUCT_TRAIL")
-	private boolean productTrail ;
+	@Column (name = "PRODUCT_TRIAL")
+	private boolean productTrial ;
 	
 	@Column (name = "PRODUCT_URL")
-	private String ProductURL ;
+	private String productURL ;
 
 	public String getProductID() {
 		return productID;
@@ -55,21 +55,24 @@ public class Product
 		this.productActive = productActive;
 	}
 
-	public boolean isProductTrail() {
-		return productTrail;
+	
+	public boolean isProductTrial() {
+		return productTrial;
 	}
 
-	public void setProductTrail(boolean productTrail) {
-		this.productTrail = productTrail;
+	public void setProductTrial(boolean productTrial) {
+		this.productTrial = productTrial;
 	}
 
 	public String getProductURL() {
-		return ProductURL;
+		return productURL;
 	}
 
 	public void setProductURL(String productURL) {
-		ProductURL = productURL;
+		this.productURL = productURL;
 	}
+
+
 
 	
 	

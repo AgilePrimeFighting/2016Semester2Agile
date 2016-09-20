@@ -19,7 +19,7 @@
     </persistence-unit> -->
     <!--    To connect to AWS database-->
         <properties>
-            <!-- <property name="javax.persistence.jdbc.url" value="jdbc:mysql://prime-mysql-instance1.cbgsdwu2jj7q.us-west-2.rds.amazonaws.com:3306/prime" />--> 
+            <!-- <property name="javax.persistence.jdbc.url" value="jdbc:mysql://prime-mysql-instance1.cbgsdwu2jj7q.us-west-2.rds.amazonaws.com:3306/prime" /> -->
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://casebasedreasoning.ceo6wds3sdea.ap-southeast-2.rds.amazonaws.com:3306/prime" />
             <property name="javax.persistence.jdbc.user" value="qianer1006" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
