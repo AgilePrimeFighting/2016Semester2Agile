@@ -69,6 +69,8 @@ public class EmailServiceTest {
 		    customer.setHasTrial("No");
 		    customer.setIsSubscribe(false);
 		    customer.setProduct("MYOB EXO");
+		    customer.setEmail("pepperidge.farm@gmail.com");
+		    //customer.set
 		    List<Response> allResponses = new ArrayList<Response>();
 		    Response response = new Response();
 		    response.setQuestionId(1);
