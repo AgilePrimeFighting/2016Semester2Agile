@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<style>
+.red {color:red}
+</style>
+</h:head>
+<h:body>
+	<h2>Questioning is successful.</h2>
+	<h2>MYOB EXO is the recommended product for you.</h2>
+	<h1>#{answerQuestionBean.head}</h1>
+	
+	<h:form>
+		<p>
+			<h:outputLabel id="firstNameLabel" for="firstNameInput" value="First name: " />
+			<h:inputText id="firstNameInput" required="true" 
+				value="#{answerQuestionBean.firstName}"
+				requiredMessage="Please fill this box" />
+			<h:outputLabel styleClass="red" value=" * " />
+			<h:message for="firstNameInput" styleClass="red" />
+		</p>
+		
+		<p>
+			<h:outputLabel id="lastNameLabel" for="lastNameInput" value="Last name: " />
+			<h:inputText id="lastNameInput" required="true"
+				value="#{answerQuestionBean.lastName}" 
+				requiredMessage="Please fill this box" />
+			<h:outputLabel styleClass="red" value=" * " />
+			<h:message for="lastNameInput" styleClass="red" />
+		</p>
+		
+		<p>
+			<h:outputLabel id="emailLabel" for="emailInput" value="Email: " />
+			<h:inputText id="emailInput" required="true"
+				value="#{answerQuestionBean.email}"
+				requiredMessage="Please fill this box"
+				validatorMessage="Email format should be in this form 'youremail@mail.com'">
+				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			</h:inputText>
+			<h:outputLabel styleClass="red" value=" * " />
+			<h:message for="emailInput" styleClass="red" />
+		</p>
+		
+		<p>
+			<h:outputLabel id="phoneLabel" for="phoneInput" value="Contact number: " />
+			<h:inputText id="phoneInput" value="#{answerQuestionBean.phone}" />
+		</p>
+		
+		<p>
+			<h:outputLabel id="companyLabel" for="companyInput" value="Company name: " />
+			<h:inputText id="companyInput" value="#{answerQuestionBean.company}" />
+		</p>
+		
+		<p>
+			<h:outputLabel id="countryLabel" for="countryInput" value="Country: " />
+			<h:selectOneMenu id="countryInput" value="#{answerQuestionBean.country}">
+   				<f:selectItem itemValue="" itemLabel = "Country..." />
+				<f:selectItem itemValue="Afganistan" itemLabel = "Afghanistan" />
+				<f:selectItem itemValue="Albania" itemLabel = "Albania" />
+				<f:selectItem itemValue="Other" itemLabel = "Other..." />	   							
+			</h:selectOneMenu>
+		</p>
+		
+		<p>
+			<h:outputLabel id="businessTypeLabel" for="businessTypeInput" value="Business type: " />
+			<h:inputText id="businessTypeInput" value="#{answerQuestionBean.businessType}" />
+		</p>
+		
+		<p>
+			<h:outputLabel id="addiMsgLabel" for="addiMsgInput" value="Additional message: " />
+			<h:inputTextarea id="addiMsgInput" row="20" col="50" value="#{answerQuestionBean.addiMsg}" />
+		</p>
+		
+		<p>
+			<h:selectBooleanCheckbox id="isSubscribe" value="#{answerQuestionBean.isSubscribe}" /> 
+				I'd like to subscribe to the latest newsletter from MYOB
+		</p>
+		
+		<p>
+			<h:commandButton value="submit" action="#{answerQuestionBean.submitDetail()}" />
+		</p>
+		
+	</h:form>
+	
+</h:body>
+</html>
