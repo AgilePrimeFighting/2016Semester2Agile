@@ -11,12 +11,12 @@ There are three ways to access the project:
 a. For Administrator,
 
 To access the admin home page, use this link
-http://defaultenvironment.qxgr2c9ehj.apsoutheast2.elasticbeanstalk.com/ 
+http://default-environment.qxgr2c9ehj.ap-southeast-2.elasticbeanstalk.com/
 
 b. For prospect,
 
 To access the page for the prospect, use this link
-http://defaultenvironment.qxgr2c9ehj.apsoutheast2.elasticbeanstalk.com/AnswerQuestions.xhtml
+http://default-environment.qxgr2c9ehj.ap-southeast-2.elasticbeanstalk.com/AnswerQuestions.xhtml
 
 c. For developer,
 
