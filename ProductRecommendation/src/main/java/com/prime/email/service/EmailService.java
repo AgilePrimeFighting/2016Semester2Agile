@@ -1,6 +1,8 @@
 package com.prime.email.service;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -13,6 +15,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
+
+import com.prime.customer.model.Customer;
+import com.prime.response.model.Response;
 
 @Service
 public class EmailService {
@@ -32,6 +37,8 @@ public class EmailService {
 	private String GMAIL_USERNAME;
 	@Value("${gmail.password}")
 	private String GMAIL_PASSWORD;
+	@Value("${customer.response.email.subject}")
+	private String CUSTOMER_RESPONSE_EMAIL_SUBJECT;
 	
 	private JavaMailSenderImpl  mailSender = new JavaMailSenderImpl();
 	 @Autowired  
@@ -75,12 +82,19 @@ public class EmailService {
 		mailSender.send(message);
 	}
 	
-	public String formatMessage(){
-	    VelocityContext velocityContext = new VelocityContext();
-	    velocityContext.put("userName", "John Low");
+	
+	public String formatCustomerResponseEmail(Customer customer, List<Response> allResponses){
+		VelocityContext velocityContext = new VelocityContext();
+		velocityContext.put("customer", customer);
+	    velocityContext.put("allResponses", allResponses);
 	    StringWriter stringWriter = new StringWriter();
-	    velocityEngine.mergeTemplate("CustomerResponse.vm", "UTF-8", velocityContext, stringWriter);
+	    velocityEngine.mergeTemplate("templates/CustomerResponse.vm", "UTF-8", velocityContext, stringWriter);
 	    return stringWriter.toString();
+	}
+	
+	public void sendCustomerResponseEmail(Customer customer, List<Response> allResponses){
+		String emailContent = this.formatCustomerResponseEmail(customer, allResponses);
+		this.sendMail(GMAIL_USERNAME, "tliu861@aucklanduni.ac.nz", CUSTOMER_RESPONSE_EMAIL_SUBJECT, emailContent);
 	}
 
 }

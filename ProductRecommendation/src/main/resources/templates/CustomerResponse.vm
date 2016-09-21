@@ -1,13 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h3>Hi ${user.name}, we are testing registration confirmation :)!</h3>
-	<div>
-		Your email address is <a href="mailto:${userName}">${userName}</a>.
-	</div>
-</body>
-</html>
+A prospect has completed the online product recommendation survey.
+Name: ${customer.firstName}  ${customer.lastName}
+Company: ${customer.company}
+Email:  ${customer.email}
+Phone: ${customer.phone}
+Country: ${customer.country}
+Business Type: ${customer.businessType}
+Additional Message: ${customer.addiMsg}
+
+Add to MYOB newsletter list: ${customer.isSubscribe}
+
+Recommended Product: ${customer.product}
+Trial Site Provisioned:${customer.hasTrial}
+
+Responses to questions: 
+#foreach( $response in $allResponses )
+
+    Question ${response.questionId}: ${response.questionBody}
+	Answer: ${response.answer}
+#end
+
+
