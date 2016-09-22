@@ -15,13 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.prime.customer.ResponseItem;
 import com.prime.customer.model.Customer;
 import com.prime.customer.service.CustomerService;
 import com.prime.email.service.EmailService;
 import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.question.service.ResponseService;
+import com.prime.response.model.Response;
 
 @Controller
 @Scope("session")
@@ -36,9 +36,10 @@ public class AnswerQuestionBean implements Serializable {
 	private Customer customer;
 	private List<Question> questions;
 	private int currentQuestionIndex;
-	private List<ResponseItem> responseList;
+	private List<Response> responseList;
+	private boolean isInitResponseList;
 	private String response;
-	private String head = null;
+	private String head;
 	private String product = "MYOB EXO";
 	private String hasTrial = "false";
 	private String firstName;
@@ -67,10 +68,12 @@ public class AnswerQuestionBean implements Serializable {
 	public void init(){
 		setQuestions(questionService.listAll());
 		currentQuestionIndex = 0;
-		responseList = new CopyOnWriteArrayList<ResponseItem>();
+		isInitResponseList = false;
 	}
 	
-	public void initCollectCustomerDetailPage(){
+	public void initCollectCustomerDetailPage(List<Response> responseList){
+		head = null;
+		this.responseList = responseList;
 		if(hasTrial.equals("false")) setHead("Please complete the below details "
 				+ "to have someone from MYOB contact you with more details for "
 				+ "the recommended product.");
@@ -86,16 +89,21 @@ public class AnswerQuestionBean implements Serializable {
 	public String doNext(){
 		
 		logger.info("response : " + getResponse());
-		Question question = questions.get(currentQuestionIndex);
-		//responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(), question.getQuestionBody(), response);
-		ResponseItem responseItem = new ResponseItem(question.getQuestionId(), 
-				question.getQuestionBody(), response);
-		responseList.add(responseItem);		
 		
+		Question question = questions.get(currentQuestionIndex);
+		Response responseItem = new Response();
+		responseItem.setCustomerId(question.getQuestionId());
+		responseItem.setQuestionBody(question.getQuestionBody());
+		responseItem.setAnswer(response);
+		if(!isInitResponseList){
+			isInitResponseList = true;
+			responseList = new CopyOnWriteArrayList<Response>();
+		}
+		responseList.add(responseItem);
+		System.out.println("DoNextListSize: " + responseList.size());
 		currentQuestionIndex ++;
-		//System.out.println("currentQuestionIndex " + currentQuestionIndex);
 		if(currentQuestionIndex == questions.size() ){
-			initCollectCustomerDetailPage();
+			initCollectCustomerDetailPage(responseList);
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			return "CollectCustomerDetail";
 			
@@ -110,28 +118,31 @@ public class AnswerQuestionBean implements Serializable {
 		if(currentQuestionIndex == 0 ){
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			return "StartToAnswerQuestion";
-			
 		}
-		logger.info("response : " + getResponse());
-		//Question question = questions.get(currentQuestionIndex);
-		//responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(), question.getQuestionBody(), response);
-		responseList.remove(responseList.size() - 1);
-		System.out.println("currentQuestionIndex " + currentQuestionIndex);
-		currentQuestionIndex --;
-		System.out.println("currentQuestionIndex " + currentQuestionIndex);
 		
+		logger.info("response : " + getResponse());
+		if(isInitResponseList){
+			if(responseList.size() > 0) {
+				responseList.remove(responseList.size() - 1);
+				System.out.println("DoBackListSize: " + responseList.size());
+			}
+		}
+		
+		currentQuestionIndex --;
 		response = null;
 		return "AnswerQuestions";
 	}
 	
 	public String submitDetail(){
-//		System.out.println("isSub: " + isSubscribe);
-//		customer = customerService.createNewCustomer(product, hasTrial, firstName, lastName, email,
-//				phone, company, country, businessType, addiMsg, isSubscribe);
-//		for(ResponseItem res : responseList){
-//			responseService.createNewResponse(customer.getCustomerId(), res.questionId , 
-//					res.questionBody, res.response);
+		
+		customer = customerService.createNewCustomer(product, hasTrial, firstName, lastName, email,
+				phone, company, country, businessType, addiMsg, isSubscribe);
+//		for(Response res : responseList){
+//			System.out.println("SaveRes");
+//			responseService.createNewResponse(customer.getCustomerId(), res.getQuestionId(), 
+//					res.getQuestionBody(), res.getAnswer());
 //		}
+		
 		return "ThankYou";
 	}
 	

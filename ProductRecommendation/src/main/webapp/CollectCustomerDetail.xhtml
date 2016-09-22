@@ -19,67 +19,67 @@
 	
 	<h:form>
 		<p>
-			<h:outputLabel id="firstNameLabel" for="firstNameInput" value="First name: " />
-			<h:inputText id="firstNameInput" required="true" 
+			<p:outputLabel id="firstNameLabel" value="First name: " />
+			<p:inputText id="firstNameInput" required="true" 
 				value="#{answerQuestionBean.firstName}"
 				requiredMessage="Please fill this box" />
-			<h:outputLabel styleClass="red" value=" * " />
+			<p:outputLabel styleClass="red" value=" * " />
 			<h:message for="firstNameInput" styleClass="red" />
 		</p>
 		
 		<p>
-			<h:outputLabel id="lastNameLabel" for="lastNameInput" value="Last name: " />
-			<h:inputText id="lastNameInput" required="true"
+			<p:outputLabel id="lastNameLabel" value="Last name: " />
+			<p:inputText id="lastNameInput" required="true"
 				value="#{answerQuestionBean.lastName}" 
 				requiredMessage="Please fill this box" />
-			<h:outputLabel styleClass="red" value=" * " />
+			<p:outputLabel styleClass="red" value=" * " />
 			<h:message for="lastNameInput" styleClass="red" />
 		</p>
 		
 		<p>
-			<h:outputLabel id="emailLabel" for="emailInput" value="Email: " />
-			<h:inputText id="emailInput" required="true"
+			<p:outputLabel id="emailLabel" value="Email: " />
+			<p:inputText id="emailInput" required="true"
 				value="#{answerQuestionBean.email}"
 				requiredMessage="Please fill this box"
 				validatorMessage="Email format should be in this form 'youremail@mail.com'">
 				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-			</h:inputText>
-			<h:outputLabel styleClass="red" value=" * " />
+			</p:inputText>
+			<p:outputLabel styleClass="red" value=" * " />
 			<h:message for="emailInput" styleClass="red" />
 		</p>
 		
 		<p>
-			<h:outputLabel id="phoneLabel" for="phoneInput" value="Contact number: " />
-			<h:inputText id="phoneInput" value="#{answerQuestionBean.phone}" />
+			<p:outputLabel id="phoneLabel" for="phoneInput" value="Contact number: " />
+			<p:inputText id="phoneInput" value="#{answerQuestionBean.phone}" />
 		</p>
 		
 		<p>
-			<h:outputLabel id="companyLabel" for="companyInput" value="Company name: " />
-			<h:inputText id="companyInput" value="#{answerQuestionBean.company}" />
+			<p:outputLabel id="companyLabel" for="companyInput" value="Company name: " />
+			<p:inputText id="companyInput" value="#{answerQuestionBean.company}" />
 		</p>
 		
 		<p>
-			<h:outputLabel id="countryLabel" for="countryInput" value="Country: " />
-			<h:selectOneMenu id="countryInput" value="#{answerQuestionBean.country}">
+			<p:outputLabel id="countryLabel" for="countryInput" value="Country: " />
+			<p:selectOneMenu id="countryInput" value="#{answerQuestionBean.country}">
    				<f:selectItem itemValue="" itemLabel = "Country..." />
 				<f:selectItem itemValue="Afganistan" itemLabel = "Afghanistan" />
 				<f:selectItem itemValue="Albania" itemLabel = "Albania" />
 				<f:selectItem itemValue="Other" itemLabel = "Other..." />	   							
-			</h:selectOneMenu>
+			</p:selectOneMenu>
 		</p>
 		
 		<p>
-			<h:outputLabel id="businessTypeLabel" for="businessTypeInput" value="Business type: " />
-			<h:inputText id="businessTypeInput" value="#{answerQuestionBean.businessType}" />
+			<p:outputLabel id="businessTypeLabel" for="businessTypeInput" value="Business type: " />
+			<p:inputText id="businessTypeInput" value="#{answerQuestionBean.businessType}" />
 		</p>
 		
 		<p>
-			<h:outputLabel id="addiMsgLabel" for="addiMsgInput" value="Additional message: " />
-			<h:inputTextarea id="addiMsgInput" row="20" col="50" value="#{answerQuestionBean.addiMsg}" />
+			<p:outputLabel id="addiMsgLabel" for="addiMsgInput" value="Additional message: " />
+			<p:inputTextarea id="addiMsgInput" row="20" col="50" value="#{answerQuestionBean.addiMsg}" />
 		</p>
 		
 		<p>
-			<h:selectBooleanCheckbox id="isSubscribe" value="#{answerQuestionBean.isSubscribe}" /> 
+			<p:selectBooleanCheckbox id="isSubscribe" value="#{answerQuestionBean.isSubscribe}" /> 
 				I'd like to subscribe to the latest newsletter from MYOB
 		</p>
 		
