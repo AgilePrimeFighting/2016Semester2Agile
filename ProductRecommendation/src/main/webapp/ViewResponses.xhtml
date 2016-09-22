@@ -17,8 +17,8 @@
 		<div style="margin 0 auto;">
 			<p:dataTable id="responseTable"
 				value="#{viewResponsesBean.responses}" var="response"
-				rowIndexVar="rowIndex">
-				<p:column headerText="No." width="50">
+				rowIndexVar="rowIndex" scrollable="true"  scrollHeight="500" sortBy="#{response.date}" sortOrder="descending">
+				<p:column headerText="No." width="50" >
 					<h:outputText value="#{rowIndex + 1}" />
 				</p:column>
 				<p:column headerText="Customer No" width="100">
