@@ -23,10 +23,27 @@ public class CustomerService {
 	 }
 	 
 	 @Transactional
-	 public Customer createNewCustomer(){
+	 public Customer createNewCustomer(String product, String hasTrial, String firstName, 
+			 String lastName, String email, String phone, String company, 
+			 String country, String businessType, String addiMsg, String isSubscribe){
 		 Customer customer = new Customer();
-		 customer.setProduct("MYOB EXO");
+		 customer.setProduct(product);
 		 customer.setDate(new Date());
+		 customer.setHasTrial(hasTrial);
+		 customer.setFirstName(firstName);
+		 customer.setLastName(lastName);
+		 customer.setEmail(email);
+		 customer.setPhone(phone);
+		 customer.setCompany(company);
+		 customer.setCountry(country);
+		 customer.setBusinessType(businessType);
+		 customer.setAddiMsg(addiMsg);
+		 customer.setIsSubscribe(isSubscribe);
+		 if("false".equals(isSubscribe)){
+			 customer.setIsSubscribe("No");
+		 }else{
+			 customer.setIsSubscribe("Yes");
+		 }
 		 em.persist(customer);
 		 return customer;
 	 }

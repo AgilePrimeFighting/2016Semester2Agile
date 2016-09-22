@@ -30,6 +30,23 @@ public class Product
 	
 	@Column (name = "PRODUCT_URL")
 	private String productURL ;
+	
+	
+//	private String activeOutput ;
+//
+//	public String getActiveOutput() {
+//		return activeOutput;
+//	}
+//
+//	public void setActiveOutput(String activeOutput) {
+//		this.activeOutput = activeOutput;
+//	}
+	
+	
+	public String outputActive() 
+	{
+		return this.productActive == true ? "Active" : "Inactive" ;
+	}
 
 	public String getProductID() {
 		return productID;
@@ -53,6 +70,14 @@ public class Product
 
 	public void setProductActive(boolean productActive) {
 		this.productActive = productActive;
+//		if ( productActive == true ) 
+//		{
+//			activeOutput = "active" ;
+//		}
+//		else 
+//		{
+//			activeOutput = "disactive" ;
+//		}
 	}
 
 	
@@ -62,6 +87,11 @@ public class Product
 
 	public void setProductTrial(boolean productTrial) {
 		this.productTrial = productTrial;
+	}
+	
+	public String outputTrial () 
+	{
+		return this.productTrial == true ? "YES" : "NO" ;
 	}
 
 	public String getProductURL() {

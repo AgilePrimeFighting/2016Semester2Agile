@@ -8,12 +8,14 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</link>
 </h:head>
 <h:body>
 	<h1>Please edit the product.</h1>
 	
 	<h:form>
-	
+		<p:messages autoUpdate="true" />
 		<h2>Product name </h2>
 	
 		<p:inputTextarea value="#{editProductBean.product.productName}"
@@ -32,17 +34,17 @@
 		<h3>The website of the product</h3>
 		<p:inputTextarea value="#{editProductBean.product.productURL}"
 			style="display:block; width:80%" required="true"
-			label="Question Body" maxlength="200" />
+			label="Product URL" maxlength="200" />
 		<br />
 
-		<p:commandButton value="save" action="#{editProductBean.doSave}"
+		<p:commandButton class="commandButton" value="save" action="#{editProductBean.doSave}"
 			style="margin-top:15px;" />
 		<p:button value="cancel" outcome="ViewProducts"
 			style="margin-left:20px;" />
 		<p:confirmDialog global="true">
-			<p:commandButton value="No" type="button" id="noButton"
+			<p:commandButton class="commandButton" value="No" type="button" id="noButton"
 				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			<p:commandButton value="Yes" type="button" style="float:left;"
+			<p:commandButton class="commandButton" value="Yes" type="button" style="float:left;"
 				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 		</p:confirmDialog>
 		
