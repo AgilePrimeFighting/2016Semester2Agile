@@ -1,18 +1,14 @@
 package com.prime.notification.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.primefaces.expression.SearchExpressionFacade.Options;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prime.notification.model.NotificationEmail;
-import com.prime.question.model.Option;
-import com.prime.question.model.Question;
 
 @Service
 public class NotificationEmailService {

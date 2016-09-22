@@ -1,6 +1,5 @@
 package com.prime.product.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prime.product.model.Product;
-import com.prime.question.model.Option;
-import com.prime.question.model.Question;
 
 @Service
 public class ProductService 

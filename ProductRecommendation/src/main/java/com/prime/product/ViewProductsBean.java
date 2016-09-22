@@ -12,9 +12,6 @@ import org.springframework.stereotype.Controller;
 
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
-import com.prime.question.ViewQuestionsBean;
-import com.prime.question.model.Question;
-import com.prime.question.service.QuestionService;
 
 
 @Controller

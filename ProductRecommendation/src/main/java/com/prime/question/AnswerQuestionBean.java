@@ -15,13 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.prime.customer.ResponseItem;
 import com.prime.customer.model.Customer;
 import com.prime.customer.service.CustomerService;
 import com.prime.email.service.EmailService;
 import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.question.service.ResponseService;
+import com.prime.response.model.Response;
 
 @Controller
 @Scope("session")
@@ -36,7 +36,7 @@ public class AnswerQuestionBean implements Serializable {
 	private Customer customer;
 	private List<Question> questions;
 	private int currentQuestionIndex;
-	private List<ResponseItem> responseList;
+	private List<Response> responseList;
 	private String response;
 	private String head = null;
 	private String product = "MYOB EXO";
@@ -67,7 +67,7 @@ public class AnswerQuestionBean implements Serializable {
 	public void init(){
 		setQuestions(questionService.listAll());
 		currentQuestionIndex = 0;
-		responseList = new CopyOnWriteArrayList<ResponseItem>();
+		responseList = new CopyOnWriteArrayList<Response>();
 	}
 	
 	public void initCollectCustomerDetailPage(){
@@ -88,7 +88,7 @@ public class AnswerQuestionBean implements Serializable {
 		logger.info("response : " + getResponse());
 		Question question = questions.get(currentQuestionIndex);
 		//responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(), question.getQuestionBody(), response);
-		ResponseItem responseItem = new ResponseItem(question.getQuestionId(), 
+		Response responseItem = new Response(question.getQuestionId(), 
 				question.getQuestionBody(), response);
 		responseList.add(responseItem);		
 		
@@ -126,12 +126,14 @@ public class AnswerQuestionBean implements Serializable {
 	
 	public String submitDetail(){
 //		System.out.println("isSub: " + isSubscribe);
-//		customer = customerService.createNewCustomer(product, hasTrial, firstName, lastName, email,
-//				phone, company, country, businessType, addiMsg, isSubscribe);
-//		for(ResponseItem res : responseList){
-//			responseService.createNewResponse(customer.getCustomerId(), res.questionId , 
-//					res.questionBody, res.response);
-//		}
+		customer = customerService.createNewCustomer(product, hasTrial, firstName, lastName, email,
+				phone, company, country, businessType, addiMsg, isSubscribe);
+		for(Response res : responseList){
+			res.setCustomer(customer);
+		
+		responseService.createResponse(res);
+	}
+		emailService.sendCustomerResponseEmail(customer, responseList);
 		return "ThankYou";
 	}
 	
