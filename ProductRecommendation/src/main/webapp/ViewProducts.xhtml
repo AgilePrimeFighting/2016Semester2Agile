@@ -24,12 +24,12 @@
 				</p:column>
 
 				<p:column headerText="Product status">
-					<h:outputText value="#{product.productActive}" />
+					<h:outputText value="#{product.outputActive()}" />
 				</p:column>
 
 
 				<p:column headerText="Product Has Trial?">
-					<h:outputText value="#{product.productTrial}"></h:outputText>
+					<h:outputText value="#{product.outputTrial()}"></h:outputText>
 				</p:column>
 
 
