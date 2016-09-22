@@ -12,6 +12,9 @@
 <style>
 .error {color:red}
 </style>
+<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
+</link> 
+
 </h:head>
 
 
@@ -42,8 +45,8 @@
 
 		</p:panelGrid>
 		
-		<p:commandButton value="back" action="#{answerQuestionBean.doBack()}" update="questionPanel" immediate="true"></p:commandButton>
-		<p:commandButton value="next" action="#{answerQuestionBean.doNext()}" update="questionPanel"></p:commandButton>
+		<p:commandButton class="btn btn-default" value="back" action="#{answerQuestionBean.doBack()}" update="questionPanel" immediate="true"></p:commandButton>
+		<p:commandButton class="btn myob-btn-secondary" value="next" action="#{answerQuestionBean.doNext()}" update="questionPanel"></p:commandButton>
 		</div>
 	</h:form>
  		
