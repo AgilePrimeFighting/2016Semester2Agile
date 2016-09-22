@@ -8,11 +8,17 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
+</link>
 <style>
 .red {color:red}
 </style>
 </h:head>
-<h:body>
+<h:body class="backgroundchangercomp parbase basecomp">
+<div class="myob-component-background-changer myob-padding-vertical">
+<div class="inner">
+<div class="container">
+<div class="columncontrolcomp parbase basecomp">
 	<h2>Questioning is successful.</h2>
 	<h2>MYOB EXO is the recommended product for you.</h2>
 	<h1>#{answerQuestionBean.head}</h1>
@@ -88,6 +94,9 @@
 		</p>
 		
 	</h:form>
-	
+	</div>
+	</div>	
+	</div>	
+</div>	
 </h:body>
 </html>
