@@ -8,6 +8,8 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</link>
 </h:head>
 <h:body>
 	<h1>Responses</h1>
@@ -49,7 +51,7 @@
 			</p:dataTable>
 		</div>
 		<div>
-			<p:commandButton value="export" ajax="false">
+			<p:commandButton class="commandButton" value="export" ajax="false">
 				<p:dataExporter type="csv" target="responseTable"
 					fileName="prospects" pageOnly="true" />
 			</p:commandButton>

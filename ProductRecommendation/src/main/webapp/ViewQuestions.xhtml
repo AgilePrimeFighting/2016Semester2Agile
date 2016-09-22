@@ -8,6 +8,8 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</link>
 </h:head>
 <h:body>
 	<h1>Questions</h1>
@@ -35,13 +37,13 @@
 					</p:dataTable>
 				</p:column>
 				<p:column width="50" headerText="Edit">
-					<p:commandButton icon="ui-icon-pencil"
+					<p:commandButton class="commandButton" icon="ui-icon-pencil"
 						actionListener="#{editQuestionBean.initEdit(question)}"
 						action="EditQuestion">
 					</p:commandButton>
 				</p:column>
 				<p:column width="50" headerText="Delete">
-					<p:commandButton icon="ui-icon-close"
+					<p:commandButton class="commandButton" icon="ui-icon-close"
 						actionListener="#{viewQuestionsBean.onDelete(question)}"
 						update="questionTable">
 						<p:confirm header="Confirmation"
@@ -57,9 +59,9 @@
 
 		</div>
 		<p:confirmDialog global="true">
-			<p:commandButton value="No" type="button" id="noButton"
+			<p:commandButton class="commandButton" value="No" type="button" id="noButton"
 				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			<p:commandButton value="Yes" type="button" style="float:left;"
+			<p:commandButton class="commandButton" value="Yes" type="button" style="float:left;"
 				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 		</p:confirmDialog>
 	</h:form>

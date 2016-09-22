@@ -8,6 +8,8 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</link>
 </h:head>
 <h:body>
 	<h1>Product List</h1>
@@ -42,7 +44,7 @@
 
 
 				<p:column width="50" headerText="Edit">
-					<p:commandButton icon="ui-icon-pencil"
+					<p:commandButton class="commandButton" icon="ui-icon-pencil"
 						actionListener="#{editProductBean.initEdit(product)}"
 						action="EditProduct">
 					</p:commandButton>
@@ -51,7 +53,7 @@
 				
 				
 				<p:column width="50" headerText="Delete">
-					<p:commandButton icon="ui-icon-close"
+					<p:commandButton class="commandButton" icon="ui-icon-close"
 						actionListener="#{viewProductsBean.onDelete(product)}"
 						update="productTable">
 						<p:confirm header="Confirmation"
@@ -59,7 +61,7 @@
 							icon="ui-icon-alert" />
 					</p:commandButton>
 					<p:confirmDialog global="true">
-						<p:commandButton value="No" type="button" id="noButton"
+						<p:commandButton class="commandButton" value="No" type="button" id="noButton"
 							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 						<p:commandButton value="Yes" type="button" style="float:left;"
 							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
