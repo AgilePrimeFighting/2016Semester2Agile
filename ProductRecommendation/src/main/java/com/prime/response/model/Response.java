@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,10 +35,21 @@ public class Response {
 	@Column(name = "ANSWER")
 	private String answer;
 	
-	@ManyToOne
-	@JoinColumn(name="CUSTOMER_ID")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="CUSTOMER_ID", insertable=false, updatable=false)
 	private Customer customer;
 	
+	@Column(name="CUSTOMER_ID", insertable=false, updatable=false )
+	private Integer customerId;
+	
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
 	@Column(name = "DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date  date;

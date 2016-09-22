@@ -34,4 +34,6 @@
  
     <!-- Detect @Transactional -->
     <tx:annotation-driven transaction-manager="transactionManager" />
+     <!-- property file -->
+    <context:property-placeholder location="classpath*:prime.properties"/>
 </beans>

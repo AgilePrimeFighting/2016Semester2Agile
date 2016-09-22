@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Please enter the email address of the Demand Generation Team</h1>
+	<h:form>
+		<p:panelGrid id="emailPanel">
+			<p:messages autoUpdate="true" />
+			<p:inputText value="#{notificationEmailBean.email}"
+				style="display:block; width:50%" required="true"
+				label="Email Address" maxlength="400"
+				validatorMessage="Please enter a valid email address">
+				<f:validateRegex
+					pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			</p:inputText>
+			<br />
+			<p:commandButton value="Save"
+				action="#{notificationEmailBean.doSave}" />
+			<p:button value="cancel" outcome="AdministratorHome"
+				style="margin-left:20px;" />
+			<br />
+		</p:panelGrid>
+
+	</h:form>
+</h:body>
+</html>
