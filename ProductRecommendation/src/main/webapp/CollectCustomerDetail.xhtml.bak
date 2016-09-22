@@ -61,8 +61,19 @@
 				value= "#{answerQuestionBean.firstName}FirstName" requiredMessage="Required"
 			validatorMessage="FirstName is required" >
 	
+<<<<<<< HEAD
+	<h:form>
+		<p:panel id="detailsPanel">
+		<p>
+			<h:outputLabel id="firstNameLabel" for="firstNameInput" value="First name: " />
+			<h:inputText id="firstNameInput" required="true" 
+				value="#{answerQuestionBean.firstName}"
+				requiredMessage="Required" />
+			<h:outputLabel styleClass="red" value=" * " />
+=======
 	<f:validateRegex pattern="String" />	
 			</h:inputText>
+>>>>>>> refs/remotes/origin/Racheal2
 			<h:message for="firstNameInput" styleClass="red" />
 			
 	    </div>
@@ -151,7 +162,11 @@
 		</p>
 		
 		<p>
+<<<<<<< HEAD
+			<p:commandButton value="submit" action="#{answerQuestionBean.submitDetail()}"  update="detailsPanel"/>
+=======
 			<h:commandButton class ="btn btn-default" value="submit" action="#{answerQuestionBean.submitDetail()}" />
+>>>>>>> refs/remotes/origin/Racheal2
 		</p>
 		</p:panel>
 	</h:form>
