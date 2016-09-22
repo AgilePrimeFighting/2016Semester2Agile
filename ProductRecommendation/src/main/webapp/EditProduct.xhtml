@@ -15,7 +15,7 @@
 	<h1>Please edit the product.</h1>
 	
 	<h:form>
-	
+		<p:messages autoUpdate="true" />
 		<h2>Product name </h2>
 	
 		<p:inputTextarea value="#{editProductBean.product.productName}"
@@ -34,7 +34,7 @@
 		<h3>The website of the product</h3>
 		<p:inputTextarea value="#{editProductBean.product.productURL}"
 			style="display:block; width:80%" required="true"
-			label="Question Body" maxlength="200" />
+			label="Product URL" maxlength="200" />
 		<br />
 
 		<p:commandButton class="commandButton" value="save" action="#{editProductBean.doSave}"
