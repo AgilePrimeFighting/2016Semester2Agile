@@ -18,8 +18,8 @@
 <h:body>
 
 	<h:form>
-	
-		<p:panelGrid columns="1" layout="grid" id="questionPanel">
+		<div style="margin: auto; width:800px">
+		<p:panelGrid columns="1" layout="grid" id="questionPanel" >
 			
 			<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out
 				of #{answerQuestionBean.totalNumberOfQuestions}</h1>
@@ -44,7 +44,7 @@
 		
 		<p:commandButton value="back" action="#{answerQuestionBean.doBack()}" update="questionPanel" immediate="true"></p:commandButton>
 		<p:commandButton value="next" action="#{answerQuestionBean.doNext()}" update="questionPanel"></p:commandButton>
-		
+		</div>
 	</h:form>
  		
 

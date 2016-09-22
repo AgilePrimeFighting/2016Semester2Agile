@@ -35,7 +35,7 @@ public class Response {
 	@Column(name = "ANSWER")
 	private String answer;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="CUSTOMER_ID", insertable=false, updatable=false)
 	private Customer customer;
 	
