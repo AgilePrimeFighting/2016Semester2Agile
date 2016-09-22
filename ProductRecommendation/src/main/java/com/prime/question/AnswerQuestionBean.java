@@ -1,6 +1,7 @@
 package com.prime.question;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -67,7 +68,7 @@ public class AnswerQuestionBean implements Serializable {
 	public void init(){
 		setQuestions(questionService.listAll());
 		currentQuestionIndex = 0;
-		responseList = new CopyOnWriteArrayList<Response>();
+		responseList = new ArrayList<Response>();
 	}
 	
 	public void initCollectCustomerDetailPage(){
@@ -96,7 +97,6 @@ public class AnswerQuestionBean implements Serializable {
 		//System.out.println("currentQuestionIndex " + currentQuestionIndex);
 		if(currentQuestionIndex == questions.size() ){
 			initCollectCustomerDetailPage();
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			return "CollectCustomerDetail";
 			
 		}
@@ -134,6 +134,7 @@ public class AnswerQuestionBean implements Serializable {
 		responseService.createResponse(res);
 	}
 		emailService.sendCustomerResponseEmail(customer, responseList);
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "ThankYou";
 	}
 	
