@@ -8,8 +8,10 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<style>
+<style type="text/css">
+@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}
 .red{color:red}
+
 </style>
 <link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
 </link>
@@ -21,11 +23,13 @@
 <div class="columncontrolcomp parbase basecomp">
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
-<div class="myob-component-form panel-default text-center">
+<div class="myob-component-form panel-default text-center" >
 
 <div class="formstandardcomp parbase basecomp section">
-<div class="myob-form-content ng-scope">
 
+<div class="myob-form-content ng-scope">
+	
+	
 <div class="panel-heading">
 <h3 class="panel-title">MYOB EXO is the recommended product for you.</h3>
 
@@ -46,67 +50,100 @@
 </div>
 </div>
 
+<h:form >
+		
+		<div class="parbase basecomp textfieldcomp" >
+		<div class="myob-component-text-field">
+		<div class="form-group ng-isolate-scope" >
+			
+			<h:inputText class="form-control"
+			 id="firstNameInput" required="true" 
+				value= "#{answerQuestionBean.firstName}FirstName" requiredMessage="Required"
+			validatorMessage="FirstName is required" >
 	
-	<h:form>
-		<p>
-			<h:outputLabel id="firstNameLabel" for="firstNameInput" value="First name: " />
-			<h:inputText id="firstNameInput" required="true" 
-				value="#{answerQuestionBean.firstName}"
-				requiredMessage="Required" />
-			<h:outputLabel styleClass="red" value=" * " />
+	<f:validateRegex pattern="String" />	
+			</h:inputText>
 			<h:message for="firstNameInput" styleClass="red" />
-		</p>
+			
+	    </div>
+		</div>
+		</div>
 		
-		<p>
-			<h:outputLabel id="lastNameLabel" for="lastNameInput" value="Last name: " />
-			<h:inputText id="lastNameInput" required="true"
-				value="#{answerQuestionBean.lastName}" 
-				requiredMessage="Required" />
-			<h:outputLabel styleClass="red" value=" * " />
+		<div class="parbase basecomp textfieldcomp" >
+		<div class="myob-component-text-field">
+		<div class="form-group ng-isolate-scope" >
+			
+			<h:inputText class="form-control" id="lastNameInput" required="true"
+				value="#{answerQuestionBean.lastName}LastName" requiredMessage="Required"
+				validatorMessage="LastName is required" >
+	
+	        <f:validateRegex pattern="String" />
+			</h:inputText>
 			<h:message for="lastNameInput" styleClass="red" />
-		</p>
+	    </div>
+		</div>
+		</div>
 		
-		<p>
-			<h:outputLabel id="emailLabel" for="emailInput" value="Email: " />
-			<h:inputText id="emailInput" required="true"
-				value="#{answerQuestionBean.email}"
+		<div class="parbase basecomp textfieldcomp" >
+		<div class="myob-component-text-field">
+		<div class="form-group ng-isolate-scope" >
+			<h:inputText class="form-control" id="emailInput" required="true"
+				value="#{answerQuestionBean.email}Email"
 				requiredMessage="Required"
 				validatorMessage="Email format should be in this form 'youremail@mail.com'">
 				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 			</h:inputText>
-			<h:outputLabel styleClass="red" value=" * " />
+			
 			<h:message for="emailInput" styleClass="red" />
-		</p>
+		</div>
+		</div>
+		</div>
 		
-		<p>
-			<h:outputLabel id="phoneLabel" for="phoneInput" value="Contact number: " />
-			<h:inputText id="phoneInput" value="#{answerQuestionBean.phone}" />
-		</p>
+		<div class="parbase basecomp textfieldcomp" >
+		<div class="myob-component-text-field">
+		<div class="form-group ng-isolate-scope" >
+			
+			<h:inputText class="form-control" id="phoneInput" value="#{answerQuestionBean.phone} ContactNumber" />
+		</div>
+		</div>
+		</div>
 		
-		<p>
-			<h:outputLabel id="companyLabel" for="companyInput" value="Company name: " />
-			<h:inputText id="companyInput" value="#{answerQuestionBean.company}" />
-		</p>
+	    <div class="parbase basecomp textfieldcomp">
+		<div class="myob-component-text-field">
+		<div class="form-group ng-isolate-scope">
+			<h:inputText  class="form-control " id="companyInput" value="#{answerQuestionBean.company}Company name" />
+	    </div>
+	 	</div>
+		</div>
 		
-		<p>
-			<h:outputLabel id="countryLabel" for="countryInput" value="Country: " />
-			<h:selectOneMenu id="countryInput" value="#{answerQuestionBean.country}">
-   				<f:selectItem itemValue="" itemLabel = "Country..." />
-				<f:selectItem itemValue="Afganistan" itemLabel = "Afghanistan" />
-				<f:selectItem itemValue="Albania" itemLabel = "Albania" />
-				<f:selectItem itemValue="Other" itemLabel = "Other..." />	   							
-			</h:selectOneMenu>
-		</p>
+        <div class="parbase basecomp textfieldcomp">
+		<div class="myob-component-text-field">
+		<div class="form-group ng-isolate-scope">
+	
+			<h:inputText class="form-control " id="conutryInput" type="text" value="#{answerQuestionBean.country} Country"/>
+		</div>
+		</div>
+		</div>
 		
-		<p>
-			<h:outputLabel id="businessTypeLabel" for="businessTypeInput" value="Business type: " />
-			<h:inputText id="businessTypeInput" value="#{answerQuestionBean.businessType}" />
-		</p>
+		<div class="parbase basecomp textfieldcomp">
+		<div class="myob-component-text-field">
+		<div class="form-group ng-isolate-scope">
 		
-		<p>
-			<h:outputLabel id="addiMsgLabel" for="addiMsgInput" value="Additional message: " />
-			<h:inputTextarea id="addiMsgInput" row="20" col="50" value="#{answerQuestionBean.addiMsg}" />
-		</p>
+		<h:inputText class="form-control " id="businessTypeInput" type="text" placeholder="Business type" 
+			 value="#{answerQuestionBean.businessType} Business Type"/>
+		</div>
+		</div>
+		</div>
+		
+	<div class="parbase basecomp textfieldcomp">
+		<div class="myob-component-text-field">
+		<div class="form-group ng-isolate-scope">
+		
+			<h:inputTextarea class="form-control ng-pristine ng-empty ng-valid-pattern ng-valid ng-valid-required ng-touched"
+			id="addiMsgInput"  value="#{answerQuestionBean.addiMsg} Please Leave A Message" />
+		</div>
+		</div>
+		</div>
 		
 		<p>
 			<h:selectBooleanCheckbox id="isSubscribe" value="#{answerQuestionBean.isSubscribe}" /> 
@@ -114,7 +151,7 @@
 		</p>
 		
 		<p>
-			<h:commandButton value="submit" action="#{answerQuestionBean.submitDetail()}" />
+			<h:commandButton class ="btn btn-default" value="submit" action="#{answerQuestionBean.submitDetail()}" />
 		</p>
 		
 	</h:form>
@@ -129,5 +166,7 @@
 	</div>
 	</div>
 	</div>
+	
+	
 </h:body>
 </html>
