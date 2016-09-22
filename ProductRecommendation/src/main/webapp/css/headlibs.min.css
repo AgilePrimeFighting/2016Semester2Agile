@@ -491,7 +491,7 @@ textarea.input-lg,select[multiple].input-lg{height:auto}
 .btn:active,.btn.active{outline:0;background-image:none;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,0.125);box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)}
 .btn.disabled,.btn[disabled],fieldset[disabled] .btn{cursor:not-allowed;opacity:.65;filter:alpha(opacity=65);-webkit-box-shadow:none;box-shadow:none}
 a.btn.disabled,fieldset[disabled] a.btn{pointer-events:none}
-.btn-default{color:#fff;background-color:#6fb72b;border-color:transparent;text-shadow:none}
+.btn-default, .ui-state-default.btn-default{color:#fff;background-color:#6fb72b;border-color:transparent;text-shadow:none;background-image:none}
 .btn-default:focus,.btn-default.focus{color:#fff;background-color:#568e21;border-color:rgba(0,0,0,0)}
 .btn-default:hover{color:#fff;background-color:#568e21;border-color:rgba(0,0,0,0)}
 .btn-default:active,.btn-default.active,.open>.dropdown-toggle.btn-default{color:#fff;background-color:#568e21;border-color:rgba(0,0,0,0)}
