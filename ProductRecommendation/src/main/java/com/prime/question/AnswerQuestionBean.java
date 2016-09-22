@@ -95,6 +95,9 @@ public class AnswerQuestionBean implements Serializable {
 		currentQuestionIndex ++;
 		if(currentQuestionIndex == questions.size() ){
 			initCollectCustomerDetailPage();
+			currentQuestionIndex = 0; 
+			response= null;
+			
 			return "CollectCustomerDetail";
 			
 		}
