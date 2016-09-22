@@ -8,25 +8,41 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
+</link>
 </h:head>
-<h:body>
-	<h:form>
+<h:body class="backgroundchangercomp parbase basecomp">
+<div class="myob-component-background-changer myob-padding-vertical">
+<div class="inner">
+<div class="container">
 
-		<p:layout fullPage="true">
-			<p:layoutUnit position="center" height="50">
-			</p:layoutUnit>
-			<p:layoutUnit position="bottom" height="100">
+<div class="myob-component-hero  myob-large-line myob-large-height ">
+<div class="container">
+<div class="row">
 
-			</p:layoutUnit>
-		</p:layout>
+	<h1 class="myob-component-title">Administrator Homepage</h1>
 
-		<p:button outcome="ViewQuestions" value="Maintain Questions" />
-		<p:button outcome="ViewProducts" value="View Products" />
-		<p:button outcome="ViewResponses" value="View Responses" />
-		<p:button outcome="ManageNotificationEmail" value="Edit Notification Email" />
+		<div class="col-sm-3">
+		<p:button class ="btn btn-default" outcome="ViewQuestions" value="Maintain Questions" />
+		</div>
+		<div class="col-sm-3">
+		<p:button class ="btn btn-default" outcome="ViewProducts" value="View Products" />
+		</div>
+		<div class="col-sm-3">
+		<p:button class ="btn btn-default" outcome="ViewResponses" value="View Responses" />
+		</div>
+		<div class="col-sm-3">
+		<p:button class ="btn btn-default" outcome="ManageNotificationEmail" value="Notification Email" />
+		</div>
 		
 
-	</h:form>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </h:body>
 
 </html>
