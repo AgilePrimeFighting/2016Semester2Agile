@@ -8,27 +8,51 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<style>
+.red{color:red}
+</style>
 <link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
 </link>
-<style>
-.red {color:red}
-</style>
 </h:head>
 <h:body class="backgroundchangercomp parbase basecomp">
 <div class="myob-component-background-changer myob-padding-vertical">
 <div class="inner">
 <div class="container">
 <div class="columncontrolcomp parbase basecomp">
-	<h2>Questioning is successful.</h2>
-	<h2>MYOB EXO is the recommended product for you.</h2>
-	<h1>#{answerQuestionBean.head}</h1>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<div class="myob-component-form panel-default text-center">
+
+<div class="formstandardcomp parbase basecomp section">
+<div class="myob-form-content ng-scope">
+
+<div class="panel-heading">
+<h3 class="panel-title">MYOB EXO is the recommended product for you.</h3>
+
+</div>
+<div class="panel-body">
+<p class="myob-subheading">Get in touch to learn how we can help your business</p>
+<div>
+<div class="columncontrolcomp parbase basecomp">
+<div class="row">
+<div class="col-sm-6">
+<div class="parbase basecomp textfieldcomp">
+<div class="myob-component-text-field">
+<div class="form-group ng-isolate-scope">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 	
 	<h:form>
 		<p>
 			<h:outputLabel id="firstNameLabel" for="firstNameInput" value="First name: " />
 			<h:inputText id="firstNameInput" required="true" 
 				value="#{answerQuestionBean.firstName}"
-				requiredMessage="Please fill this box" />
+				requiredMessage="Required" />
 			<h:outputLabel styleClass="red" value=" * " />
 			<h:message for="firstNameInput" styleClass="red" />
 		</p>
@@ -37,7 +61,7 @@
 			<h:outputLabel id="lastNameLabel" for="lastNameInput" value="Last name: " />
 			<h:inputText id="lastNameInput" required="true"
 				value="#{answerQuestionBean.lastName}" 
-				requiredMessage="Please fill this box" />
+				requiredMessage="Required" />
 			<h:outputLabel styleClass="red" value=" * " />
 			<h:message for="lastNameInput" styleClass="red" />
 		</p>
@@ -46,7 +70,7 @@
 			<h:outputLabel id="emailLabel" for="emailInput" value="Email: " />
 			<h:inputText id="emailInput" required="true"
 				value="#{answerQuestionBean.email}"
-				requiredMessage="Please fill this box"
+				requiredMessage="Required"
 				validatorMessage="Email format should be in this form 'youremail@mail.com'">
 				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 			</h:inputText>
@@ -95,8 +119,15 @@
 		
 	</h:form>
 	</div>
-	</div>	
-	</div>	
-</div>	
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 </h:body>
 </html>
