@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prime.customer.model.Customer;
-import com.prime.question.AnswerQuestionBean;
 import com.prime.response.model.Response;
 
 @Service
@@ -38,4 +37,10 @@ public class ResponseService {
 		logger.info("answer " + answer);
 		em.persist(response);
 	}
+	
+	@Transactional
+	public void createResponse(Response response) {
+		em.persist(response);
+	}
+	
 }

@@ -7,6 +7,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</link>
 	<title>login</title>
 	
 <style>
@@ -26,7 +28,7 @@
 		<h:inputSecret id="password" value="#{login.pwd}" required = "true" requiredMessage = "password is mandatory." validator = "#{login.validatePassword}"></h:inputSecret>
 		<h:message for="password" styleClass = "error"></h:message>
 		<br></br><br></br>
-		<h:commandButton action="AdministratorHome" value="Login" />
+		<h:commandButton  class="commandButton" action="AdministratorHome" value="Login" />
 	</h:form>
 </h:body>
 </html>

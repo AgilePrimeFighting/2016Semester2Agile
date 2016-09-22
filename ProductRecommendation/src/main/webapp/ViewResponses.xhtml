@@ -8,20 +8,22 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</link>
 </h:head>
 <h:body>
 	<h1>Responses</h1>
 	<h:form>
-		<div>
+		<div style="margin 0 auto;">
 			<p:dataTable id="responseTable"
 				value="#{viewResponsesBean.responses}" var="response"
-				rowIndexVar="rowIndex">
-				<p:column headerText="No." width="50">
+				rowIndexVar="rowIndex" scrollable="true"  scrollHeight="500" sortBy="#{response.date}" sortOrder="descending">
+				<p:column headerText="No." width="50" >
 					<h:outputText value="#{rowIndex + 1}" />
 				</p:column>
 				<p:column headerText="Customer No" width="100">
 
-					<h:outputText value="#{response.customer.customerId}"
+					<h:outputText value="#{response.customerId}"
 						rendered="#{not empty response.customer}" />
 				</p:column>
 				<p:column headerText="Response Date" width="100">
@@ -49,7 +51,7 @@
 			</p:dataTable>
 		</div>
 		<div>
-			<p:commandButton value="export" ajax="false">
+			<p:commandButton class="commandButton" value="export" ajax="false">
 				<p:dataExporter type="csv" target="responseTable"
 					fileName="prospects" pageOnly="true" />
 			</p:commandButton>

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,27 @@ import com.prime.customer.model.Customer;
 @Entity
 @Table
 public class Response {
+	
+	public Response(){
+		
+	}
+	public Response(Integer questionId, String questionBody, String answer, Integer customerId, Date date) {
+		super();
+		this.questionId = questionId;
+		this.questionBody = questionBody;
+		this.answer = answer;
+		this.customerId = customerId;
+		this.date = date;
+	}
+	
+	public Response(Integer questionId, String questionBody, String answer) {
+		this.questionId = questionId;
+		this.questionBody = questionBody;
+		this.answer = answer;
+		this.date= new Date();
+	}
+
+
 	@Id
 	@Column(name = "RESPONSE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,10 +56,21 @@ public class Response {
 	@Column(name = "ANSWER")
 	private String answer;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="CUSTOMER_ID")
 	private Customer customer;
 	
+	@Column(name="CUSTOMER_ID", insertable=false, updatable=false )
+	private Integer customerId;
+	
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
 	@Column(name = "DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date  date;
