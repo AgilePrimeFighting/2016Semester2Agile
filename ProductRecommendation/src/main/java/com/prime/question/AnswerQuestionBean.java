@@ -41,7 +41,7 @@ public class AnswerQuestionBean implements Serializable {
 	private String response;
 	private String head = null;
 	private String product = "MYOB EXO";
-	private String hasTrial = "false";
+	private String hasTrial = "No";
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -88,13 +88,11 @@ public class AnswerQuestionBean implements Serializable {
 		
 		logger.info("response : " + getResponse());
 		Question question = questions.get(currentQuestionIndex);
-		//responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(), question.getQuestionBody(), response);
 		Response responseItem = new Response(question.getQuestionId(), 
 				question.getQuestionBody(), response);
 		responseList.add(responseItem);		
 		
 		currentQuestionIndex ++;
-		//System.out.println("currentQuestionIndex " + currentQuestionIndex);
 		if(currentQuestionIndex == questions.size() ){
 			initCollectCustomerDetailPage();
 			return "CollectCustomerDetail";
