@@ -61,7 +61,7 @@
 				value= "#{answerQuestionBean.firstName}FirstName" requiredMessage="Required"
 			validatorMessage="FirstName is required" >
 	
-	<f:validateRegex pattern="String" />	
+	<f:validateRegex pattern="[a-zA-Z]*" />	
 			</h:inputText>
 			<h:message for="firstNameInput" styleClass="red" />
 			
@@ -77,7 +77,7 @@
 				value="#{answerQuestionBean.lastName}LastName" requiredMessage="Required"
 				validatorMessage="LastName is required" >
 	
-	        <f:validateRegex pattern="String" />
+	        <f:validateRegex pattern="[a-zA-Z]*" />
 			</h:inputText>
 			<h:message for="lastNameInput" styleClass="red" />
 	    </div>
