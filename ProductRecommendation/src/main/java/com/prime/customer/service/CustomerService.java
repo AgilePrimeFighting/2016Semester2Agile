@@ -39,6 +39,11 @@ public class CustomerService {
 		 customer.setBusinessType(businessType);
 		 customer.setAddiMsg(addiMsg);
 		 customer.setIsSubscribe(isSubscribe);
+		 if("false".equals(isSubscribe)){
+			 customer.setIsSubscribe("No");
+		 }else{
+			 customer.setIsSubscribe("Yes");
+		 }
 		 em.persist(customer);
 		 return customer;
 	 }

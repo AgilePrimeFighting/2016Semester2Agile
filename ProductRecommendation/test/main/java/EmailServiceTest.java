@@ -67,8 +67,10 @@ public class EmailServiceTest {
 		    customer.setCompany("Pepperidge Farm");
 		    customer.setCountry("New Zealand");
 		    customer.setHasTrial("No");
-		    customer.setIsSubscribe(false);
+		    customer.setIsSubscribe("No");
 		    customer.setProduct("MYOB EXO");
+		    customer.setEmail("pepperidge.farm@gmail.com");
+		    //customer.set
 		    List<Response> allResponses = new ArrayList<Response>();
 		    Response response = new Response();
 		    response.setQuestionId(1);

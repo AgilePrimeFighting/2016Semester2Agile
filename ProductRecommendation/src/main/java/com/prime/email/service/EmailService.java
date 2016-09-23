@@ -17,6 +17,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import com.prime.customer.model.Customer;
+import com.prime.notification.service.NotificationEmailService;
 import com.prime.response.model.Response;
 
 @Service
@@ -43,6 +44,9 @@ public class EmailService {
 	private JavaMailSenderImpl  mailSender = new JavaMailSenderImpl();
 	 @Autowired  
 	 private VelocityEngine velocityEngine;  
+	 
+	 @Autowired
+	 private NotificationEmailService notificationService;
 
 
 
@@ -94,7 +98,9 @@ public class EmailService {
 	
 	public void sendCustomerResponseEmail(Customer customer, List<Response> allResponses){
 		String emailContent = this.formatCustomerResponseEmail(customer, allResponses);
-		this.sendMail(GMAIL_USERNAME, "tliu861@aucklanduni.ac.nz", CUSTOMER_RESPONSE_EMAIL_SUBJECT, emailContent);
+		String toAddress = notificationService.getCurrentNotificationEmail();
+		logger.info("sending to " + toAddress);
+		this.sendMail(GMAIL_USERNAME, toAddress, CUSTOMER_RESPONSE_EMAIL_SUBJECT, emailContent);
 	}
 
 }

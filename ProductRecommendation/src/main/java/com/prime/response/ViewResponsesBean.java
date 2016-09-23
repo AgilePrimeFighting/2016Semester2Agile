@@ -58,7 +58,7 @@ public class ViewResponsesBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		logger.info("initiating");
-		customers = cutomerService.listAll();
+		//customers = cutomerService.listAll();
 		responses = responseService.listAll();
 	}
 

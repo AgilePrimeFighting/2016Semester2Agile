@@ -19,6 +19,27 @@ import com.prime.customer.model.Customer;
 @Entity
 @Table
 public class Response {
+	
+	public Response(){
+		
+	}
+	public Response(Integer questionId, String questionBody, String answer, Integer customerId, Date date) {
+		super();
+		this.questionId = questionId;
+		this.questionBody = questionBody;
+		this.answer = answer;
+		this.customerId = customerId;
+		this.date = date;
+	}
+	
+	public Response(Integer questionId, String questionBody, String answer) {
+		this.questionId = questionId;
+		this.questionBody = questionBody;
+		this.answer = answer;
+		this.date= new Date();
+	}
+
+
 	@Id
 	@Column(name = "RESPONSE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +56,8 @@ public class Response {
 	@Column(name = "ANSWER")
 	private String answer;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="CUSTOMER_ID", insertable=false, updatable=false)
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="CUSTOMER_ID")
 	private Customer customer;
 	
 	@Column(name="CUSTOMER_ID", insertable=false, updatable=false )
