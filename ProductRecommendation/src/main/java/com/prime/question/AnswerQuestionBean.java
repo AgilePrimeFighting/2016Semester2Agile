@@ -1,6 +1,7 @@
 package com.prime.question;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -37,11 +38,10 @@ public class AnswerQuestionBean implements Serializable {
 	private List<Question> questions;
 	private int currentQuestionIndex;
 	private List<Response> responseList;
-	private boolean isInitResponseList;
 	private String response;
-	private String head;
+	private String head = null;
 	private String product = "MYOB EXO";
-	private String hasTrial = "false";
+	private String hasTrial = "No";
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -68,12 +68,10 @@ public class AnswerQuestionBean implements Serializable {
 	public void init(){
 		setQuestions(questionService.listAll());
 		currentQuestionIndex = 0;
-		isInitResponseList = false;
+		responseList = new ArrayList<Response>();
 	}
 	
-	public void initCollectCustomerDetailPage(List<Response> responseList){
-		head = null;
-		this.responseList = responseList;
+	public void initCollectCustomerDetailPage(){
 		if(hasTrial.equals("false")) setHead("Please complete the below details "
 				+ "to have someone from MYOB contact you with more details for "
 				+ "the recommended product.");
@@ -89,22 +87,17 @@ public class AnswerQuestionBean implements Serializable {
 	public String doNext(){
 		
 		logger.info("response : " + getResponse());
-		
 		Question question = questions.get(currentQuestionIndex);
-		Response responseItem = new Response();
-		responseItem.setCustomerId(question.getQuestionId());
-		responseItem.setQuestionBody(question.getQuestionBody());
-		responseItem.setAnswer(response);
-		if(!isInitResponseList){
-			isInitResponseList = true;
-			responseList = new CopyOnWriteArrayList<Response>();
-		}
-		responseList.add(responseItem);
-		System.out.println("DoNextListSize: " + responseList.size());
+		Response responseItem = new Response(question.getQuestionId(), 
+				question.getQuestionBody(), response);
+		responseList.add(responseItem);		
+		
 		currentQuestionIndex ++;
 		if(currentQuestionIndex == questions.size() ){
-			initCollectCustomerDetailPage(responseList);
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+			initCollectCustomerDetailPage();
+			currentQuestionIndex = 0; 
+			response= null;
+			
 			return "CollectCustomerDetail";
 			
 		}
@@ -118,31 +111,31 @@ public class AnswerQuestionBean implements Serializable {
 		if(currentQuestionIndex == 0 ){
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			return "StartToAnswerQuestion";
+			
 		}
-		
 		logger.info("response : " + getResponse());
-		if(isInitResponseList){
-			if(responseList.size() > 0) {
-				responseList.remove(responseList.size() - 1);
-				System.out.println("DoBackListSize: " + responseList.size());
-			}
-		}
-		
+		//Question question = questions.get(currentQuestionIndex);
+		//responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(), question.getQuestionBody(), response);
+		responseList.remove(responseList.size() - 1);
+		System.out.println("currentQuestionIndex " + currentQuestionIndex);
 		currentQuestionIndex --;
+		System.out.println("currentQuestionIndex " + currentQuestionIndex);
+		
 		response = null;
 		return "AnswerQuestions";
 	}
 	
 	public String submitDetail(){
-		
+//		System.out.println("isSub: " + isSubscribe);
 		customer = customerService.createNewCustomer(product, hasTrial, firstName, lastName, email,
 				phone, company, country, businessType, addiMsg, isSubscribe);
-//		for(Response res : responseList){
-//			System.out.println("SaveRes");
-//			responseService.createNewResponse(customer.getCustomerId(), res.getQuestionId(), 
-//					res.getQuestionBody(), res.getAnswer());
-//		}
+		for(Response res : responseList){
+			res.setCustomer(customer);
 		
+		responseService.createResponse(res);
+	}
+		emailService.sendCustomerResponseEmail(customer, responseList);
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "ThankYou";
 	}
 	

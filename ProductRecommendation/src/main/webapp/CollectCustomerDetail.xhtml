@@ -8,86 +8,282 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<style>
-.red {color:red}
+	<style type="text/css">
+@charset "UTF-8";
+
+[
+ng\:cloak
+]
+,
+[
+ng-cloak
+]
+,
+[
+data-ng-cloak
+]
+,
+[
+x-ng-cloak
+]
+,
+.ng-cloak
+,
+.x-ng-cloak
+,
+.ng-hide
+
+
+
+
+
+
+:not
+
+
+
+ 
+
+
+
+(
+.ng-hide-animate
+
+
+
+ 
+
+
+
+){
+display
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+none
+
+
+
+ 
+
+
+
+!
+important
+
+
+
+
+
+
+;
+}
+ng\:form {
+	display: block;
+}
+
+.ng-animate-shim {
+	visibility: hidden;
+}
+
+.ng-anchor {
+	position: absolute;
+}
+
+.red {
+	color: red
+}
 </style>
+	<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
+	</link>
 </h:head>
-<h:body>
-	<h2>Questioning is successful.</h2>
-	<h2>MYOB EXO is the recommended product for you.</h2>
-	<h1>#{answerQuestionBean.head}</h1>
-	
-	<h:form>
-		<p>
-			<p:outputLabel id="firstNameLabel" value="First name: " />
-			<p:inputText id="firstNameInput" required="true" 
-				value="#{answerQuestionBean.firstName}"
-				requiredMessage="Please fill this box" />
-			<p:outputLabel styleClass="red" value=" * " />
-			<h:message for="firstNameInput" styleClass="red" />
-		</p>
-		
-		<p>
-			<p:outputLabel id="lastNameLabel" value="Last name: " />
-			<p:inputText id="lastNameInput" required="true"
-				value="#{answerQuestionBean.lastName}" 
-				requiredMessage="Please fill this box" />
-			<p:outputLabel styleClass="red" value=" * " />
-			<h:message for="lastNameInput" styleClass="red" />
-		</p>
-		
-		<p>
-			<p:outputLabel id="emailLabel" value="Email: " />
-			<p:inputText id="emailInput" required="true"
-				value="#{answerQuestionBean.email}"
-				requiredMessage="Please fill this box"
-				validatorMessage="Email format should be in this form 'youremail@mail.com'">
-				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-			</p:inputText>
-			<p:outputLabel styleClass="red" value=" * " />
-			<h:message for="emailInput" styleClass="red" />
-		</p>
-		
-		<p>
-			<p:outputLabel id="phoneLabel" for="phoneInput" value="Contact number: " />
-			<p:inputText id="phoneInput" value="#{answerQuestionBean.phone}" />
-		</p>
-		
-		<p>
-			<p:outputLabel id="companyLabel" for="companyInput" value="Company name: " />
-			<p:inputText id="companyInput" value="#{answerQuestionBean.company}" />
-		</p>
-		
-		<p>
-			<p:outputLabel id="countryLabel" for="countryInput" value="Country: " />
-			<p:selectOneMenu id="countryInput" value="#{answerQuestionBean.country}">
-   				<f:selectItem itemValue="" itemLabel = "Country..." />
-				<f:selectItem itemValue="Afganistan" itemLabel = "Afghanistan" />
-				<f:selectItem itemValue="Albania" itemLabel = "Albania" />
-				<f:selectItem itemValue="Other" itemLabel = "Other..." />	   							
-			</p:selectOneMenu>
-		</p>
-		
-		<p>
-			<p:outputLabel id="businessTypeLabel" for="businessTypeInput" value="Business type: " />
-			<p:inputText id="businessTypeInput" value="#{answerQuestionBean.businessType}" />
-		</p>
-		
-		<p>
-			<p:outputLabel id="addiMsgLabel" for="addiMsgInput" value="Additional message: " />
-			<p:inputTextarea id="addiMsgInput" row="20" col="50" value="#{answerQuestionBean.addiMsg}" />
-		</p>
-		
-		<p>
-			<p:selectBooleanCheckbox id="isSubscribe" value="#{answerQuestionBean.isSubscribe}" /> 
-				I'd like to subscribe to the latest newsletter from MYOB
-		</p>
-		
-		<p>
-			<h:commandButton value="submit" action="#{answerQuestionBean.submitDetail()}" />
-		</p>
-		
-	</h:form>
-	
+<h:body class="backgroundchangercomp parbase basecomp">
+	<div class="myob-component-background-changer myob-padding-vertical">
+		<div class="inner">
+			<div class="container">
+				<div class="columncontrolcomp parbase basecomp">
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<div class="myob-component-form panel-default text-center">
+
+								<div class="formstandardcomp parbase basecomp section">
+
+									<div class="myob-form-content ng-scope">
+
+
+										<div class="panel-heading">
+											<h3 class="panel-title">MYOB EXO is the recommended
+												product for you.</h3>
+
+										</div>
+										<div class="panel-body">
+
+											<p class="myob-subheading">Get in touch to learn how we
+												can help your business</p>
+
+											<div>
+												<div class="columncontrolcomp parbase basecomp">
+													<div class="row">
+														<div class="col-sm-6">
+															<div class="parbase basecomp textfieldcomp">
+																<div class="myob-component-text-field">
+																	<div class="form-group ng-isolate-scope"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<h:form>
+													<p:panel id="detailsPanel">
+														<p:messages autoUpdate="true" />
+														<div class="parbase basecomp textfieldcomp">
+															<div class="myob-component-text-field">
+																<div class="form-group ng-isolate-scope">
+																	<p:inputText class="form-control" id="firstNameInput"
+																		required="true"
+																		value="#{answerQuestionBean.firstName}"
+																		label="First Name">
+
+																	</p:inputText>
+																	<p:watermark for="firstNameInput" value="First Name" />
+																</div>
+															</div>
+														</div>
+
+														<div class="parbase basecomp textfieldcomp">
+															<div class="myob-component-text-field">
+																<div class="form-group ng-isolate-scope">
+
+																	<p:inputText class="form-control" id="lastNameInput"
+																		required="true" value="#{answerQuestionBean.lastName}"
+																		label="Last Name">
+
+																	</p:inputText>
+																	<p:watermark for="lastNameInput" value="Last Name" />
+																</div>
+															</div>
+														</div>
+
+														<div class="parbase basecomp textfieldcomp">
+															<div class="myob-component-text-field">
+																<div class="form-group ng-isolate-scope">
+																	<p:inputText class="form-control" id="emailInput"
+																		label="Email Address" required="true"
+																		value="#{answerQuestionBean.email}"
+																		validatorMessage="Please enter a valid email address">
+																		<f:validateRegex
+																			pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+																	</p:inputText>
+																	<p:watermark for="emailInput" value="Email" />
+																</div>
+															</div>
+														</div>
+
+														<div class="parbase basecomp textfieldcomp">
+															<div class="myob-component-text-field">
+																<div class="form-group ng-isolate-scope">
+
+																	<p:inputText class="form-control" id="phoneInput"
+																		value="#{answerQuestionBean.phone}" />
+																	<p:watermark for="phoneInput" value="Phone No" />
+																</div>
+															</div>
+														</div>
+
+														<div class="parbase basecomp textfieldcomp">
+															<div class="myob-component-text-field">
+																<div class="form-group ng-isolate-scope">
+																	<p:inputText class="form-control " id="companyInput"
+																		value="#{answerQuestionBean.company}" />
+																	<p:watermark for="companyInput" value="Company Name" />
+																</div>
+															</div>
+														</div>
+
+														<div class="parbase basecomp textfieldcomp">
+															<div class="myob-component-text-field">
+																<div class="form-group ng-isolate-scope">
+
+																	<p:inputText class="form-control " id="conutryInput"
+																		type="text" value="#{answerQuestionBean.country}" />
+																	<p:watermark for="conutryInput" value="Country" />
+																</div>
+															</div>
+														</div>
+
+														<div class="parbase basecomp textfieldcomp">
+															<div class="myob-component-text-field">
+																<div class="form-group ng-isolate-scope">
+
+																	<p:inputText class="form-control "
+																		id="businessTypeInput" type="text"
+																		placeholder="Business type"
+																		value="#{answerQuestionBean.businessType}" />
+																	<p:watermark for="businessTypeInput"
+																		value="Business Type" />
+																</div>
+															</div>
+														</div>
+
+														<div class="parbase basecomp textfieldcomp">
+															<div class="myob-component-text-field">
+																<div class="form-group ng-isolate-scope">
+
+																	<p:inputTextarea
+																		class="form-control ng-pristine ng-empty ng-valid-pattern ng-valid ng-valid-required ng-touched"
+																		id="addiMsgInput"
+																		value="#{answerQuestionBean.addiMsg}" />
+																	<p:watermark for="addiMsgInput"
+																		value="Please leave a message" />
+																</div>
+															</div>
+														</div>
+
+														<p>
+															<p:selectBooleanCheckbox id="isSubscribe"
+																value="#{answerQuestionBean.isSubscribe}" />
+															I'd like to subscribe to the latest newsletter from MYOB
+														</p>
+
+														<p:commandButton styleClass="btn btn-default"
+															value="submit"
+															action="#{answerQuestionBean.submitDetail()}"
+															update="detailsPanel" />
+
+													</p:panel>
+													<p:ajaxStatus onstart="PF('statusDialog').show()"
+														onsuccess="PF('statusDialog').hide()" />
+
+													<p:dialog widgetVar="statusDialog" modal="true"
+														draggable="false" closable="false" resizable="false"
+														showHeader="false">
+														<p:graphicImage name="images/ajaxloadingbar.gif" />
+													</p:dialog>
+
+												</h:form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </h:body>
 </html>
