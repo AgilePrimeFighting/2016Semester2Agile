@@ -9,7 +9,7 @@ Additional Message: ${customer.addiMsg}
 
 Add to MYOB newsletter list: ${customer.isSubscribe}
 
-Recommended Product: ${customer.product}
+Recommended Product: ${customer.product.productName}
 Trial Site Provisioned:${customer.hasTrial}
 
 Responses to questions: 
