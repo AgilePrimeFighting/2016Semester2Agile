@@ -19,9 +19,14 @@
 
 
 <h:body>
-
+	<div style="display:block; height:100px; border-bottom: solid 4px #5c247b;">
+		<div  class="navbar-brand">
+			<img src="resources/images/myob-logo.svg"  class="myob-component-logo  "  height="30" width="87"/>
+		</div>
+	</div>
+		
 	<h:form>
-		<div style="margin: auto; width:800px">
+		<div style="margin: auto; width:80%; margin-top:50px">
 		<p:panelGrid columns="1" layout="grid" id="questionPanel" >
 			
 			<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out
@@ -33,19 +38,19 @@
 			<br />
 			<p:row>
 				<p:selectOneRadio id="options" required="true" layout="pageDirection"  
-				requiredMessage = "You must have a choice to do the next"
+				requiredMessage = "Please select one option."
 					value="#{answerQuestionBean.response}" label="Answers">
 					<f:selectItems
 						value="#{answerQuestionBean.getCurrentQuestion().options}"
 						var="option"
-						itemLabel="#{option.optionBody}" itemValue="#{option.optionBody}" />
+						itemLabel="   #{option.optionBody}" itemValue="#{option.optionBody}" />
 				</p:selectOneRadio>
 				<h:message for = "options" styleClass = "error" />
 			</p:row>
 
 		</p:panelGrid>
-		
-		<p:commandButton styleClass="btn myob-btn-secondary" value="back" action="#{answerQuestionBean.doBack()}" update="questionPanel" immediate="true"></p:commandButton>
+		<br/>
+		<br/>
 		<p:commandButton styleClass="btn btn-default" value="next" action="#{answerQuestionBean.doNext()}" update="questionPanel"></p:commandButton>
 		</div>
 	</h:form>

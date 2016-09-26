@@ -8,103 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<style type="text/css">
-@charset "UTF-8";
 
-[
-ng\:cloak
-]
-,
-[
-ng-cloak
-]
-,
-[
-data-ng-cloak
-]
-,
-[
-x-ng-cloak
-]
-,
-.ng-cloak
-,
-.x-ng-cloak
-,
-.ng-hide
-
-
-
-
-
-
-:not
-
-
-
- 
-
-
-
-(
-.ng-hide-animate
-
-
-
- 
-
-
-
-){
-display
-
-
-
-
-
-
-:
-
-
-
- 
-
-
-
-none
-
-
-
- 
-
-
-
-!
-important
-
-
-
-
-
-
-;
-}
-ng\:form {
-	display: block;
-}
-
-.ng-animate-shim {
-	visibility: hidden;
-}
-
-.ng-anchor {
-	position: absolute;
-}
-
-.red {
-	color: red
-}
-</style>
 	<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
 	</link>
 </h:head>
@@ -121,16 +25,9 @@ ng\:form {
 
 									<div class="myob-form-content ng-scope">
 
-
-										<div class="panel-heading">
-											<h3 class="panel-title">MYOB EXO is the recommended
-												product for you.</h3>
-
-										</div>
 										<div class="panel-body">
 
-											<p class="myob-subheading">Get in touch to learn how we
-												can help your business</p>
+											<p class="myob-subheading">Please enter your contact details.</p>
 
 											<div>
 												<div class="columncontrolcomp parbase basecomp">
@@ -154,7 +51,7 @@ ng\:form {
 																	<p:inputText class="form-control" id="firstNameInput"
 																		required="true"
 																		value="#{answerQuestionBean.firstName}"
-																		label="First Name">
+																		label="First Name *">
 
 																	</p:inputText>
 																	<p:watermark for="firstNameInput" value="First Name" />
@@ -168,7 +65,7 @@ ng\:form {
 
 																	<p:inputText class="form-control" id="lastNameInput"
 																		required="true" value="#{answerQuestionBean.lastName}"
-																		label="Last Name">
+																		label="Last Name *">
 
 																	</p:inputText>
 																	<p:watermark for="lastNameInput" value="Last Name" />
@@ -180,7 +77,7 @@ ng\:form {
 															<div class="myob-component-text-field">
 																<div class="form-group ng-isolate-scope">
 																	<p:inputText class="form-control" id="emailInput"
-																		label="Email Address" required="true"
+																		label="Email Address *" required="true"
 																		value="#{answerQuestionBean.email}"
 																		validatorMessage="Please enter a valid email address">
 																		<f:validateRegex

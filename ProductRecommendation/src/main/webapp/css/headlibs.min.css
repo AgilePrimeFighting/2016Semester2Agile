@@ -2556,3 +2556,12 @@ h2,h3{page-break-after:avoid}
 .table td,.table th{background-color:#fff !important}
 .table-bordered th,.table-bordered td{border:1px solid #ddd !important}
 }
+
+[ng\:cloak ] , [ ng-cloak ] , [ data-ng-cloak ] , [ x-ng-cloak ] , .ng-cloak , .x-ng-cloak , .ng-hide       :not     
+(.ng-hide-animate     
+){ display       :     none     !important       ; } 
+ng\:form { 	display: block; }  .ng-animate-shim { 	visibility: hidden; }  .ng-anchor { 	position: absolute; }  .red { 	color: red }
+
+.ui-radiobutton{
+	margin-right:20px;
+}
