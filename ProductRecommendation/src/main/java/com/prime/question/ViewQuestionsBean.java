@@ -26,6 +26,7 @@ public class ViewQuestionsBean implements Serializable{
 	
 
 	private List<Question> questions = new ArrayList<Question>();
+	private List<RangeItem> rangeList;
 	
 	private Question selectedQuestion;
 	

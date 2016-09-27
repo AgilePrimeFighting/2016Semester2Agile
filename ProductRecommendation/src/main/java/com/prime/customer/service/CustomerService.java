@@ -53,4 +53,11 @@ public class CustomerService {
 		 return em.find(Customer.class, customerId);
 	 }
 
+	 @Transactional
+	 public Customer persistCustomer(Customer customer){
+		 if(!em.contains(customer)){
+			 em.persist(customer);
+		 }
+		return customer;
+	 }
 }
