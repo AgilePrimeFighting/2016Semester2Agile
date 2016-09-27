@@ -1,14 +1,25 @@
 package com.prime.question;
 
 public class RangeItem{
+	private String productName;
 	private int max;
 	private int min;
-	private boolean status;
+	private String status;
 	
-	RangeItem(int max, int min, boolean status){
+	RangeItem(String productName, int max, int min, String status){
+		this.productName = productName;
 		this.max = max;
 		this.min = min;
 		this.status = status;
+	}
+	
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public int getMax() {
@@ -27,11 +38,11 @@ public class RangeItem{
 		this.min = min;
 	}
 
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 }

@@ -43,6 +43,10 @@ public class ViewQuestionsBean implements Serializable{
 		if(questionService != null) questions = questionService.listAll();
 		else logger.info("question service is null");
 		
+		
+		
+		//RangeItem range = new RangeItem("EXO",10,15,"true");
+		//rangeList.add(range);
 		//TODO set rangeList
 		
 		
