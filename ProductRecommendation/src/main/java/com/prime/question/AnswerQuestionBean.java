@@ -131,7 +131,6 @@ public class AnswerQuestionBean implements Serializable {
 				phone, company, country, businessType, addiMsg, isSubscribe);
 		for(Response res : responseList){
 			res.setCustomer(customer);
-		
 		responseService.createResponse(res);
 	}
 		emailService.sendCustomerResponseEmail(customer, responseList);
