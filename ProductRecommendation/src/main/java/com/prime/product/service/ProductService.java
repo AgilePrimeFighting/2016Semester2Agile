@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prime.product.model.Product;
+import com.prime.response.model.Response;
 
 @Service
 public class ProductService 
@@ -56,5 +57,10 @@ public class ProductService
 //			} 
 			em.merge(product) ;
 		}
+		
+		public Product getRecommendedProduct(List<Response> responses){
+			return em.find(Product.class, 1);
+		}
+		
 
 }

@@ -41,7 +41,7 @@ td,th{padding:0}
 *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 *:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0)}
-body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;color:#6d6e71;background-color:#fff}
+body{font-family: 'Ubuntu',sans-serif;font-size:16px;line-height:1.5;color:#6d6e71;background-color:#fff}
 input,button,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit}
 a{color:#5c247b;text-decoration:none}
 a:hover,a:focus{color:#301340;text-decoration:underline}
@@ -2564,4 +2564,10 @@ ng\:form { 	display: block; }  .ng-animate-shim { 	visibility: hidden; }  .ng-an
 
 .ui-radiobutton{
 	margin-right:20px;
+}
+
+body{
+	font-family: 'Ubuntu','Helvetica Neue',Helvetica,Arial,sans-serif ;
+    font-weight: 300;
+	
 }

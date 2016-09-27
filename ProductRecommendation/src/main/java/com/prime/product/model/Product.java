@@ -17,7 +17,7 @@ public class Product
 	@Id 
 	@Column (name = "PRODUCT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String productID ; 
+	private Integer productID ; 
 	
 	@Column (name = "PRODUCT_NAME")
 	private String productName ;
@@ -61,11 +61,11 @@ public class Product
 		return this.productActive == true ? "Active" : "Inactive" ;
 	}
 
-	public String getProductID() {
+	public Integer getProductID() {
 		return productID;
 	}
 
-	public void setProductID(String productID) {
+	public void setProductID(Integer productID) {
 		this.productID = productID;
 	}
 
