@@ -113,7 +113,6 @@ public class AnswerQuestionBean implements Serializable {
 		customer = customerService.persistCustomer(customer);
 		for (Response res : responseList) {
 			res.setCustomer(customer);
-
 			responseService.createResponse(res);
 		}
 		emailService.sendCustomerResponseEmail(customer, responseList);
