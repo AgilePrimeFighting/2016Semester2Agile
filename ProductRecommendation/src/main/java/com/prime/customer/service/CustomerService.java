@@ -54,8 +54,12 @@ public class CustomerService {
 	 }
 
 	 @Transactional
-	 public Customer persistCustomer(Customer customer){
+	 public Customer persistCustomer(Customer customer, Product product){
 		 if(!em.contains(customer)){
+			 customer.setDate(new Date());
+			 customer.setProduct(product);
+			 customer.setProductName(product.getProductName());
+			 customer.setHasTrial(product.outputTrial());
 			 em.persist(customer);
 		 }
 		return customer;
