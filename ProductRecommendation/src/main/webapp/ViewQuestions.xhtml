@@ -15,8 +15,8 @@
 	<h1>Product Range Value</h1>
 	<h:form>
 		<div>
-			<p:dataTable id="questionTable"
-				value="#{viewQuestionsBean.questions}" var="question"
+			<p:dataTable id="rangeTable"
+				value="#{viewQuestionsBean.rangeList}" var="range"
 				rowIndexVar="rowIndex">
 				<p:column headerText="Product's name" width="50">
 					<h:outputText value="#{rowIndex + 1}" />

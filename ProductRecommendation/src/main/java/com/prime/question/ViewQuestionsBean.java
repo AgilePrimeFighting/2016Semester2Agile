@@ -25,7 +25,7 @@ public class ViewQuestionsBean implements Serializable{
 	private static final Logger logger = Logger.getLogger(ViewQuestionsBean.class.getName());
 	
 
-	private List<Question> questions = new ArrayList<Question>();
+	private List<Question> questions;
 	private List<RangeItem> rangeList;
 	
 	private Question selectedQuestion;
@@ -36,12 +36,16 @@ public class ViewQuestionsBean implements Serializable{
 	@PostConstruct
 	public void init(){
 		logger.info("initiating");
-		if(questionService != null){
-		questions = questionService.listAll();
-		}
-		else{
-			logger.info("question service is null");
-		}
+		
+		questions = new ArrayList<Question>();
+		rangeList = new ArrayList<RangeItem>();
+		
+		if(questionService != null) questions = questionService.listAll();
+		else logger.info("question service is null");
+		
+		//TODO set rangeList
+		
+		
 	}
 
 	public void onDelete(Question question){
@@ -74,6 +78,14 @@ public class ViewQuestionsBean implements Serializable{
 
 	public void setSelectedQuestion(Question selectedQuestion) {
 		this.selectedQuestion = selectedQuestion;
+	}
+
+	public List<RangeItem> getRangeList() {
+		return rangeList;
+	}
+
+	public void setRangeList(List<RangeItem> rangeList) {
+		this.rangeList = rangeList;
 	}
 
 }
