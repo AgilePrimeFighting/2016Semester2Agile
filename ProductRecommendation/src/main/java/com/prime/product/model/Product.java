@@ -1,11 +1,18 @@
 package com.prime.product.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.prime.weight.model.Weight;
 
 
 
@@ -17,7 +24,7 @@ public class Product
 	@Id 
 	@Column (name = "PRODUCT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String productID ; 
+	private Integer productID ; 
 	
 	@Column (name = "PRODUCT_NAME")
 	private String productName ;
@@ -32,6 +39,12 @@ public class Product
 	private String productURL ;
 	
 	
+	//modified 
+	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval=true,
+	fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Weight> weightList ;
+	
+	
 //	private String activeOutput ;
 //
 //	public String getActiveOutput() {
@@ -43,16 +56,25 @@ public class Product
 //	}
 	
 	
+	public List<Weight> getWeightList() {
+		return weightList;
+	}
+
+	public void setWeightList(List<Weight> weightList) {
+		this.weightList = weightList;
+	}
+
 	public String outputActive() 
 	{
 		return this.productActive == true ? "Active" : "Inactive" ;
 	}
 
-	public String getProductID() {
+
+	public Integer getProductID() {
 		return productID;
 	}
 
-	public void setProductID(String productID) {
+	public void setProductID(Integer productID) {
 		this.productID = productID;
 	}
 

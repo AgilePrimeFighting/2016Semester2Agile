@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import com.prime.question.model.Option;
 import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
+import com.prime.weight.service.WeightService;
 
 @Controller
 @Scope("session")
@@ -31,6 +32,12 @@ public class EditQuestionBean implements Serializable {
 
 	@Autowired
 	private QuestionService questionService;
+	
+	@Autowired 
+	private WeightService weightService ;
+	
+	
+	
 
 	@PostConstruct
 	public void init() {
@@ -42,13 +49,14 @@ public class EditQuestionBean implements Serializable {
 		this.question = question;
 	}
 
-	public String doSave() {
+	public String doSave(int choiceWeight[][]) {
 		
 		
 		if (question != null) {
 			questionService.update(question);
+			weightService.update(question.getOptions() , choiceWeight );
 		}
-
+		
 		return "ViewQuestions?faces-redirect=true";
 	}
 	

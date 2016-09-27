@@ -4,6 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
@@ -33,6 +35,13 @@
 			<p:column headerText="Option Body" >
 				<p:inputText value="#{option.optionBody}" required="true" label="Option Body"/>
 			</p:column>
+			
+			<c:forEach var="product" items="#{viewProductsBean.products}">
+					<p:column headerText="#{product.productName}">
+					#{viewQuestionsBean.getChoiceWeightingNoOutput(option.optionId,product.productID)}
+						<p:inputText value = "#{viewQuestionsBean.currentWeight}" ></p:inputText>
+					</p:column>
+				</c:forEach>
 			<p:column width="50" headerText="Delete">
 					<p:commandButton class="btn btn-default"  icon="ui-icon-close"
 						actionListener="#{editQuestionBean.removeOption(option)}"
@@ -41,7 +50,7 @@
 				</p:column>
 		</p:dataTable>
 
-		<p:commandButton class="btn btn-default" value="save" action="#{editQuestionBean.doSave}" />
+		<p:commandButton class="btn btn-default" value="save" action="#{editQuestionBean.doSave(viewQuestionsBean.choiceWeight)}" />
 		<p:button class="btn btn-default" value="cancel" outcome="ViewQuestions" />
 		<p:confirmDialog global="true">
 			<p:commandButton class="btn btn-default" value="No" type="button" id="noButton"
