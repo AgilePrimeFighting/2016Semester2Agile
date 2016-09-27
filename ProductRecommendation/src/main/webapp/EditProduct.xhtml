@@ -8,46 +8,57 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-</link>
+	<link rel="stylesheet" type="text/css" href="css/main.css"></link>
 </h:head>
 <h:body>
 	<h1>Please edit the product.</h1>
-	
-	<h:form>
-		<p:messages autoUpdate="true" />
-		<h2>Product name </h2>
-	
-		<p:inputTextarea value="#{editProductBean.product.productName}"
-			style="display:block; width:80%"
-			label="Question Body" maxlength="100" />
-		<br />
-		
-		<h3>Product Active </h3>
-		<p:selectBooleanButton id="productActive" value="#{editProductBean.product.productActive}" onLabel="Yes" offLabel="No" style="width:60px" />
-		<br />
-		
-		<h3>Product Trail</h3>
-		<p:selectBooleanButton id="productTrail" value="#{editProductBean.product.productTrial}" onLabel="Yes" offLabel="No" style="width:60px" />
-		<br />
-		
-		<h3>The website of the product</h3>
-		<p:inputTextarea value="#{editProductBean.product.productURL}"
-			style="display:block; width:80%" required="true"
-			label="Product URL" maxlength="200" />
-		<br />
 
-		<p:commandButton class="commandButton" value="save" action="#{editProductBean.doSave}"
-			style="margin-top:15px;" />
-		<p:button value="cancel" outcome="ViewProducts"
-			style="margin-left:20px;" />
-		<p:confirmDialog global="true">
-			<p:commandButton class="commandButton" value="No" type="button" id="noButton"
-				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			<p:commandButton class="commandButton" value="Yes" type="button" style="float:left;"
-				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-		</p:confirmDialog>
-		
+	<h:form>
+		<p:panel style="margin: 0 auto;width: 90%;">
+			<p:messages autoUpdate="true" />
+			<h2>Product name</h2>
+
+			<p:inputText value="#{editProductBean.product.productName}"
+				style="display:block; width:80%" label="Product Name"
+				maxlength="100" />
+			<br />
+
+			<h3>Product Active</h3>
+			<p:selectBooleanButton id="productActive"
+				value="#{editProductBean.product.productActive}" onLabel="Yes"
+				offLabel="No" style="width:60px" />
+			<br />
+
+			<h3>Trial Available?</h3>
+			<p:selectBooleanButton id="productTrail"
+				value="#{editProductBean.product.productTrial}" onLabel="Yes"
+				offLabel="No" style="width:60px" />
+			<br />
+
+			<h3>Product URL</h3>
+			<p:inputText value="#{editProductBean.product.productURL}"
+				style="display:block; width:80%" required="true" label="Product URL"
+				maxlength="200" />
+			<br />
+			<h3>Product Overview</h3>
+			<p>Please enter HTML as the product overview to be displayed to prospects.</p>
+			<p:inputTextarea value="#{editProductBean.product.overview}"
+				style="display:block; width:80%" required="true" label="Product Overview"
+				maxlength="4000" />
+			<br />
+
+			<p:commandButton class="commandButton" value="save"
+				action="#{editProductBean.doSave}" style="margin-top:15px;" />
+			<p:button value="cancel" outcome="ViewProducts"
+				style="margin-left:20px;" />
+			<p:confirmDialog global="true">
+				<p:commandButton class="commandButton" value="No" type="button"
+					id="noButton" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				<p:commandButton class="commandButton" value="Yes" type="button"
+					style="float:left;" styleClass="ui-confirmdialog-yes"
+					icon="ui-icon-check" />
+			</p:confirmDialog>
+		</p:panel>
 	</h:form>
 
 </h:body>

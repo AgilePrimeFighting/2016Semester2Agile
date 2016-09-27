@@ -31,6 +31,11 @@ public class Product
 	@Column (name = "PRODUCT_URL")
 	private String productURL ;
 	
+	@Column (name = "OVERVIEW")
+	private String overview ;
+	
+	
+	
 	
 //	private String activeOutput ;
 //
@@ -43,6 +48,14 @@ public class Product
 //	}
 	
 	
+	public String getOverview() {
+		return overview;
+	}
+
+	public void setOverview(String overview) {
+		this.overview = overview;
+	}
+
 	public String outputActive() 
 	{
 		return this.productActive == true ? "Active" : "Inactive" ;

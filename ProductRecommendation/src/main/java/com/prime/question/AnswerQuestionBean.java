@@ -127,7 +127,8 @@ public class AnswerQuestionBean implements Serializable {
 	
 	public String submitDetail(){
 //		System.out.println("isSub: " + isSubscribe);
-		customer = customerService.createNewCustomer(product, hasTrial, firstName, lastName, email,
+		//TODO:find recommended product
+		customer = customerService.createNewCustomer(null, hasTrial, firstName, lastName, email,
 				phone, company, country, businessType, addiMsg, isSubscribe);
 		for(Response res : responseList){
 			res.setCustomer(customer);
