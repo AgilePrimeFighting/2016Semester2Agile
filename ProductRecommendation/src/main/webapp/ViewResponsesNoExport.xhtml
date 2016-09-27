@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</link>
+</h:head>
+<h:body>
+	<h1>Responses</h1>
+	<h:form>
+		<div>
+			<p:dataTable id="responseTable"
+				value="#{viewResponsesBean.customers}" var="customer"
+				rowIndexVar="rowIndex">
+				<p:column headerText="No." width="50">
+					<h:outputText value="#{rowIndex + 1}" />
+				</p:column>
+				<p:column headerText="Customer No"  width="100">
+					<h:outputText value="#{customer.customerId}" />
+				</p:column>
+				<p:column headerText="Response Date"  width="100">
+					<h:outputText value="#{customer.date}" >
+					<f:convertDateTime pattern="YYYY-MM-DD HH:mm:ss"  />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Responses">
+					<p:dataTable value="#{customer.responses}" var="response" rendered="#{not empty customer.responses}"
+						rowIndexVar="responseRowIndex">
+						<p:column width="50">
+							<h:outputText value="#{responseRowIndex + 1}" />
+						</p:column >
+						<p:column headerText="Question">
+							<h:outputText value="#{response.questionBody}" />
+						</p:column>
+						<p:column  headerText="Answer">
+							<h:outputText value="#{response.answer}" />
+						</p:column>
+					</p:dataTable>
+				</p:column>
+				<p:column headerText="Recommended Product"  width="150" >
+					<h:outputText value="#{customer.product}" />
+				</p:column>
+				<p:column headerText="Trial Status"  width="150" >
+					<h:outputText value="Not Started" />
+				</p:column>
+			</p:dataTable>
+		</div>
+		<div>
+			<h:commandButton class="commandButton" value="export" >
+			<p:dataExporter type="csv" target="responseTable" fileName="prospects" pageOnly="true" />
+			</h:commandButton>
+			
+		</div>
+	
+	</h:form>
+</h:body>
+</html>

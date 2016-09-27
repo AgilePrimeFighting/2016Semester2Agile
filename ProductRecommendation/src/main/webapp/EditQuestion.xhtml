@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
+</link>
+</h:head>
+<h:body>
+	<h1>Please edit the question</h1>
+
+	<h:form>
+		<p:messages autoUpdate="true" />
+		<p:inputTextarea value="#{editQuestionBean.question.questionBody}"
+			style="display:block; width:80%" required="true"
+			label="Question Body" maxlength="400" />
+		<br />
+		<p:commandButton class="btn btn-default" value="Add Option"
+			action="#{editQuestionBean.addOption}" update="optionsTable" />
+		<br />
+		<h2>Options:</h2>
+		<br />
+		<p:dataTable id="optionsTable" value="#{editQuestionBean.question.options}"
+			var="option"  rowIndexVar="rowIndex">
+			<p:column headerText="No." width="50">
+				<h:outputText value="#{rowIndex + 1}" />
+			</p:column>
+			<p:column headerText="Option Body" >
+				<p:inputText value="#{option.optionBody}" required="true" label="Option Body"/>
+			</p:column>
+			<p:column width="50" headerText="Delete">
+					<p:commandButton class="btn btn-default"  icon="ui-icon-close"
+						actionListener="#{editQuestionBean.removeOption(option)}"
+						update="optionsTable" immediate="true">
+					</p:commandButton>
+				</p:column>
+		</p:dataTable>
+
+		<p:commandButton class="btn btn-default" value="save" action="#{editQuestionBean.doSave}" />
+		<p:button class="btn btn-default" value="cancel" outcome="ViewQuestions" />
+		<p:confirmDialog global="true">
+			<p:commandButton class="btn btn-default" value="No" type="button" id="noButton"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			<p:commandButton class="btn btn-default" value="Yes" type="button" style="float:left;"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+
+		</p:confirmDialog>
+	</h:form>
+
+</h:body>
+</html>
