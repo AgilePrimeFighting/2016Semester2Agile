@@ -9,96 +9,96 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-</link>
+	<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
+	</link>
 </h:head>
 <h:body>
-	<h1>Product Range Value</h1>
-	<h:form>
-		<div>
-			<p:dataTable id="rangeTable"
-				value="#{viewQuestionsBean.rangeList}" var="range"
-				rowIndexVar="rowIndex">
-				<p:column headerText="No." width="50">
-					<h:outputText value="#{rowIndex + 1}" />
-				</p:column>
-				<p:column headerText="Product's name">
-					<h:outputText value="#{range.productName}" />
-				</p:column>
-				<p:column headerText="Minimum value">
-					<h:outputText value="#{range.min}" />
-				</p:column>
-				<p:column headerText="Maximum value">
-					<h:outputText value="#{range.max}" />
-				</p:column>
-				<p:column headerText="Status">
-					<h:outputText value="#{range.status}" />
-				</p:column>
-			</p:dataTable>
-		</div>
-	</h:form>
 	
-	<h1>Questions</h1>
 	<h:form>
-		<div>
-			<p:dataTable id="questionTable"
-				value="#{viewQuestionsBean.questions}" var="question"
-				rowIndexVar="rowIndex"
-				>
-				<p:column headerText="No." width="50">
-					<h:outputText value="#{rowIndex + 1}" />
-				</p:column>
-				<p:column headerText="Question Body">
-					<h:outputText value="#{question.questionBody}" />
-				</p:column>
-				<p:column headerText="Options">
-					<p:dataTable value="#{question.options}" var="option"
-						rowIndexVar="optionsRowIndex">
-						<p:column width="50">
-							<h:outputText value="#{optionsRowIndex + 1}" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{option.optionBody}" />
-						</p:column>
-					</p:dataTable>
-				</p:column>
-				
-				<c:forEach var="product" items="#{viewProductsBean.products}">
-					<p:column headerText="#{product.productName} Weight">
-					
-					<p:dataTable var="option" value="#{question.options}">
-						<p:column>#{viewQuestionsBean.getChoiceWeighting(option.optionId,product.productID)}</p:column> 
+		<div style="margin: auto; width: 80%; margin-top: 50px">
+			<h1>Product Range Value</h1>
+			<div>
+				<p:dataTable id="rangeTable" value="#{viewQuestionsBean.rangeList}"
+					var="range" rowIndexVar="rowIndex">
+					<p:column headerText="No." width="50">
+						<h:outputText value="#{rowIndex + 1}" />
+					</p:column>
+					<p:column headerText="Product's name">
+						<h:outputText value="#{range.productName}" />
+					</p:column>
+					<p:column headerText="Minimum value">
+						<h:outputText value="#{range.min}" />
+					</p:column>
+					<p:column headerText="Maximum value">
+						<h:outputText value="#{range.max}" />
+					</p:column>
+					<p:column headerText="Status">
+						<h:outputText value="#{range.status}" />
+					</p:column>
+				</p:dataTable>
+			</div>
+
+			<h1>Questions</h1>
+			<div>
+				<p:dataTable id="questionTable"
+					value="#{viewQuestionsBean.questions}" var="question"
+					rowIndexVar="rowIndex">
+					<p:column headerText="No." width="50">
+						<h:outputText value="#{rowIndex + 1}" />
+					</p:column>
+					<p:column headerText="Question Body">
+						<h:outputText value="#{question.questionBody}" />
+					</p:column>
+					<p:column headerText="Options">
+						<p:dataTable value="#{question.options}" var="option"
+							rowIndexVar="optionsRowIndex">
+							<p:column width="50">
+								<h:outputText value="#{optionsRowIndex + 1}" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{option.optionBody}" />
+							</p:column>
 						</p:dataTable>
 					</p:column>
-				</c:forEach>
-				<p:column width="50" headerText="Edit">
-					<p:commandButton class="commandButton" icon="ui-icon-pencil"
-						actionListener="#{editQuestionBean.initEdit(question)}"
-						action="EditQuestion">
-					</p:commandButton>
-				</p:column>
-				<p:column width="50" headerText="Delete">
-					<p:commandButton class="commandButton" icon="ui-icon-close"
-						actionListener="#{viewQuestionsBean.onDelete(question)}"
-						update="questionTable">
-						<p:confirm header="Confirmation"
-							message="Are you sure you want to delete this question?"
-							icon="ui-icon-alert" />
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
-		</div>
-		<div>
-			<p:button outcome="CreateQuestion" value="Create New Question"
-				style="margin-top:10px;" />
 
+					<c:forEach var="product" items="#{viewProductsBean.products}">
+						<p:column headerText="#{product.productName} Weight">
+
+							<p:dataTable var="option" value="#{question.options}">
+								<p:column>#{viewQuestionsBean.getChoiceWeighting(option.optionId,product.productID)}</p:column>
+							</p:dataTable>
+						</p:column>
+					</c:forEach>
+					<p:column width="50" headerText="Edit">
+						<p:commandButton class="commandButton" icon="ui-icon-pencil"
+							actionListener="#{editQuestionBean.initEdit(question)}"
+							action="EditQuestion">
+						</p:commandButton>
+					</p:column>
+					<p:column width="50" headerText="Delete">
+						<p:commandButton class="commandButton" icon="ui-icon-close"
+							actionListener="#{viewQuestionsBean.onDelete(question)}"
+							update="questionTable">
+							<p:confirm header="Confirmation"
+								message="Are you sure you want to delete this question?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</div>
+			<div>
+				<p:button outcome="CreateQuestion" value="Create New Question"
+					styleClass="btn btn-default" style="margin-top:10px;" />
+
+			</div>
+			<p:confirmDialog global="true">
+				<p:commandButton class="commandButton" value="No" type="button"
+					id="noButton" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				<p:commandButton class="commandButton" value="Yes" type="button"
+					style="float:left;" styleClass="ui-confirmdialog-yes"
+					icon="ui-icon-check" />
+			</p:confirmDialog>
 		</div>
-		<p:confirmDialog global="true">
-			<p:commandButton class="commandButton" value="No" type="button" id="noButton"
-				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			<p:commandButton class="commandButton" value="Yes" type="button" style="float:left;"
-				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-		</p:confirmDialog>
 	</h:form>
 </h:body>
 </html>
