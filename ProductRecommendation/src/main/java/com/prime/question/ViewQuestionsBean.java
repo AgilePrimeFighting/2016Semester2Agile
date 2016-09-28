@@ -37,10 +37,6 @@ public class ViewQuestionsBean implements Serializable {
 	private List<Product> products;
 	@Autowired
 	private QuestionService questionService;
-	
-//	@Autowired
-//	private WeightService weightService;
-	
 	@Autowired
 	private ProductService productService;
 	
