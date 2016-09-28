@@ -12,6 +12,8 @@
 	<url></url>
 
 	<properties>
+		<property name="current_session_context_class">thread</property> 
+		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 

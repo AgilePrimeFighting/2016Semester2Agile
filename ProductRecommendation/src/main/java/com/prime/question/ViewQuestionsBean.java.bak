@@ -149,7 +149,17 @@ public class ViewQuestionsBean implements Serializable{
 		}
 		choiceWeight[optionID][productID] = weightList.get(0).getWeightValue() ;
 
-	return  weightList.get(0).getWeightValue() ; 
+<<<<<<< HEAD
+	public List<RangeItem> getRangeList() {
+		return rangeList;
+	}
+
+	public void setRangeList(List<RangeItem> rangeList) {
+		this.rangeList = rangeList;
+	}
+
+=======
+		return  weightList.get(0).getWeightValue() ; 
 	}
 	
 	public void getChoiceWeightingNoOutput ( int optionID , int productID ) 
@@ -166,4 +176,5 @@ public class ViewQuestionsBean implements Serializable{
 		currentWeight = choiceWeight[optionID][productID] ;
 		return  ;
 	}
+>>>>>>> refs/remotes/origin/JackJackJack
 }

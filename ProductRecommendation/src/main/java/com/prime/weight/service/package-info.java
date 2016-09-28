@@ -5,4 +5,4 @@
  * @author Jack
  *
  */
-package com.prime.weight.model;
+package com.prime.weight.service;

@@ -12,9 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.prime.weight.model.Weight;
+
 
 @Entity
-@Table
+@Table (name="Question")
 public class Question {
 
 	@Id
@@ -28,6 +30,7 @@ public class Question {
 	@OneToMany(mappedBy = "question", targetEntity = Option.class, orphanRemoval=true,
 			fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Option> options;
+
 
 	
 	public List<Option> getOptions() {

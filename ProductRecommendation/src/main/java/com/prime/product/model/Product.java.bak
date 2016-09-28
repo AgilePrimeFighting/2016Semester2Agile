@@ -61,21 +61,21 @@ public class Product
 //	}
 	
 	
+<<<<<<< HEAD
 	public String getOverview() {
 		return overview;
 	}
 
 	public void setOverview(String overview) {
 		this.overview = overview;
-	}
-
-	
+=======
 	public List<Weight> getWeightList() {
 		return weightList;
 	}
 
 	public void setWeightList(List<Weight> weightList) {
 		this.weightList = weightList;
+>>>>>>> refs/remotes/origin/JackJackJack
 	}
 
 	public String outputActive() 
@@ -83,6 +83,10 @@ public class Product
 		return this.productActive == true ? "Active" : "Inactive" ;
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/JackJackJack
 	public Integer getProductID() {
 		return productID;
 	}
