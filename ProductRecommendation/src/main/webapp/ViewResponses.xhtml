@@ -42,7 +42,7 @@
 					<h:outputText value="#{response.answer}" />
 				</p:column>
 				<p:column headerText="Recommended Product" width="150">
-					<h:outputText value="#{response.customer.product}"
+					<h:outputText value="#{response.customer.product.productName}"
 						rendered="#{not empty response.customer}" />
 				</p:column>
 				<p:column headerText="Trial Status" width="150">

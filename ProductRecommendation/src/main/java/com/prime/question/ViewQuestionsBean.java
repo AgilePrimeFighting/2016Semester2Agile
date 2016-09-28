@@ -68,7 +68,8 @@ public class ViewQuestionsBean implements Serializable {
 	}
 	
 	public Weight findWeight(Integer optionId, Integer productId ){
-		return weightMap.get(optionId).get(productId);
+		Weight weight =  weightMap.get(optionId).get(productId);
+		return weight;
 	}
 
 	public void onDelete(Question question) {

@@ -40,5 +40,13 @@ private static final Logger logger = Logger.getLogger(ProductServiceTest.class.g
 		Product recommendedProduct = productService.getRecommendedProduct(options);
 		logger.info(recommendedProduct.getProductName());
 	}
+	
+	@Test
+	public void testListActiveProducts(){
+		List<Product> activeProducts = productService.listActiveProducts();
+		for(Product product : activeProducts){
+			logger.info(product.getProductName());
+		}
+	}
 
 }
