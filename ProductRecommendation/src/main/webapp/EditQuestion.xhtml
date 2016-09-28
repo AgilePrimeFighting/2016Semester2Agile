@@ -40,7 +40,7 @@
 
 				<p:columns var="product" value="#{editQuestionBean.products}" columnIndexVar="colIndex">
 					<f:facet name="header">
-						<h:outputText value="#{product.productName} Weight" />
+						<h:outputText value="#{product.productName} Weight #{product.productActive ? '': ' (Inactive)'}" />
 					</f:facet>
 					<p:inputText value="#{editQuestionBean.weightMatrix[rowIndex][colIndex].weightValue}"></p:inputText>
 				</p:columns>>

@@ -28,33 +28,4 @@ public class WeightService
 	
 	
 
-	@Transactional
-	public void update(List<Option> options , int choiceWeight[][]) 
-	{
-		for ( int i = 0 ; i < options.size() ; i ++ )
-		{
-			
-			Option tempOption = options.get(i) ;
-			
-			System.out.println("WeightService : option size " + options.size());
-			List<Weight> weightList = tempOption.getWeightList() ;
-			for ( int j = 0 ; j < weightList.size() ; j ++ )
-			{
-				Weight tempWeight = weightList.get(j) ;
-				
-				int productID = tempWeight.getProductId() ;
-				int optionID = tempOption.getOptionId() ;
-				tempWeight.setWeightValue(choiceWeight[optionID][productID]);
-				if(!em.contains(tempWeight))
-				{
-					em.merge(tempWeight) ;
-				}
-			}
-			if(!em.contains(tempOption))
-			{
-				em.merge(tempOption) ;
-			}
-		}
-		
-	}
 }

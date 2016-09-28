@@ -49,7 +49,7 @@ public class ViewProductsBean
 		else{
 			logger.info("product service is null");
 		}
-		System.out.println("finish inititing");
+		System.out.println("finish initiating");
 	}
 
 	public void onDelete(Product product){

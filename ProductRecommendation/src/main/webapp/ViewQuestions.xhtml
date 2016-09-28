@@ -13,7 +13,7 @@
 	</link>
 </h:head>
 <h:body>
-	
+
 	<h:form>
 		<div style="margin: auto; width: 80%; margin-top: 50px">
 			<h1>Product Range Value</h1>
@@ -61,14 +61,19 @@
 						</p:dataTable>
 					</p:column>
 
-					<c:forEach var="product" items="#{viewProductsBean.products}">
-						<p:column headerText="#{product.productName} Weight">
+					<p:columns var="product" value="#{viewQuestionsBean.products}"
+						columnIndexVar="colIndex">
+						<f:facet name="header">
+							<h:outputText value="#{product.productName} Weight #{product.productActive ? '': ' (Inactive)'}" />
+						</f:facet>
 
-							<p:dataTable var="option" value="#{question.options}">
-								<p:column>#{viewQuestionsBean.getChoiceWeighting(option.optionId,product.productID)}</p:column>
-							</p:dataTable>
-						</p:column>
-					</c:forEach>
+						<p:dataTable var="option" value="#{question.options}">
+							<p:column>
+								<h:outputText
+									value="#{viewQuestionsBean.findWeight(option.optionId, product.productID).weightValue}"></h:outputText>
+							</p:column>
+						</p:dataTable>
+					</p:columns>
 					<p:column width="50" headerText="Edit">
 						<p:commandButton class="commandButton" icon="ui-icon-pencil"
 							actionListener="#{editQuestionBean.initEdit(question)}"
