@@ -11,11 +11,10 @@
 <ui:composition template="templates/ProspectTemplate.xhtml">
 	<ui:define name="content">
 		<p:panelGrid columns="1" layout="grid" id="questionPanel">
-
-			<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out
+			<h1 style="font-family: 'Ubuntu';">Question #{answerQuestionBean.currentQuestionIndex +1} out
 				of #{answerQuestionBean.totalNumberOfQuestions}</h1>
 			<p:row>
-				<h:outputText
+				<h:outputText  style="font-family: 'Ubuntu';"
 					value="#{answerQuestionBean.getCurrentQuestion().questionBody}" />
 			</p:row>
 			<br />

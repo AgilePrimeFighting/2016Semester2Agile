@@ -7,180 +7,131 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
+<ui:composition template="templates/ProspectTemplate.xhtml">
+	<ui:define name="content">
+		<div>
+			<h:form>
+				<div  style="width:600px; margin:auto">
+				<div class="panel-heading" style="background-color: #5c247b; color:white; text-align:center">Please enter your contact details.</div>
+				<p:panel id="detailsPanel"  >
+					
+					<p:messages autoUpdate="true" />
+					<div class="parbase basecomp textfieldcomp">
+						<div class="myob-component-text-field ">
+							<div class="form-group ng-isolate-scope">
+								<p:inputText class="form-control" id="firstNameInput" style="display:inline; width:47%"
+									required="true"
+									value="#{answerQuestionBean.customer.firstName}"
+									label="First Name">
+									<p:watermark for="firstNameInput" value="First Name (required)" />
+								</p:inputText>
+									<p:inputText class="form-control" id="lastNameInput"  style="display:inline; width:47%; float:right"
+									required="true" value="#{answerQuestionBean.customer.lastName}"
+									label="Last Name">
 
-	<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
-	</link>
-</h:head>
-<h:body class="backgroundchangercomp parbase basecomp">
-	<div class="myob-component-background-changer myob-padding-vertical">
-		<div class="inner">
-			<div class="container">
-				<div class="columncontrolcomp parbase basecomp">
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
-							<div class="myob-component-form panel-default text-center">
-
-								<div class="formstandardcomp parbase basecomp section">
-
-									<div class="myob-form-content ng-scope">
-
-										<div class="panel-body">
-
-											<p class="myob-subheading">Please enter your contact details.</p>
-
-											<div>
-												<div class="columncontrolcomp parbase basecomp">
-													<div class="row">
-														<div class="col-sm-6">
-															<div class="parbase basecomp textfieldcomp">
-																<div class="myob-component-text-field">
-																	<div class="form-group ng-isolate-scope"></div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-
-												<h:form>
-													<p:panel id="detailsPanel">
-														<p:messages autoUpdate="true" />
-														<div class="parbase basecomp textfieldcomp">
-															<div class="myob-component-text-field">
-																<div class="form-group ng-isolate-scope">
-																	<p:inputText class="form-control" id="firstNameInput"
-																		required="true"
-																		value="#{answerQuestionBean.customer.firstName}"
-																		label="First Name">
-
-																	</p:inputText>
-																	<p:watermark for="firstNameInput" value="First Name *" />
-																</div>
-															</div>
-														</div>
-
-														<div class="parbase basecomp textfieldcomp">
-															<div class="myob-component-text-field">
-																<div class="form-group ng-isolate-scope">
-
-																	<p:inputText class="form-control" id="lastNameInput"
-																		required="true" value="#{answerQuestionBean.customer.lastName}"
-																		label="Last Name">
-
-																	</p:inputText>
-																	<p:watermark for="lastNameInput" value="Last Name *" />
-																</div>
-															</div>
-														</div>
-
-														<div class="parbase basecomp textfieldcomp">
-															<div class="myob-component-text-field">
-																<div class="form-group ng-isolate-scope">
-																	<p:inputText class="form-control" id="emailInput"
-																		label="Email Address" required="true"
-																		value="#{answerQuestionBean.customer.email}"
-																		validatorMessage="Please enter a valid email address">
-																		<f:validateRegex
-																			pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-																	</p:inputText>
-																	<p:watermark for="emailInput" value="Email *" />
-																</div>
-															</div>
-														</div>
-
-														<div class="parbase basecomp textfieldcomp">
-															<div class="myob-component-text-field">
-																<div class="form-group ng-isolate-scope">
-
-																	<p:inputText class="form-control" id="phoneInput"
-																		value="#{answerQuestionBean.customer.phone}" />
-																	<p:watermark for="phoneInput" value="Phone No" />
-																</div>
-															</div>
-														</div>
-
-														<div class="parbase basecomp textfieldcomp">
-															<div class="myob-component-text-field">
-																<div class="form-group ng-isolate-scope">
-																	<p:inputText class="form-control " id="companyInput"
-																		value="#{answerQuestionBean.customer.company}" />
-																	<p:watermark for="companyInput" value="Company Name" />
-																</div>
-															</div>
-														</div>
-
-														<div class="parbase basecomp textfieldcomp">
-															<div class="myob-component-text-field">
-																<div class="form-group ng-isolate-scope">
-
-																	<p:inputText class="form-control " id="conutryInput"
-																		type="text" value="#{answerQuestionBean.customer.country}" />
-																	<p:watermark for="conutryInput" value="Country" />
-																</div>
-															</div>
-														</div>
-
-														<div class="parbase basecomp textfieldcomp">
-															<div class="myob-component-text-field">
-																<div class="form-group ng-isolate-scope">
-
-																	<p:inputText class="form-control "
-																		id="businessTypeInput" type="text"
-																		placeholder="Business type"
-																		value="#{answerQuestionBean.customer.businessType}" />
-																	<p:watermark for="businessTypeInput"
-																		value="Business Type" />
-																</div>
-															</div>
-														</div>
-
-														<div class="parbase basecomp textfieldcomp">
-															<div class="myob-component-text-field">
-																<div class="form-group ng-isolate-scope">
-
-																	<p:inputTextarea
-																		class="form-control ng-pristine ng-empty ng-valid-pattern ng-valid ng-valid-required ng-touched"
-																		id="addiMsgInput"
-																		value="#{answerQuestionBean.customer.addiMsg}" />
-																	<p:watermark for="addiMsgInput"
-																		value="Please leave a message" />
-																</div>
-															</div>
-														</div>
-
-														<p>
-															<p:selectBooleanCheckbox id="isSubscribe"
-																value="#{answerQuestionBean.isSubscribe}" />
-															I'd like to subscribe to the latest newsletter from MYOB
-														</p>
-
-														<p:commandButton styleClass="btn btn-default"
-															value="submit"
-															action="#{answerQuestionBean.submitDetail()}"
-															update="detailsPanel" />
-
-													</p:panel>
-													<p:ajaxStatus onstart="PF('statusDialog').show()"
-														onsuccess="PF('statusDialog').hide()" />
-
-													<p:dialog widgetVar="statusDialog" modal="true"
-														draggable="false" closable="false" resizable="false"
-														showHeader="false">
-														<p:graphicImage name="images/ajaxloadingbar.gif" />
-													</p:dialog>
-
-												</h:form>
-											</div>
-										</div>
-									</div>
-								</div>
+								</p:inputText>
+								<p:watermark for="lastNameInput" value="Last Name (required)" />
+								
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
-</h:body>
+
+					<div class="parbase basecomp textfieldcomp">
+						<div class="myob-component-text-field">
+							<div class="form-group ng-isolate-scope">
+								<p:inputText class="form-control" id="emailInput"
+									label="Email Address" required="true"
+									value="#{answerQuestionBean.customer.email}"
+									validatorMessage="Please enter a valid email address">
+									<f:validateRegex
+										pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+								</p:inputText>
+								<p:watermark for="emailInput" value="Email (required)" />
+							</div>
+						</div>
+					</div>
+
+					<div class="parbase basecomp textfieldcomp">
+						<div class="myob-component-text-field">
+							<div class="form-group ng-isolate-scope">
+
+								<p:inputText class="form-control" id="phoneInput"
+									value="#{answerQuestionBean.customer.phone}" />
+								<p:watermark for="phoneInput" value="Phone No" />
+							</div>
+						</div>
+					</div>
+
+					<div class="parbase basecomp textfieldcomp">
+						<div class="myob-component-text-field">
+							<div class="form-group ng-isolate-scope">
+								<p:inputText class="form-control " id="companyInput"
+									value="#{answerQuestionBean.customer.company}" />
+								<p:watermark for="companyInput" value="Company Name" />
+							</div>
+						</div>
+					</div>
+
+					<div class="parbase basecomp textfieldcomp">
+						<div class="myob-component-text-field">
+							<div class="form-group ng-isolate-scope">
+
+								<p:inputText class="form-control " id="conutryInput" type="text"
+									value="#{answerQuestionBean.customer.country}" />
+								<p:watermark for="conutryInput" value="Country" />
+							</div>
+						</div>
+					</div>
+
+					<div class="parbase basecomp textfieldcomp">
+						<div class="myob-component-text-field">
+							<div class="form-group ng-isolate-scope">
+
+								<p:inputText class="form-control " id="businessTypeInput"
+									type="text" placeholder="Business type"
+									value="#{answerQuestionBean.customer.businessType}" />
+								<p:watermark for="businessTypeInput" value="Business Type" />
+							</div>
+						</div>
+					</div>
+
+					<div class="parbase basecomp textfieldcomp">
+						<div class="myob-component-text-field">
+							<div class="form-group ng-isolate-scope">
+
+								<p:inputTextarea
+									class="form-control ng-pristine ng-empty ng-valid-pattern ng-valid ng-valid-required ng-touched"
+									id="addiMsgInput"
+									value="#{answerQuestionBean.customer.addiMsg}" />
+								<p:watermark for="addiMsgInput" value="Please leave a message" />
+							</div>
+						</div>
+					</div>
+
+					<p>
+						<p:selectBooleanCheckbox id="isSubscribe"
+							value="#{answerQuestionBean.isSubscribe}" />
+						I'd like to subscribe to the latest newsletter from MYOB
+					</p>
+
+					<p:commandButton styleClass="btn btn-default" value="Submit"
+						action="#{answerQuestionBean.submitDetail()}"
+						update="detailsPanel" />
+
+				</p:panel>
+				</div>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+					closable="false" resizable="false" showHeader="false">
+					<p:graphicImage name="images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+			</h:form>
+		</div>
+
+	</ui:define>
+</ui:composition>
 </html>

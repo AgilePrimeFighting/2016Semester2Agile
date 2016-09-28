@@ -1,4 +1,4 @@
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:'Ubuntu', sans-serif ;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 body{margin:0}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
 audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
@@ -2567,7 +2567,11 @@ ng\:form { 	display: block; }  .ng-animate-shim { 	visibility: hidden; }  .ng-an
 }
 
 body{
-	font-family: 'Ubuntu','Helvetica Neue',Helvetica,Arial,sans-serif ;
+	font-family: 'Ubuntu','Helvetica Neue',Helvetica,Arial,sans-serif !important ;
     font-weight: 300;
 	
+}
+
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
+	font-family: 'Ubuntu';
 }
