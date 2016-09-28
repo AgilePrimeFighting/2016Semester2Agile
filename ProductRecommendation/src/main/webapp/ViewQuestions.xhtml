@@ -74,14 +74,14 @@
 							</p:column>
 						</p:dataTable>
 					</p:columns>
-					<p:column width="50" headerText="Edit">
+					<p:column width="70" headerText="Edit">
 						<p:commandButton class="commandButton" icon="ui-icon-pencil"
 							actionListener="#{editQuestionBean.initEdit(question)}"
 							action="EditQuestion">
 						</p:commandButton>
 					</p:column>
-					<p:column width="50" headerText="Delete">
-						<p:commandButton class="commandButton" icon="ui-icon-close"
+					<p:column width="70" headerText="Delete">
+						<p:commandButton  icon="ui-icon-close"
 							actionListener="#{viewQuestionsBean.onDelete(question)}"
 							update="questionTable">
 							<p:confirm header="Confirmation"

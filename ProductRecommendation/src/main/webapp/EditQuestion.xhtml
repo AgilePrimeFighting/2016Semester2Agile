@@ -13,10 +13,11 @@
 	</link>
 </h:head>
 <h:body>
-	<h1>Please edit the question</h1>
+	
 
 	<h:form>
 		<div style="margin: auto; width: 80%; margin-top: 50px">
+			<h1>Please edit the question</h1>
 			<p:messages autoUpdate="true" />
 			<p:inputTextarea value="#{editQuestionBean.question.questionBody}"
 				style="display:block; width:80%" required="true"
@@ -44,8 +45,8 @@
 					</f:facet>
 					<p:inputText value="#{editQuestionBean.weightMatrix[rowIndex][colIndex].weightValue}"></p:inputText>
 				</p:columns>>
-				<p:column width="50" headerText="Delete">
-					<p:commandButton class="btn btn-default" icon="ui-icon-close"
+				<p:column width="70" headerText="Delete">
+					<p:commandButton  icon="ui-icon-close"
 						actionListener="#{editQuestionBean.removeOption(option)}"
 						update="optionsTable" immediate="true">
 					</p:commandButton>
