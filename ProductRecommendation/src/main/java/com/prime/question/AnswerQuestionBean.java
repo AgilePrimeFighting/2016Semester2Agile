@@ -110,13 +110,14 @@ public class AnswerQuestionBean implements Serializable {
 	}
 
 	public String submitDetail() {
-		customer = customerService.persistCustomer(customer);
+		Product recommendedProduct = productService.getRecommendedProduct(responseList);
+		customer.setProduct(recommendedProduct);
+		customer = customerService.persistCustomer(customer,recommendedProduct);
 		for (Response res : responseList) {
 			res.setCustomer(customer);
 			responseService.createResponse(res);
 		}
 		emailService.sendCustomerResponseEmail(customer, responseList);
-		Product recommendedProduct = productService.getRecommendedProduct(responseList);
 		recommendedProductBean.setProduct(recommendedProduct);
 		clearSession();
 		return "RecommendedProduct?faces-redirect=true";

@@ -15,20 +15,23 @@
 	<h1>Product Range Value</h1>
 	<h:form>
 		<div>
-			<p:dataTable id="questionTable"
-				value="#{viewQuestionsBean.questions}" var="question"
+			<p:dataTable id="rangeTable"
+				value="#{viewQuestionsBean.rangeList}" var="range"
 				rowIndexVar="rowIndex">
-				<p:column headerText="Product's name" width="50">
+				<p:column headerText="No." width="50">
 					<h:outputText value="#{rowIndex + 1}" />
 				</p:column>
+				<p:column headerText="Product's name">
+					<h:outputText value="#{range.productName}" />
+				</p:column>
 				<p:column headerText="Minimum value">
-					<h:outputText value="#{question.questionBody}" />
+					<h:outputText value="#{range.min}" />
 				</p:column>
 				<p:column headerText="Maximum value">
-					<h:outputText value="#{question.questionBody}" />
+					<h:outputText value="#{range.max}" />
 				</p:column>
 				<p:column headerText="Status">
-					<h:outputText value="#{question.questionBody}" />
+					<h:outputText value="#{range.status}" />
 				</p:column>
 			</p:dataTable>
 		</div>
