@@ -28,20 +28,18 @@ public class Weight
 	@Column (name="WEIGHT_VALUE")
 	private Integer weightValue ;
 	
-//	
-//	@Column (name = "PRODUCT_ID")
-//	private Integer productId ;
-//	
-//	@Column (name = "OPTION_ID")
-//	private Integer optionId ;
+	@Column (name = "PRODUCT_ID", insertable=false,updatable=false)
+	private Integer productId ;
+
+	@Column (name = "OPTION_ID", insertable=false,updatable=false)
+	private Integer optionId ;
 	
-	//modified
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "OPTION_ID")
 	private Option option ;
 	
 	
-	//modified 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID")
 	private Product product ;
@@ -71,9 +69,6 @@ public class Weight
 		this.weightId = weightId;
 	}
 
-	
-
-	
 
 	public Integer getWeightValue() {
 		return weightValue;
@@ -84,7 +79,21 @@ public class Weight
 	}
 	
 	
-	
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+
+	public Integer getOptionId() {
+		return optionId;
+	}
+
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
+	}
 	
 	
 	

@@ -8,22 +8,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<h:head>
-<style>
-.error {color:red}
-</style>
-<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
-</link> 
+<ui:composition template="templates/ProspectTemplate.xhtml">
+	<ui:define name="content">
+		<p:panelGrid columns="1" layout="grid" id="questionPanel">
 
-</h:head>
-
-
-<h:body>
-
-	<h:form>
-		<div style="margin: auto; width:800px">
-		<p:panelGrid columns="1" layout="grid" id="questionPanel" >
-			
 			<h1>Question #{answerQuestionBean.currentQuestionIndex +1} out
 				of #{answerQuestionBean.totalNumberOfQuestions}</h1>
 			<p:row>
@@ -32,26 +20,22 @@
 			</p:row>
 			<br />
 			<p:row>
-				<p:selectOneRadio id="options" required="true" layout="pageDirection"  
-				requiredMessage = "You must have a choice to do the next"
-					value="#{answerQuestionBean.response}" label="Answers">
+				<p:selectOneRadio id="options" required="true"
+					layout="pageDirection" requiredMessage="Please select one option."
+					value="#{answerQuestionBean.selectedOptionId}" label="Answers">
 					<f:selectItems
 						value="#{answerQuestionBean.getCurrentQuestion().options}"
-						var="option"
-						itemLabel="#{option.optionBody}" itemValue="#{option.optionBody}" />
+						var="option" itemLabel="   #{option.optionBody}"
+						itemValue="#{option.optionId}" />
 				</p:selectOneRadio>
-				<h:message for = "options" styleClass = "error" />
+				<h:message for="options" styleClass="error" />
 			</p:row>
 
 		</p:panelGrid>
-		
-		<p:commandButton styleClass="btn myob-btn-secondary" value="back" action="#{answerQuestionBean.doBack()}" update="questionPanel" immediate="true"></p:commandButton>
-		<p:commandButton styleClass="btn btn-default" value="next" action="#{answerQuestionBean.doNext()}" update="questionPanel"></p:commandButton>
-		</div>
-	</h:form>
- 		
-
-
- 
- </h:body>
+		<br />
+		<br />
+		<p:commandButton styleClass="btn btn-default" value="next"
+			action="#{answerQuestionBean.doNext()}" update="questionPanel"></p:commandButton>
+	</ui:define>
+</ui:composition>
 </html>

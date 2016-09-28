@@ -9,13 +9,13 @@ Additional Message: ${customer.addiMsg}
 
 Add to MYOB newsletter list: ${customer.isSubscribe}
 
-Recommended Product: ${customer.product}
+Recommended Product: ${customer.product.productName}
 Trial Site Provisioned:${customer.hasTrial}
 
 Responses to questions: 
 #foreach( $response in $allResponses )
 
-    Question ${response.questionId}: ${response.questionBody}
+    Question ${foreach.count}: ${response.questionBody}
 	Answer: ${response.answer}
 #end
 

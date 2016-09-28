@@ -1,5 +1,6 @@
 package com.prime.product.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,23 +39,23 @@ public class Product
 	@Column (name = "PRODUCT_URL")
 	private String productURL ;
 	
+	@Column (name = "OVERVIEW")
+	private String overview ;
 	
-	//modified 
 	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval=true,
 	fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Weight> weightList ;
+	private List<Weight> weightList = new ArrayList<Weight>();
 	
 	
-//	private String activeOutput ;
-//
-//	public String getActiveOutput() {
-//		return activeOutput;
-//	}
-//
-//	public void setActiveOutput(String activeOutput) {
-//		this.activeOutput = activeOutput;
-//	}
 	
+	public String getOverview() {
+		return overview;
+	}
+
+	public void setOverview(String overview) {
+		this.overview = overview;
+	}
+
 	
 	public List<Weight> getWeightList() {
 		return weightList;
@@ -68,7 +69,6 @@ public class Product
 	{
 		return this.productActive == true ? "Active" : "Inactive" ;
 	}
-
 
 	public Integer getProductID() {
 		return productID;

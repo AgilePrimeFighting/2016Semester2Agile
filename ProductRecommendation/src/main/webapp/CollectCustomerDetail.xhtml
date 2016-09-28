@@ -8,103 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<style type="text/css">
-@charset "UTF-8";
 
-[
-ng\:cloak
-]
-,
-[
-ng-cloak
-]
-,
-[
-data-ng-cloak
-]
-,
-[
-x-ng-cloak
-]
-,
-.ng-cloak
-,
-.x-ng-cloak
-,
-.ng-hide
-
-
-
-
-
-
-:not
-
-
-
- 
-
-
-
-(
-.ng-hide-animate
-
-
-
- 
-
-
-
-){
-display
-
-
-
-
-
-
-:
-
-
-
- 
-
-
-
-none
-
-
-
- 
-
-
-
-!
-important
-
-
-
-
-
-
-;
-}
-ng\:form {
-	display: block;
-}
-
-.ng-animate-shim {
-	visibility: hidden;
-}
-
-.ng-anchor {
-	position: absolute;
-}
-
-.red {
-	color: red
-}
-</style>
 	<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
 	</link>
 </h:head>
@@ -121,16 +25,9 @@ ng\:form {
 
 									<div class="myob-form-content ng-scope">
 
-
-										<div class="panel-heading">
-											<h3 class="panel-title">MYOB EXO is the recommended
-												product for you.</h3>
-
-										</div>
 										<div class="panel-body">
 
-											<p class="myob-subheading">Get in touch to learn how we
-												can help your business</p>
+											<p class="myob-subheading">Please enter your contact details.</p>
 
 											<div>
 												<div class="columncontrolcomp parbase basecomp">
@@ -153,11 +50,11 @@ ng\:form {
 																<div class="form-group ng-isolate-scope">
 																	<p:inputText class="form-control" id="firstNameInput"
 																		required="true"
-																		value="#{answerQuestionBean.firstName}"
+																		value="#{answerQuestionBean.customer.firstName}"
 																		label="First Name">
 
 																	</p:inputText>
-																	<p:watermark for="firstNameInput" value="First Name" />
+																	<p:watermark for="firstNameInput" value="First Name *" />
 																</div>
 															</div>
 														</div>
@@ -167,11 +64,11 @@ ng\:form {
 																<div class="form-group ng-isolate-scope">
 
 																	<p:inputText class="form-control" id="lastNameInput"
-																		required="true" value="#{answerQuestionBean.lastName}"
+																		required="true" value="#{answerQuestionBean.customer.lastName}"
 																		label="Last Name">
 
 																	</p:inputText>
-																	<p:watermark for="lastNameInput" value="Last Name" />
+																	<p:watermark for="lastNameInput" value="Last Name *" />
 																</div>
 															</div>
 														</div>
@@ -181,12 +78,12 @@ ng\:form {
 																<div class="form-group ng-isolate-scope">
 																	<p:inputText class="form-control" id="emailInput"
 																		label="Email Address" required="true"
-																		value="#{answerQuestionBean.email}"
+																		value="#{answerQuestionBean.customer.email}"
 																		validatorMessage="Please enter a valid email address">
 																		<f:validateRegex
 																			pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 																	</p:inputText>
-																	<p:watermark for="emailInput" value="Email" />
+																	<p:watermark for="emailInput" value="Email *" />
 																</div>
 															</div>
 														</div>
@@ -196,7 +93,7 @@ ng\:form {
 																<div class="form-group ng-isolate-scope">
 
 																	<p:inputText class="form-control" id="phoneInput"
-																		value="#{answerQuestionBean.phone}" />
+																		value="#{answerQuestionBean.customer.phone}" />
 																	<p:watermark for="phoneInput" value="Phone No" />
 																</div>
 															</div>
@@ -206,7 +103,7 @@ ng\:form {
 															<div class="myob-component-text-field">
 																<div class="form-group ng-isolate-scope">
 																	<p:inputText class="form-control " id="companyInput"
-																		value="#{answerQuestionBean.company}" />
+																		value="#{answerQuestionBean.customer.company}" />
 																	<p:watermark for="companyInput" value="Company Name" />
 																</div>
 															</div>
@@ -217,7 +114,7 @@ ng\:form {
 																<div class="form-group ng-isolate-scope">
 
 																	<p:inputText class="form-control " id="conutryInput"
-																		type="text" value="#{answerQuestionBean.country}" />
+																		type="text" value="#{answerQuestionBean.customer.country}" />
 																	<p:watermark for="conutryInput" value="Country" />
 																</div>
 															</div>
@@ -230,7 +127,7 @@ ng\:form {
 																	<p:inputText class="form-control "
 																		id="businessTypeInput" type="text"
 																		placeholder="Business type"
-																		value="#{answerQuestionBean.businessType}" />
+																		value="#{answerQuestionBean.customer.businessType}" />
 																	<p:watermark for="businessTypeInput"
 																		value="Business Type" />
 																</div>
@@ -244,7 +141,7 @@ ng\:form {
 																	<p:inputTextarea
 																		class="form-control ng-pristine ng-empty ng-valid-pattern ng-valid ng-valid-required ng-touched"
 																		id="addiMsgInput"
-																		value="#{answerQuestionBean.addiMsg}" />
+																		value="#{answerQuestionBean.customer.addiMsg}" />
 																	<p:watermark for="addiMsgInput"
 																		value="Please leave a message" />
 																</div>

@@ -10,11 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.prime.product.model.Product;
 import com.prime.response.model.Response;
 
 @Entity
@@ -26,12 +29,17 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerId;
 	
-	@Column(name = "PRODUCT")
-	private String product;
+	
+	@OneToOne
+	@JoinColumn(name = "PRODUCT_ID")
+	private Product product;
 	
 	@Column(name = "DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date  date;
+	
+	@Column(name = "PRODUCT")
+	private String productName;
 	
 	@Column(name = "HAS_TRIAL")
 	private String hasTrial;
@@ -76,11 +84,11 @@ public class Customer {
 		this.customerId = customerId;
 	}
 	
-	public String getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(String product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 	
@@ -90,6 +98,14 @@ public class Customer {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	
 	public String getHasTrial() {
