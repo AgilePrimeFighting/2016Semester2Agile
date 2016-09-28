@@ -84,7 +84,7 @@ public class ViewQuestionsBean implements Serializable{
 		logger.info("initiating");
 		
 		questions = new ArrayList<Question>();
-		rangeList = new ArrayList<RangeItem>();
+		setRangeList(new ArrayList<RangeItem>());
 		
 		if(questionService != null) questions = questionService.listAll();
 		else logger.info("question service is null");
@@ -165,5 +165,13 @@ public class ViewQuestionsBean implements Serializable{
 		System.out.println("choiceWeight["+optionID+"]["+productID+"]=" + choiceWeight[optionID][productID] );
 		currentWeight = choiceWeight[optionID][productID] ;
 		return  ;
+	}
+
+	public List<RangeItem> getRangeList() {
+		return rangeList;
+	}
+
+	public void setRangeList(List<RangeItem> rangeList) {
+		this.rangeList = rangeList;
 	}
 }
