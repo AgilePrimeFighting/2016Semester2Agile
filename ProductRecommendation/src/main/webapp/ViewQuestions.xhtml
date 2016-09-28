@@ -64,7 +64,7 @@
 				</p:column>
 				
 				<c:forEach var="product" items="#{viewProductsBean.products}">
-					<p:column headerText="#{product.productName}">
+					<p:column headerText="#{product.productName} Weight">
 					
 					<p:dataTable var="option" value="#{question.options}">
 						<p:column>#{viewQuestionsBean.getChoiceWeighting(option.optionId,product.productID)}</p:column> 

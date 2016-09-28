@@ -5,60 +5,66 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
-</link>
+	<link rel="stylesheet" type="text/css" href="css/headlibs.min.css">
+	</link>
 </h:head>
 <h:body>
 	<h1>Please edit the question</h1>
 
 	<h:form>
-		<p:messages autoUpdate="true" />
-		<p:inputTextarea value="#{editQuestionBean.question.questionBody}"
-			style="display:block; width:80%" required="true"
-			label="Question Body" maxlength="400" />
-		<br />
-		<p:commandButton class="btn btn-default" value="Add Option"
-			action="#{editQuestionBean.addOption}" update="optionsTable" />
-		<br />
-		<h2>Options:</h2>
-		<br />
-		<p:dataTable id="optionsTable" value="#{editQuestionBean.question.options}"
-			var="option"  rowIndexVar="rowIndex">
-			<p:column headerText="No." width="50">
-				<h:outputText value="#{rowIndex + 1}" />
-			</p:column>
-			<p:column headerText="Option Body" >
-				<p:inputText value="#{option.optionBody}" required="true" label="Option Body"/>
-			</p:column>
-			
-			<c:forEach var="product" items="#{viewProductsBean.products}">
-					<p:column headerText="#{product.productName}">
-					#{viewQuestionsBean.getChoiceWeightingNoOutput(option.optionId,product.productID)}
-						<p:inputText value = "#{viewQuestionsBean.currentWeight}" ></p:inputText>
-					</p:column>
-				</c:forEach>
-			<p:column width="50" headerText="Delete">
-					<p:commandButton class="btn btn-default"  icon="ui-icon-close"
+		<div style="margin: auto; width: 80%; margin-top: 50px">
+			<p:messages autoUpdate="true" />
+			<p:inputTextarea value="#{editQuestionBean.question.questionBody}"
+				style="display:block; width:80%" required="true"
+				label="Question Body" maxlength="400" />
+			<br />
+			<p:commandButton class="btn btn-default" value="Add Option"
+				action="#{editQuestionBean.addOption}" update="optionsTable" />
+			<br />
+			<h2>Options:</h2>
+			<br />
+			<p:dataTable id="optionsTable"
+				value="#{editQuestionBean.question.options}" var="option"
+				rowIndexVar="rowIndex">
+				<p:column headerText="No." width="50">
+					<h:outputText value="#{rowIndex + 1}" />
+				</p:column>
+				<p:column headerText="Option Body">
+					<p:inputText value="#{option.optionBody}" required="true"
+						label="Option Body" />
+				</p:column>
+
+				<p:columns var="product" value="#{editQuestionBean.products}" columnIndexVar="colIndex">
+					<f:facet name="header">
+						<h:outputText value="#{product.productName} Weight" />
+					</f:facet>
+					<p:inputText value="#{editQuestionBean.weightMatrix[rowIndex][colIndex].weightValue}"></p:inputText>
+				</p:columns>>
+				<p:column width="50" headerText="Delete">
+					<p:commandButton class="btn btn-default" icon="ui-icon-close"
 						actionListener="#{editQuestionBean.removeOption(option)}"
 						update="optionsTable" immediate="true">
 					</p:commandButton>
 				</p:column>
-		</p:dataTable>
+			</p:dataTable>
 
-		<p:commandButton class="btn btn-default" value="save" action="#{editQuestionBean.doSave(viewQuestionsBean.choiceWeight)}" />
-		<p:button class="btn btn-default" value="cancel" outcome="ViewQuestions" />
-		<p:confirmDialog global="true">
-			<p:commandButton class="btn btn-default" value="No" type="button" id="noButton"
-				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			<p:commandButton class="btn btn-default" value="Yes" type="button" style="float:left;"
-				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton class="btn btn-default" value="save"
+				action="#{editQuestionBean.doSave(viewQuestionsBean.choiceWeight)}" />
+			<p:button class="btn btn-default" value="cancel"
+				outcome="ViewQuestions" />
+			<p:confirmDialog global="true">
+				<p:commandButton class="btn btn-default" value="No" type="button"
+					id="noButton" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				<p:commandButton class="btn btn-default" value="Yes" type="button"
+					style="float:left;" styleClass="ui-confirmdialog-yes"
+					icon="ui-icon-check" />
 
-		</p:confirmDialog>
+			</p:confirmDialog>
+		</div>
 	</h:form>
 
 </h:body>

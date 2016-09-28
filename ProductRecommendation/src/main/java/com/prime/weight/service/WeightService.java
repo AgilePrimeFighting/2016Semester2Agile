@@ -41,12 +41,9 @@ public class WeightService
 			for ( int j = 0 ; j < weightList.size() ; j ++ )
 			{
 				Weight tempWeight = weightList.get(j) ;
-				//tempWeight.setWeightValue(choiceWeight[i][j]) ;
 				
-				int productID = tempWeight.getProduct().getProductID() ;
+				int productID = tempWeight.getProductId() ;
 				int optionID = tempOption.getOptionId() ;
-				//System.out.println("WeightService : weightValue " + tempWeight.getWeightValue());
-				System.out.println("choiceWeight["+optionID+"]["+productID+"]=" + choiceWeight[optionID][productID] );
 				tempWeight.setWeightValue(choiceWeight[optionID][productID]);
 				if(!em.contains(tempWeight))
 				{
