@@ -29,7 +29,7 @@ public class ViewQuestionsBean implements Serializable{
 	private static final Logger logger = Logger.getLogger(ViewQuestionsBean.class.getName());
 	
 	private List<Question> questions;
-	private List<RangeItem> ranges;
+	private List<RangeItem> rangeList;
 	private Question selectedQuestion;
 	
 	@Autowired
@@ -46,7 +46,7 @@ public class ViewQuestionsBean implements Serializable{
 		logger.info("initiating");
 		
 		questions = new ArrayList<Question>();
-		ranges = new ArrayList<RangeItem>();
+		rangeList = new ArrayList<RangeItem>();
 		
 		if(questionService != null) questions = questionService.listAll();
 		else logger.info("question service is null");
@@ -69,7 +69,7 @@ public class ViewQuestionsBean implements Serializable{
 //				if(value > max) max = value;
 //			}
 //			RangeItem range = new RangeItem(product.getProductName(),min,max,product.outputActive());
-//			ranges.add(range);
+//			rangeList.add(range);
 //		}
 		
 		
@@ -111,12 +111,12 @@ public class ViewQuestionsBean implements Serializable{
 		this.selectedQuestion = selectedQuestion;
 	}
 
-	public List<RangeItem> getRanges() {
-		return ranges;
+	public List<RangeItem> getrangeList() {
+		return rangeList;
 	}
 
-	public void setRanges(List<RangeItem> ranges) {
-		this.ranges = ranges;
+	public void setrangeList(List<RangeItem> rangeList) {
+		this.rangeList = rangeList;
 	}
 
 }
