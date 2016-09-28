@@ -2,14 +2,14 @@ package com.prime.question;
 
 public class RangeItem{
 	private String productName;
-	private int max;
 	private int min;
+	private int max;
 	private String status;
 	
-	RangeItem(String productName, int max, int min, String status){
+	RangeItem(String productName, int min, int max, String status){
 		this.productName = productName;
-		this.max = max;
 		this.min = min;
+		this.max = max;
 		this.status = status;
 	}
 	

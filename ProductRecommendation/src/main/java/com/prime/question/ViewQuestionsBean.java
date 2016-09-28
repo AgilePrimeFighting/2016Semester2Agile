@@ -39,6 +39,8 @@ public class ViewQuestionsBean implements Serializable {
 	private QuestionService questionService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private WeightService weightService;
 	
 	@PostConstruct
 	public void init() {
@@ -51,9 +53,28 @@ public class ViewQuestionsBean implements Serializable {
 		} else {
 			logger.info("question service is null");
 		}
-		// RangeItem range = new RangeItem("EXO",10,15,"true");
-		// rangeList.add(range);
-		// TODO set rangeList
+
+		rangeList = new ArrayList<RangeItem>();
+		List<Product> products = new ArrayList<Product>();
+		if (productService != null) products = productService.listAll();
+		for(Product product : products){
+			List<Weight> weights = weightService.getWeighListFromProductId(product.getProductID());
+			boolean isFirst = true;
+			int min = 0;
+			int max = 0;
+			for(Weight weight : weights){
+				int value = weight.getWeightValue();
+				if(isFirst){
+					min = value;
+					max = value;
+					isFirst = false;
+				}
+				if(value < min) min = value;
+				if(value > max) max = value;
+			}
+			RangeItem range = new RangeItem(product.getProductName(),min,max,product.outputActive());
+			rangeList.add(range);
+		}
 		
 		for(Question question : questions){
 			for(Option option: question.getOptions()){
@@ -71,10 +92,6 @@ public class ViewQuestionsBean implements Serializable {
 		Weight weight =  weightMap.get(optionId).get(productId);
 		return weight;
 	}
-	
-//	public List<Weight> getWeighsFromProductId(int id){
-//		return em.createQuery("SELECT w FROM Weight WHERE w.PRODUCT_ID = " + id , Weight.class).getResultList();
-//	}
 
 	public void onDelete(Question question) {
 		logger.info("deleting question");
