@@ -22,6 +22,7 @@ import com.prime.email.service.EmailService;
 import com.prime.product.RecommendedProductBean;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
+import com.prime.question.model.Option;
 import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.question.service.ResponseService;
@@ -41,7 +42,8 @@ public class AnswerQuestionBean implements Serializable {
 	private List<Question> questions;
 	private int currentQuestionIndex;
 	private List<Response> responseList;
-	private String response;
+	private Integer selectedOptionId;
+	private List<Option> selectedOptions = new ArrayList<Option>();
 
 	@Autowired
 	private QuestionService questionService;
@@ -72,20 +74,25 @@ public class AnswerQuestionBean implements Serializable {
 
 	public String doNext() {
 
-		logger.info("response : " + getResponse());
 		Question question = questions.get(currentQuestionIndex);
-		Response responseItem = new Response(question.getQuestionId(), question.getQuestionBody(), response);
+		Option selectedOption = null;
+		for(Option op : question.getOptions()){
+			if(selectedOptionId == op.getOptionId() ){
+				selectedOption = op;
+			}
+		}
+		Response responseItem = new Response(question.getQuestionId(), question.getQuestionBody(), selectedOption.getOptionBody());
 		responseList.add(responseItem);
-
+		selectedOptions.add(selectedOption);
 		currentQuestionIndex++;
 		if (currentQuestionIndex == questions.size()) {
 			currentQuestionIndex = 0;
-			response = null;
+			selectedOptionId = null;
 
 			return "CollectCustomerDetail?faces-redirect=true";
 
 		}
-		response = null;
+		selectedOptionId = null;
 		return "AnswerQuestions";
 	}
 
@@ -96,7 +103,6 @@ public class AnswerQuestionBean implements Serializable {
 			return "StartToAnswerQuestion";
 
 		}
-		logger.info("response : " + getResponse());
 		// Question question = questions.get(currentQuestionIndex);
 		// responseService.createNewResponse(customer.getCustomerId(),question.getQuestionId(),
 		// question.getQuestionBody(), response);
@@ -105,12 +111,12 @@ public class AnswerQuestionBean implements Serializable {
 		currentQuestionIndex--;
 		System.out.println("currentQuestionIndex " + currentQuestionIndex);
 
-		response = null;
+		//response = null;
 		return "AnswerQuestions";
 	}
 
 	public String submitDetail() {
-		Product recommendedProduct = productService.getRecommendedProduct(responseList);
+		Product recommendedProduct = productService.getRecommendedProduct(selectedOptions);
 		customer.setProduct(recommendedProduct);
 		customer = customerService.persistCustomer(customer,recommendedProduct);
 		for (Response res : responseList) {
@@ -127,7 +133,8 @@ public class AnswerQuestionBean implements Serializable {
 		currentQuestionIndex = 0;
 		responseList = new ArrayList<Response>();
 		customer = new Customer();
-		response=null;
+		selectedOptionId= null;
+		selectedOptions.clear();
 	}
 
 	public Customer getCustomer() {
@@ -170,13 +177,6 @@ public class AnswerQuestionBean implements Serializable {
 		this.currentQuestionIndex = currentQuestionIndex;
 	}
 
-	public String getResponse() {
-		return response;
-	}
-
-	public void setResponse(String response) {
-		this.response = response;
-	}
 
 	public boolean getIsSubscribe(){
 		if("Yes".equals(customer.getIsSubscribe())){
@@ -192,5 +192,17 @@ public class AnswerQuestionBean implements Serializable {
 		}else{
 			customer.setIsSubscribe("No");
 		}
+	}
+
+
+
+	public Integer getSelectedOptionId() {
+		return selectedOptionId;
+	}
+
+
+
+	public void setSelectedOptionId(Integer selectedOptionId) {
+		this.selectedOptionId = selectedOptionId;
 	}
 }

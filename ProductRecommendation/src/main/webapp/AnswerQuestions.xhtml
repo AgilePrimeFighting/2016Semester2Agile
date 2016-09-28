@@ -22,11 +22,11 @@
 			<p:row>
 				<p:selectOneRadio id="options" required="true"
 					layout="pageDirection" requiredMessage="Please select one option."
-					value="#{answerQuestionBean.response}" label="Answers">
+					value="#{answerQuestionBean.selectedOptionId}" label="Answers">
 					<f:selectItems
 						value="#{answerQuestionBean.getCurrentQuestion().options}"
 						var="option" itemLabel="   #{option.optionBody}"
-						itemValue="#{option.optionBody}" />
+						itemValue="#{option.optionId}" />
 				</p:selectOneRadio>
 				<h:message for="options" styleClass="error" />
 			</p:row>
