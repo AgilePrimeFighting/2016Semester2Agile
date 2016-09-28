@@ -52,7 +52,7 @@ public class ViewQuestionsBean implements Serializable{
 		else logger.info("question service is null");
 		
 		//TODO set rangeList
-//		List<Product> products = productService.listAll();
+		List<Product> products = productService.listAll();
 //		for(Product product : products){
 //			List<Weight> weights = weightService.getWeighsFromProductId(product.getProductID());
 //			boolean isFirst = true;
@@ -111,11 +111,11 @@ public class ViewQuestionsBean implements Serializable{
 		this.selectedQuestion = selectedQuestion;
 	}
 
-	public List<RangeItem> getRangeList() {
+	public List<RangeItem> getRanges() {
 		return ranges;
 	}
 
-	public void setRangeList(List<RangeItem> ranges) {
+	public void setRanges(List<RangeItem> ranges) {
 		this.ranges = ranges;
 	}
 
