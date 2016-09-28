@@ -23,7 +23,6 @@
 		<h:inputText id="username" value="#{login.user}" required = "true" requiredMessage = "username is mandatory." validator = "#{login.validateUsername}"></h:inputText>
 		<h:message for="username" styleClass = "error"></h:message>
 		<br></br><br></br>
-		
 		<h:outputText value="Password" />
 		<h:inputSecret id="password" value="#{login.pwd}" required = "true" requiredMessage = "password is mandatory." validator = "#{login.validatePassword}"></h:inputSecret>
 		<h:message for="password" styleClass = "error"></h:message>

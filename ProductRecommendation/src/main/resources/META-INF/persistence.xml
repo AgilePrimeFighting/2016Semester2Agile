@@ -26,6 +26,7 @@
             <property name="javax.persistence.jdbc.password" value="qianer1006" />
             <property name = "hibernate.show_sql" value = "true" />
             <property name="hibernate.default_schema" value="prime"/>
+            
         </properties>
     </persistence-unit> 
 </persistence>
