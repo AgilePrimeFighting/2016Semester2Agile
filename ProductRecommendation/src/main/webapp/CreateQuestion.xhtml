@@ -8,12 +8,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-</link>
+	<link rel="stylesheet" type="text/css" href="css/main.css"></link>
 </h:head>
 <h:body>
 	<h1>Add a new Product.</h1>
-	
+
 	<h:form>
 		#{createQuestionBean.initBean()}
 		<p:messages autoUpdate="true" />
@@ -22,7 +21,7 @@
 			label="Question Body" maxlength="400" />
 		<br />
 		<p:commandButton class="commandButton" value="Add Option"
-			action="#{createQuestionBean.addOption}" update="optionsTable" />
+			action="#{createQuestionBean.addOption}" update="optionsTable"  />
 		<br />
 		<h2>Options:</h2>
 		<br />
@@ -35,6 +34,15 @@
 				<p:inputText value="#{option.optionBody}" required="true"
 					label="Option Body" />
 			</p:column>
+			<p:columns var="product" value="#{createQuestionBean.products}"
+				columnIndexVar="colIndex">
+				<f:facet name="header">
+					<h:outputText
+						value="#{product.productName} Weight #{product.productActive ? '': ' (Inactive)'}" />
+				</f:facet>
+				<p:inputText  converterMessage="Please enter an integer for the weights."
+					value="#{createQuestionBean.weightMatrix[rowIndex][colIndex].weightValue}"></p:inputText>
+			</p:columns>
 			<p:column width="50" headerText="Delete">
 				<p:commandButton class="commandButton" icon="ui-icon-close"
 					actionListener="#{createQuestionBean.removeOption(option)}"
@@ -43,15 +51,16 @@
 			</p:column>
 		</p:dataTable>
 
-		<p:commandButton class="commandButton" value="save" action="#{createQuestionBean.onSave}"
-			style="margin-top:15px;" />
+		<p:commandButton class="commandButton" value="save"
+			action="#{createQuestionBean.onSave}" style="margin-top:15px;"  />
 		<p:button value="cancel" outcome="ViewQuestions"
 			style="margin-left:20px;" />
 		<p:confirmDialog global="true">
-			<p:commandButton  class="commandButton" value="No" type="button" id="noButton"
-				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			<p:commandButton  class="commandButton" value="Yes" type="button" style="float:left;"
-				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton class="commandButton" value="No" type="button"
+				id="noButton" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			<p:commandButton class="commandButton" value="Yes" type="button"
+				style="float:left;" styleClass="ui-confirmdialog-yes"
+				icon="ui-icon-check" />
 
 		</p:confirmDialog>
 	</h:form>

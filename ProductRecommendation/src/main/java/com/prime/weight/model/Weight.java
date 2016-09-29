@@ -79,11 +79,11 @@ public class Weight
 	}
 	
 	
-	public Integer getProductId() {
+	public Integer getproductId() {
 		return productId;
 	}
 
-	public void setProductId(Integer productId) {
+	public void setproductId(Integer productId) {
 		this.productId = productId;
 	}
 

@@ -36,7 +36,6 @@ public class EditQuestionBean implements Serializable {
 	private Question question;
 	private List<Product> products = new ArrayList<Product>() ;
 	private Weight[][] weightMatrix;
-	private Map<Integer, Integer> productIdIndex = new HashMap<Integer, Integer>();
 	
 
 	@Autowired
@@ -47,34 +46,27 @@ public class EditQuestionBean implements Serializable {
 	private ProductService productService;
 	
 
+
 	@PostConstruct
 	public void init() {
 		logger.info("initiated");
 		products = productService.listAll();
-		for(int i = 0; i < products.size(); i ++){
-			productIdIndex.put( products.get(i).getProductID(), i);
-		}
-		
 	}
 
 	public void initEdit(Question question) {
 		logger.info("question received");
 		this.question = question;
-		weightMatrix = new Weight[question.getOptions().size()][products.size()];
-		for(int optionIndex = 0; optionIndex < question.getOptions().size(); optionIndex ++ ){
-			Option option = question.getOptions().get(optionIndex);
-			for(Weight weight: option.getWeightList()){
-				Integer productPosition = productIdIndex.get(weight.getProductId());
-				weightMatrix[optionIndex][productPosition] = weight;
-			}
-		}
+		weightMatrix = questionService.buildWeightMatrix(question.getOptions(), products);
 		
 	}
 
-	public String doSave(int choiceWeight[][]) {
+	
+
+	public String doSave() {
 		
 		
-		if (question != null) {
+		if (question != null) 
+		{
 			questionService.update(question);
 		}
 		
@@ -86,12 +78,21 @@ public class EditQuestionBean implements Serializable {
 			question.setOptions(new ArrayList<Option>());
 		}
 		Option newOption = new Option();
+		for (Product product : products) {
+			Weight weight = new Weight();
+			weight.setOption(newOption);
+			weight.setProduct(product);
+			weight.setWeightValue(0);
+			newOption.getWeightList().add(weight);
+		}
 		question.getOptions().add(newOption);
+		weightMatrix = questionService.buildWeightMatrix(question.getOptions(), products);
 	}
 	
 
 	public void removeOption(Option option){
 		question.getOptions().remove(option);
+		weightMatrix = questionService.buildWeightMatrix(question.getOptions(), products);
 	}
 
 	public QuestionService getQuestionService() {

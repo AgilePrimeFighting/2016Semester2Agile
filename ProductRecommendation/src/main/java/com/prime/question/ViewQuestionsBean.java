@@ -29,7 +29,8 @@ public class ViewQuestionsBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger logger = Logger.getLogger(ViewQuestionsBean.class.getName());
+	private static final Logger logger = Logger
+			.getLogger(ViewQuestionsBean.class.getName());
 
 	private List<Question> questions;
 	private List<RangeItem> rangeList;
@@ -41,16 +42,18 @@ public class ViewQuestionsBean implements Serializable {
 	private ProductService productService;
 	@Autowired
 	private WeightService weightService;
-	
+
 	@PostConstruct
 	public void init() {
 		logger.info("initiating");
-		if (questionService != null) questions = questionService.listAll();
-		if (productService != null) products = productService.listAll();
+		if (questionService != null)
+			questions = questionService.listAll();
+		if (productService != null)
+			products = productService.listAll();
 		rangeList = new ArrayList<RangeItem>();
 
 		for(Product product : products){
-			int totalMin = 0;
+				int totalMin = 0;
 			int totalMax = 0;
 			for(Question question : questions){
 				List<Integer> optionIds = new ArrayList<Integer>();
@@ -58,7 +61,7 @@ public class ViewQuestionsBean implements Serializable {
 					optionIds.add(option.getOptionId());
 				}
 				List<Weight> weights = new ArrayList<Weight>();
-				weights = weightService.getWeighFromId(product.getProductID(), optionIds);
+				weights = weightService.getWeighFromId(product.getProductId(), optionIds);
 				boolean isFirst = true;
 				int min = 0;
 				int max = 0;
@@ -78,21 +81,21 @@ public class ViewQuestionsBean implements Serializable {
 			RangeItem range = new RangeItem(product.getProductName(),totalMin,totalMax,product.outputActive());
 			rangeList.add(range);
 		}
-		
-		for(Question question : questions){
-			for(Option option: question.getOptions()){
+
+		for (Question question : questions) {
+			for (Option option : question.getOptions()) {
 				HashMap<Integer, Weight> productIdToWeightMap = new HashMap<Integer, Weight>();
 				weightMap.put(option.getOptionId(), productIdToWeightMap);
-				for(Weight weight : option.getWeightList()){
-					productIdToWeightMap.put(weight.getProductId(), weight);
+				for (Weight weight : option.getWeightList()) {
+					productIdToWeightMap.put(weight.getproductId(), weight);
 				}
 			}
 		}
 
 	}
-	
-	public Weight findWeight(Integer optionId, Integer productId ){
-		Weight weight =  weightMap.get(optionId).get(productId);
+
+	public Weight findWeight(Integer optionId, Integer productId) {
+		Weight weight = weightMap.get(optionId).get(productId);
 		return weight;
 	}
 

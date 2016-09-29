@@ -16,7 +16,7 @@
 
 	<h:form>
 		<div style="margin: auto; width: 80%; margin-top: 50px">
-			<h1>Product Range Value</h1>
+			<h1>Range of Possible Product Weights</h1>
 			<div>
 				<p:dataTable id="rangeTable" value="#{viewQuestionsBean.rangeList}"
 					var="range" rowIndexVar="rowIndex">
@@ -70,7 +70,7 @@
 						<p:dataTable var="option" value="#{question.options}">
 							<p:column>
 								<h:outputText
-									value="#{viewQuestionsBean.findWeight(option.optionId, product.productID).weightValue}"></h:outputText>
+									value="#{viewQuestionsBean.findWeight(option.optionId, product.productId).weightValue}"></h:outputText>
 							</p:column>
 						</p:dataTable>
 					</p:columns>
