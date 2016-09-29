@@ -117,7 +117,6 @@ public class AnswerQuestionBean implements Serializable {
 
 	public String submitDetail() {
 		Product recommendedProduct = productService.getRecommendedProduct(selectedOptions);
-		customer.setProduct(recommendedProduct);
 		customer = customerService.persistCustomer(customer,recommendedProduct);
 		for (Response res : responseList) {
 			res.setCustomer(customer);
