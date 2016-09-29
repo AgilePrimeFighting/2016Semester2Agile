@@ -59,6 +59,11 @@ public class CreateQuestionBean implements Serializable {
 		initBean();
 		return "ViewQuestions?faces-redirect=true";
 	}
+	
+	public void accumulate() {
+		logger.info("accumulate");
+		logger.info("question weight="+ getQuestionBody());
+	}
 
 	public String getQuestionBody() {
 		return questionBody;
