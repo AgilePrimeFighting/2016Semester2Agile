@@ -47,6 +47,14 @@ public class EditQuestionBean implements Serializable {
 	private ProductService productService;
 	
 
+	public WeightService getWeightService() {
+		return weightService;
+	}
+
+	public void setWeightService(WeightService weightService) {
+		this.weightService = weightService;
+	}
+
 	@PostConstruct
 	public void init() {
 		logger.info("initiated");
@@ -71,10 +79,11 @@ public class EditQuestionBean implements Serializable {
 		
 	}
 
-	public String doSave(int choiceWeight[][]) {
+	public String doSave() {
 		
 		
-		if (question != null) {
+		if (question != null) 
+		{
 			questionService.update(question);
 		}
 		
