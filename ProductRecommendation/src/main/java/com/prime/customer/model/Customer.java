@@ -38,6 +38,9 @@ public class Customer {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date  date;
 	
+	@Column(name = "PRODUCT")
+	private String productName;
+	
 	@Column(name = "HAS_TRIAL")
 	private String hasTrial;
 	
@@ -95,6 +98,14 @@ public class Customer {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	
 	public String getHasTrial() {

@@ -75,7 +75,8 @@ public class QuestionService {
 			question.getOptions().add(noOption);
 			
 		}
-		for(Option option: question.getOptions()){
+		for(Option option: question.getOptions())
+		{
 			option.setQuestion(question);
 		}
 		if(!em.contains(question)){
