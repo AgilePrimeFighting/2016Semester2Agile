@@ -14,40 +14,13 @@
 			style="padding-top: 40px; height: 100px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
 			align="center" class="text-center">
 			<h:outputText
-				value="Thank you for answering our questions. We think that #{recommendedProductBean.product.productName} will be a great fit for your business. "
+				value="Thank you for answering our questions. We think that #{recommendedProductBean.product.productName} will be a great fit for your business. A free trial is #{recommendedProductBean.product.productTrial ? '':'not'} available for this product."
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-
-		<h:form>
-			<p:dataScroller value="#{recommendedProductBean.product}"
-				var="product" chunkSize="10">
-				<f:facet name="header">
-            Product Information
-        </f:facet>
-
-				<h:panelGrid columns="2" style="width:100%">
-					<p:outputPanel>
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText value="Product ID:" />
-							<h:outputText value="#{product.productId}"
-								style="font-weight: bold" />
-
-							<h:outputText value="Product Name:" />
-							<h:outputText value="#{product.productName}"
-								style="font-weight: bold" />
-
-							<h:outputText value="Product URL:" />
-							<h:outputText value="#{product.productURL}"
-								style="font-weight: bold" />
-
-							<h:outputText value="Product Overview:" />
-							<h:outputText value="#{product.overview}"
-								style="font-weight: bold" />
-						</h:panelGrid>
-					</p:outputPanel>
-				</h:panelGrid>
-			</p:dataScroller>
-		</h:form>
+		<div style="padding-left: 50px; padding-right: 50px">
+			<h:outputText value="#{recommendedProductBean.product.overview}"
+				escape="false" />
+		</div>
 
 		<div
 			style="background: url(resources/images/hero-using-advanced-on-ipad.jpg); padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"

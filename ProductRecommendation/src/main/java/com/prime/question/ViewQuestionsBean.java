@@ -52,26 +52,33 @@ public class ViewQuestionsBean implements Serializable {
 			products = productService.listAll();
 		rangeList = new ArrayList<RangeItem>();
 
-		for (Product product : products) {
-			List<Weight> weights = weightService
-					.getWeighListFromProductId(product.getproductId());
-			boolean isFirst = true;
-			int min = 0;
-			int max = 0;
-			for (Weight weight : weights) {
-				int value = weight.getWeightValue();
-				if (isFirst) {
-					min = value;
-					max = value;
-					isFirst = false;
+		for(Product product : products){
+				int totalMin = 0;
+			int totalMax = 0;
+			for(Question question : questions){
+				List<Integer> optionIds = new ArrayList<Integer>();
+				for(Option option : question.getOptions()){
+					optionIds.add(option.getOptionId());
 				}
-				if (value < min)
-					min = value;
-				if (value > max)
-					max = value;
+				List<Weight> weights = new ArrayList<Weight>();
+				weights = weightService.getWeighFromId(product.getProductId(), optionIds);
+				boolean isFirst = true;
+				int min = 0;
+				int max = 0;
+				for(Weight weight : weights){
+					int value = weight.getWeightValue();
+					if(isFirst){
+						min = value;
+						max = value;
+						isFirst = false;
+					}
+					if(value < min) min = value;
+					if(value > max) max = value;
+				}
+				totalMin = totalMin + min;
+				totalMax = totalMax + max;
 			}
-			RangeItem range = new RangeItem(product.getProductName(), min, max,
-					product.outputActive());
+			RangeItem range = new RangeItem(product.getProductName(),totalMin,totalMax,product.outputActive());
 			rangeList.add(range);
 		}
 

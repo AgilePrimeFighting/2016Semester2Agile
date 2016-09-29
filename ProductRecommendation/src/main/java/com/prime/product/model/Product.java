@@ -70,11 +70,11 @@ public class Product
 		return this.productActive == true ? "Active" : "Inactive" ;
 	}
 
-	public Integer getproductId() {
+	public Integer getProductId() {
 		return productId;
 	}
 
-	public void setproductId(Integer productId) {
+	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
 
