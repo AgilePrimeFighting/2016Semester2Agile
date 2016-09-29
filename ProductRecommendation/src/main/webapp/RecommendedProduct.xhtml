@@ -10,30 +10,68 @@
 
 <ui:composition template="templates/ProspectTemplate.xhtml">
 	<ui:define name="content">
-		<div style="padding-top:40px; height: 100px; background-color: #5c247b; color: white;vertical-align: middle; align-content:center;"  align="center"  class="text-center">
-			<h:outputText value="Thank you for answering our questions. We think that #{recommendedProductBean.product.productName} will be a great fit for your business. "
-			style=" vertical-align: middle; display: inline-block;"/>
+		<div
+			style="padding-top: 40px; height: 100px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
+			align="center" class="text-center">
+			<h:outputText
+				value="Thank you for answering our questions. We think that #{recommendedProductBean.product.productName} will be a great fit for your business. "
+				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-		<div style="padding-left:50px; padding-right:50px">
-			<h:outputText value="#{recommendedProductBean.product.overview}"  escape="false" />
+
+		<h:form>
+			<p:dataScroller value="#{recommendedProductBean.product}"
+				var="product" chunkSize="10">
+				<f:facet name="header">
+            Product Information
+        </f:facet>
+
+				<h:panelGrid columns="2" style="width:100%">
+					<p:outputPanel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Product ID:" />
+							<h:outputText value="#{product.productId}"
+								style="font-weight: bold" />
+
+							<h:outputText value="Product Name:" />
+							<h:outputText value="#{product.productName}"
+								style="font-weight: bold" />
+
+							<h:outputText value="Product URL:" />
+							<h:outputText value="#{product.productURL}"
+								style="font-weight: bold" />
+
+							<h:outputText value="Product Overview:" />
+							<h:outputText value="#{product.overview}"
+								style="font-weight: bold" />
+						</h:panelGrid>
+					</p:outputPanel>
+				</h:panelGrid>
+			</p:dataScroller>
+		</h:form>
+
+		<div
+			style="background: url(resources/images/hero-using-advanced-on-ipad.jpg); padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
+			align="center" class="text-center">
+			<h:outputText
+				value="Read more about #{recommendedProductBean.product.productName}. "
+				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-		
-		<div style="background:url(resources/images/hero-using-advanced-on-ipad.jpg) ;padding-top:40px; height: 100px;  color: white;vertical-align: middle; align-content:center;"  align="center"  class="text-center">
-			<h:outputText value="Read more about #{recommendedProductBean.product.productName}. "
-			style=" vertical-align: middle; display: inline-block;"/>
-		</div>
-		<div style="height:200px"></div>
-		
-		<div style="background:url(resources/images/hero-waiter-computer.jpg) ;padding-top:40px; height: 100px;  color: white;vertical-align: middle; align-content:center;"  align="center"  class="text-center">
+		<div style="height: 200px"></div>
+
+		<div
+			style="background: url(resources/images/hero-waiter-computer.jpg); padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
+			align="center" class="text-center">
 			<h:outputText value="Watch videos of the product "
-			style=" vertical-align: middle; display: inline-block;"/>
+				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-		<div style="height:200px"></div>
-		<div style="background:url(resources/images/hero-photographer-on-beach.jpg) 0 -250px ;padding-top:40px; height: 100px;  color: white;vertical-align: middle; align-content:center;"  align="center"  class="text-center">
+		<div style="height: 200px"></div>
+		<div
+			style="background: url(resources/images/hero-photographer-on-beach.jpg) 0 -250px; padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
+			align="center" class="text-center">
 			<h:outputText value="Other useful links "
-			style=" vertical-align: middle; display: inline-block;"/>
+				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-		<div style="height:200px"></div>
+		<div style="height: 200px"></div>
 	</ui:define>
 </ui:composition>
 </html>
