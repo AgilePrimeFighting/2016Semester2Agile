@@ -48,15 +48,20 @@ public class ProductService {
 		product.setProductURL(procutURL);
 		
 		List<Option> options = optionService.listAll();
-		for(Option option: options){
+		
+		for(Option option: options)
+		{
 			Weight weight = new Weight();
 			weight.setProduct(product);
 			weight.setOption(option);
 			weight.setWeightValue(0);
 			product.getWeightList().add(weight);
 		}
-		em.persist(product);
+		
+		em.persist(product);		
 	}
+	
+	
 
 	@Transactional
 	public void delete(Product product) {
