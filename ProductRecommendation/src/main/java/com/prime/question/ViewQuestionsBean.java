@@ -53,9 +53,8 @@ public class ViewQuestionsBean implements Serializable {
 			int totalMin = 0;
 			int totalMax = 0;
 			for(Question question : questions){
-				List<Option> options = question.getOptions();
 				List<Integer> optionIds = new ArrayList<Integer>();
-				for(Option option : options){
+				for(Option option : question.getOptions()){
 					optionIds.add(option.getOptionId());
 				}
 				List<Weight> weights = weightService.getWeighFromId(product.getProductID(), optionIds);
