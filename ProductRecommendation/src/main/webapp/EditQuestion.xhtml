@@ -44,7 +44,7 @@
 						<h:outputText value="#{product.productName} Weight #{product.productActive ? '': ' (Inactive)'}" />
 					</f:facet>
 					<p:inputText value="#{editQuestionBean.weightMatrix[rowIndex][colIndex].weightValue}"></p:inputText>
-				</p:columns>>
+				</p:columns>
 				<p:column width="70" headerText="Delete">
 					<p:commandButton  icon="ui-icon-close"
 						actionListener="#{editQuestionBean.removeOption(option)}"

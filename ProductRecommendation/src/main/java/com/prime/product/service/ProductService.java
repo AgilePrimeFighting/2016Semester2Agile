@@ -58,9 +58,59 @@ public class ProductService
 			em.merge(product) ;
 		}
 		
-		public Product getRecommendedProduct(List<Response> responses){
-			return em.find(Product.class, 1);
-		}
+
 		
+	
+	
+
+	@Transactional
+	public void delete(Product product) {
+		logger.info(" delete  product with id : " + product.getproductId());
+		if (!em.contains(product)) {
+			product = em.merge(product);
+		}
+		em.remove(product);
+	}
+
+	@Transactional
+	public void update(Product product) {
+		em.merge(product);
+	}
+
+	public Product getRecommendedProduct(List<Option> options) {
+		Map<Integer, Integer> weightMap = new HashMap<Integer, Integer>();
+		List<Product> activeProducts = this.listActiveProducts();
+		Map<Integer, Product> idToProductMap = new HashMap<Integer, Product>();
+		for (Product product : activeProducts) {
+			idToProductMap.put(product.getproductId(), product);
+		}
+		Integer recommendedproductId = 0;
+		Integer maximumWeight = 0;
+		for (Option option : options) {
+			for (Weight weight : option.getWeightList()) {
+				Integer productId = weight.getproductId();
+				if (idToProductMap.containsKey(productId)) {
+					Integer weightValue = weight.getWeightValue();
+					Integer newValue = 0;
+					if (!weightMap.containsKey(productId)) {
+						newValue = weightValue;
+
+					} else {
+						Integer oldValue = weightMap.get(productId);
+						newValue = oldValue + weightValue;
+
+					}
+					weightMap.put(productId, newValue);
+					if (newValue >= maximumWeight) {
+						maximumWeight = newValue;
+						recommendedproductId = productId;
+					}
+				}
+			}
+		}
+		logger.info("recommended product Id is " + recommendedproductId);
+		return idToProductMap.get(recommendedproductId);
+	}
+
 
 }
