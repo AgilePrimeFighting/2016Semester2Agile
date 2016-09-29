@@ -26,6 +26,8 @@ public class WeightService
 		return em.createQuery("FROM Weight where OPTION_ID =" + optionID + " and PRODUCT_ID = " + productID ).getResultList() ;
 	}
 	
-	
-
+	public List<Weight> getWeighListFromProductId(int productId){
+		return em.createQuery("SELECT w from Weight w where w.productId = :productID"
+				, Weight.class).setParameter("productID", productId).getResultList();
+	}
 }
