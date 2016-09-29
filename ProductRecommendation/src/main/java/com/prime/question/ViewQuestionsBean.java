@@ -50,7 +50,7 @@ public class ViewQuestionsBean implements Serializable {
 		rangeList = new ArrayList<RangeItem>();
 
 		for(Product product : products){
-			List<Weight> weights = weightService.getWeighListFromProductId(product.getProductID());
+			List<Weight> weights = weightService.getWeighListFromProductId(product.getProductId());
 			boolean isFirst = true;
 			int min = 0;
 			int max = 0;

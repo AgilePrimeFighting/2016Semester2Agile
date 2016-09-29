@@ -109,14 +109,14 @@ public class QuestionService {
 		Weight[][] weightMatrix = new Weight[options.size()][products.size()];
 		Map<Integer, Integer> productIdIndex = new HashMap<Integer, Integer>();
 		for(int i = 0; i < products.size(); i ++){
-			productIdIndex.put( products.get(i).getproductId(), i);
+			productIdIndex.put( products.get(i).getProductId(), i);
 		}
 		for(int optionIndex = 0; optionIndex < options.size(); optionIndex ++ ){
 			Option option = options.get(optionIndex);
 			for(Weight weight: option.getWeightList()){
 				Integer productId = weight.getproductId();
 				if(productId ==null){
-					productId = weight.getProduct().getproductId();
+					productId = weight.getProduct().getProductId();
 				}
 				Integer productPosition = productIdIndex.get( productId);
 				

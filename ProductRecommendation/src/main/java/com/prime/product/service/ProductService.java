@@ -65,7 +65,7 @@ public class ProductService {
 
 	@Transactional
 	public void delete(Product product) {
-		logger.info(" delete  product with id : " + product.getproductId());
+		logger.info(" delete  product with id : " + product.getProductId());
 		if (!em.contains(product)) {
 			product = em.merge(product);
 		}
@@ -82,7 +82,7 @@ public class ProductService {
 		List<Product> activeProducts = this.listActiveProducts();
 		Map<Integer, Product> idToProductMap = new HashMap<Integer, Product>();
 		for (Product product : activeProducts) {
-			idToProductMap.put(product.getproductId(), product);
+			idToProductMap.put(product.getProductId(), product);
 		}
 		Integer recommendedproductId = 0;
 		Integer maximumWeight = 0;
