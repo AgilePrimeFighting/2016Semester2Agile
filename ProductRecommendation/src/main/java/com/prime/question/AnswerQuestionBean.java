@@ -96,20 +96,6 @@ public class AnswerQuestionBean implements Serializable {
 		return "AnswerQuestions";
 	}
 	
-	public void accumulate() {
-		logger.info("response : " + getResponse());
-		Question question = questions.get(currentQuestionIndex);
-		Response responseItem = new Response(question.getQuestionId(), question.getQuestionBody(), response);
-		responseList.add(responseItem);
-
-		Integer productId = question.getQuestionId();
-		if(productId ==null){
-			productId = question.getQuestionId();
-			productId = question.getQuestionId();
-		}
-
-
-	}
 
 	public String doBack() {
 

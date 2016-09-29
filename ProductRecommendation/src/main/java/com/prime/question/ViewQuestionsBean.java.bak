@@ -53,7 +53,27 @@ public class ViewQuestionsBean implements Serializable {
 		rangeList = new ArrayList<RangeItem>();
 
 		for(Product product : products){
-				int totalMin = 0;
+<<<<<<< HEAD
+			List<Weight> weights = weightService.getWeighListFromProductId(product.getProductId());
+			boolean isFirst = true;
+			int min = 0;
+			int max = 0;
+			for (Weight weight : weights) {
+				int value = weight.getWeightValue();
+				if (isFirst) {
+					min = value;
+					max = value;
+					isFirst = false;
+				}
+				if (value < min)
+					min = value;
+				if (value > max)
+					max = value;
+			}
+			RangeItem range = new RangeItem(product.getProductName(), min, max,
+					product.outputActive());
+=======
+			int totalMin = 0;
 			int totalMax = 0;
 			for(Question question : questions){
 				List<Integer> optionIds = new ArrayList<Integer>();
@@ -61,7 +81,7 @@ public class ViewQuestionsBean implements Serializable {
 					optionIds.add(option.getOptionId());
 				}
 				List<Weight> weights = new ArrayList<Weight>();
-				weights = weightService.getWeighFromId(product.getProductId(), optionIds);
+				weights = weightService.getWeighFromId(product.getProductID(), optionIds);
 				boolean isFirst = true;
 				int min = 0;
 				int max = 0;
@@ -79,6 +99,7 @@ public class ViewQuestionsBean implements Serializable {
 				totalMax = totalMax + max;
 			}
 			RangeItem range = new RangeItem(product.getProductName(),totalMin,totalMax,product.outputActive());
+>>>>>>> refs/remotes/origin/buiBranch
 			rangeList.add(range);
 		}
 
