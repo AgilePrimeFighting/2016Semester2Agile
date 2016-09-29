@@ -24,10 +24,5 @@ public class WeightService
 	}
 	
 	
-	@Transactional
-	public void updateWeight ( Weight weight ) 
-	{
-		em.merge(weight) ;
-	}
 
 }

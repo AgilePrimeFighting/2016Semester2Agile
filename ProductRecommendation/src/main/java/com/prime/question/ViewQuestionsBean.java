@@ -19,6 +19,7 @@ import com.prime.question.model.Option;
 import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.weight.model.Weight;
+import com.prime.weight.service.WeightService;
 
 @Controller
 @Scope("request")

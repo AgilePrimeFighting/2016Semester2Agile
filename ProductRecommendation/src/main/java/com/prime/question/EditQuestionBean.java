@@ -21,7 +21,6 @@ import com.prime.question.model.Option;
 import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.weight.model.Weight;
-import com.prime.weight.service.WeightService;
 
 @Controller
 @Scope("session")
@@ -46,10 +45,6 @@ public class EditQuestionBean implements Serializable {
 	
 	@Autowired
 	private ProductService productService;
-	
-	
-	@Autowired 
-	private WeightService weightService ;
 	
 
 	public WeightService getWeightService() {
@@ -90,19 +85,6 @@ public class EditQuestionBean implements Serializable {
 		if (question != null) 
 		{
 			questionService.update(question);
-			
-			for ( int optionIndex = 0 ; optionIndex <  question.getOptions().size() ; optionIndex ++ ) 
-			{
-				Option option = question.getOptions().get(optionIndex) ;
-				for ( Weight weight : option.getWeightList() )
-				{
-					Integer productPosition = productIdIndex.get(weight.getProductId());	
-					int currentWeightValue = weightMatrix[optionIndex][productPosition].getWeightValue() ;
-					weight.setWeightValue(currentWeightValue);
-					
-					weightService.updateWeight(weight);
-				}
-			}
 		}
 		
 		return "ViewQuestions?faces-redirect=true";
