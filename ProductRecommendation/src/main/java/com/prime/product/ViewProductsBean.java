@@ -28,28 +28,19 @@ public class ViewProductsBean
 	private Product selectedProduct;
 	
 
-	public Product getSelectedProduct() {
-		return selectedProduct;
-	}
-
-	public void setSelectedProduct(Product selectedProduct) {
-		this.selectedProduct = selectedProduct;
-	}
-
 	@Autowired
 	private ProductService productService;
 	
 	@PostConstruct
 	public void init(){
 		logger.info("initiating");
-		System.out.println("Initing ~~~");
 		if(productService != null){
 		products = productService.listAll();
 		}
 		else{
 			logger.info("product service is null");
 		}
-		System.out.println("finish inititing");
+		logger.info("finish initiating");
 	}
 
 	public void onDelete(Product product){
@@ -60,7 +51,6 @@ public class ViewProductsBean
 	}
 
 	public List<Product> getProducts() {
-		System.out.println("get all the products");
 		return products;
 	}
 
@@ -74,6 +64,15 @@ public class ViewProductsBean
 
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
+	}
+	
+
+	public Product getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	public void setSelectedProduct(Product selectedProduct) {
+		this.selectedProduct = selectedProduct;
 	}
 
 

@@ -1,4 +1,4 @@
-package main.java;
+package com.prime.email.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.prime.customer.model.Customer;
 import com.prime.email.service.EmailService;
+import com.prime.product.model.Product;
 import com.prime.response.model.Response;
 
 
@@ -68,7 +69,9 @@ public class EmailServiceTest {
 		    customer.setCountry("New Zealand");
 		    customer.setHasTrial("No");
 		    customer.setIsSubscribe("No");
-		    customer.setProduct("MYOB EXO");
+		    Product product = new Product();
+		    product.setProductName("MYOB EXO");
+		    customer.setProduct(product);
 		    customer.setEmail("pepperidge.farm@gmail.com");
 		    //customer.set
 		    List<Response> allResponses = new ArrayList<Response>();

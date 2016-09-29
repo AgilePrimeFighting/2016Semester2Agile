@@ -13,7 +13,8 @@
 </h:head>
 <h:body>
 	<h1>Product List</h1>
-	<h:form>
+	<h:form >
+	<p:panel style="margin: 0 auto;width: 90%;">
 		<dir>
 			<p:dataTable id="productTable" value="#{viewProductsBean.products}"
 				var="product" rowIndexVar="rowIndex">
@@ -35,7 +36,7 @@
 				</p:column>
 
 
-				<p:column headerText="Procut URL">
+				<p:column headerText="Product URL">
 <!-- 					<h:link value="#{product.productURL}" outcome = "#{product.productURL}"></h:link>
  -->					<!-- <a href = "www.baidu.com" >www.baidu.com</a> -->
  						<h:outputText value = "#{product.productURL}" ></h:outputText>
@@ -69,12 +70,10 @@
 				</p:column>
 			</p:dataTable>
 		</dir>
-
-
-		<p:button outcome="AddProduct" value="Add new product"
+		<p:button outcome="CreateProduct" value="Add new product"
 			style="margin-top:10px;" />
 
-
+	</p:panel>
 	</h:form>
 
 </h:body>

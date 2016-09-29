@@ -1,4 +1,4 @@
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:'Ubuntu', sans-serif ;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 body{margin:0}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
 audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
@@ -41,7 +41,7 @@ td,th{padding:0}
 *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 *:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0)}
-body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;color:#6d6e71;background-color:#fff}
+body{font-family: 'Ubuntu',sans-serif;font-size:16px;line-height:1.5;color:#6d6e71;background-color:#fff}
 input,button,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit}
 a{color:#5c247b;text-decoration:none}
 a:hover,a:focus{color:#301340;text-decoration:underline}
@@ -2555,4 +2555,23 @@ h2,h3{page-break-after:avoid}
 .table{border-collapse:collapse !important}
 .table td,.table th{background-color:#fff !important}
 .table-bordered th,.table-bordered td{border:1px solid #ddd !important}
+}
+
+[ng\:cloak ] , [ ng-cloak ] , [ data-ng-cloak ] , [ x-ng-cloak ] , .ng-cloak , .x-ng-cloak , .ng-hide       :not     
+(.ng-hide-animate     
+){ display       :     none     !important       ; } 
+ng\:form { 	display: block; }  .ng-animate-shim { 	visibility: hidden; }  .ng-anchor { 	position: absolute; }  .red { 	color: red }
+
+.ui-radiobutton{
+	margin-right:20px;
+}
+
+body{
+	font-family: 'Ubuntu','Helvetica Neue',Helvetica,Arial,sans-serif !important ;
+    font-weight: 300;
+	
+}
+
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
+	font-family: 'Ubuntu';
 }

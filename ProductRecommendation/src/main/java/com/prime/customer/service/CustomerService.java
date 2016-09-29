@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prime.customer.model.Customer;
+import com.prime.product.model.Product;
 
 @Service
 public class CustomerService {
@@ -23,7 +24,7 @@ public class CustomerService {
 	 }
 	 
 	 @Transactional
-	 public Customer createNewCustomer(String product, String hasTrial, String firstName, 
+	 public Customer createNewCustomer(Product product, String hasTrial, String firstName, 
 			 String lastName, String email, String phone, String company, 
 			 String country, String businessType, String addiMsg, String isSubscribe){
 		 Customer customer = new Customer();
@@ -47,5 +48,20 @@ public class CustomerService {
 		 em.persist(customer);
 		 return customer;
 	 }
+	 
+	 public Customer getCustomer(Integer customerId){
+		 return em.find(Customer.class, customerId);
+	 }
 
+	 @Transactional
+	 public Customer persistCustomer(Customer customer, Product product){
+		 if(!em.contains(customer)){
+			 customer.setDate(new Date());
+			 customer.setProduct(product);
+			 customer.setProductName(product.getProductName());
+			 customer.setHasTrial(product.outputTrial());
+			 em.persist(customer);
+		 }
+		return customer;
+	 }
 }
