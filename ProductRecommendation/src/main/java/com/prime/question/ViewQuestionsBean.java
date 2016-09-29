@@ -60,7 +60,7 @@ public class ViewQuestionsBean implements Serializable {
 				HashMap<Integer, Weight> productIdToWeightMap = new HashMap<Integer, Weight>();
 				weightMap.put(option.getOptionId(), productIdToWeightMap);
 				for(Weight weight : option.getWeightList()){
-					productIdToWeightMap.put(weight.getProductId(), weight);
+					productIdToWeightMap.put(weight.getproductId(), weight);
 				}
 			}
 		}

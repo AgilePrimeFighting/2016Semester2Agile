@@ -139,15 +139,15 @@ public class ViewQuestionsBean implements Serializable{
 	}
 	
 	
-	public int getChoiceWeighting ( int optionID , int productID ) 
+	public int getChoiceWeighting ( int optionID , int productId ) 
 	{
-		weightList = weightService.getWeightList(optionID, productID) ;
+		weightList = weightService.getWeightList(optionID, productId) ;
 		if ( weightList == null || weightList.size() == 0 ) 
 		{
-			choiceWeight[optionID][productID] =  0 ;
+			choiceWeight[optionID][productId] =  0 ;
 			return 0 ;
 		}
-		choiceWeight[optionID][productID] = weightList.get(0).getWeightValue() ;
+		choiceWeight[optionID][productId] = weightList.get(0).getWeightValue() ;
 
 <<<<<<< HEAD
 	public List<RangeItem> getRangeList() {
@@ -162,18 +162,18 @@ public class ViewQuestionsBean implements Serializable{
 		return  weightList.get(0).getWeightValue() ; 
 	}
 	
-	public void getChoiceWeightingNoOutput ( int optionID , int productID ) 
+	public void getChoiceWeightingNoOutput ( int optionID , int productId ) 
 	{
-		weightList = weightService.getWeightList(optionID, productID) ;
+		weightList = weightService.getWeightList(optionID, productId) ;
 		if ( weightList == null ) 
 		{
-			choiceWeight[optionID][productID] =  0 ;
+			choiceWeight[optionID][productId] =  0 ;
 			currentWeight = 0 ;
 		}
 		//choiceWeight = weightList.get(0).getWeightValue() ; 
-		choiceWeight[optionID][productID] = weightList.get(0).getWeightValue() ;
-		System.out.println("choiceWeight["+optionID+"]["+productID+"]=" + choiceWeight[optionID][productID] );
-		currentWeight = choiceWeight[optionID][productID] ;
+		choiceWeight[optionID][productId] = weightList.get(0).getWeightValue() ;
+		System.out.println("choiceWeight["+optionID+"]["+productId+"]=" + choiceWeight[optionID][productId] );
+		currentWeight = choiceWeight[optionID][productId] ;
 		return  ;
 	}
 >>>>>>> refs/remotes/origin/JackJackJack

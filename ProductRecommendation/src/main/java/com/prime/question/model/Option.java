@@ -1,5 +1,6 @@
 package com.prime.question.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,7 +38,7 @@ public class Option {
 	//modified
 	@OneToMany(mappedBy = "option", targetEntity = Weight.class, orphanRemoval=true,
 	fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Weight> weightList ;
+	private List<Weight> weightList = new ArrayList<Weight>() ;
 
 	public List<Weight> getWeightList() {
 		return weightList;

@@ -65,7 +65,7 @@ public class ProductService {
 
 	@Transactional
 	public void delete(Product product) {
-		logger.info(" delete  product with id : " + product.getProductID());
+		logger.info(" delete  product with id : " + product.getproductId());
 		if (!em.contains(product)) {
 			product = em.merge(product);
 		}
@@ -82,34 +82,34 @@ public class ProductService {
 		List<Product> activeProducts = this.listActiveProducts();
 		Map<Integer, Product> idToProductMap = new HashMap<Integer, Product>();
 		for (Product product : activeProducts) {
-			idToProductMap.put(product.getProductID(), product);
+			idToProductMap.put(product.getproductId(), product);
 		}
-		Integer recommendedProductId = 0;
+		Integer recommendedproductId = 0;
 		Integer maximumWeight = 0;
 		for (Option option : options) {
 			for (Weight weight : option.getWeightList()) {
-				Integer productID = weight.getProductId();
-				if (idToProductMap.containsKey(productID)) {
+				Integer productId = weight.getproductId();
+				if (idToProductMap.containsKey(productId)) {
 					Integer weightValue = weight.getWeightValue();
 					Integer newValue = 0;
-					if (!weightMap.containsKey(productID)) {
+					if (!weightMap.containsKey(productId)) {
 						newValue = weightValue;
 
 					} else {
-						Integer oldValue = weightMap.get(productID);
+						Integer oldValue = weightMap.get(productId);
 						newValue = oldValue + weightValue;
 
 					}
-					weightMap.put(productID, newValue);
+					weightMap.put(productId, newValue);
 					if (newValue >= maximumWeight) {
 						maximumWeight = newValue;
-						recommendedProductId = productID;
+						recommendedproductId = productId;
 					}
 				}
 			}
 		}
-		logger.info("recommended product Id is " + recommendedProductId);
-		return idToProductMap.get(recommendedProductId);
+		logger.info("recommended product Id is " + recommendedproductId);
+		return idToProductMap.get(recommendedproductId);
 	}
 
 }

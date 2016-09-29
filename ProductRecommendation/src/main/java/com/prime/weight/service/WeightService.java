@@ -17,10 +17,10 @@ public class WeightService
 	@PersistenceContext
 	private EntityManager em;
 	
-	public List<Weight>getWeightList ( int optionID , int productID) 
+	public List<Weight>getWeightList ( int optionID , int productId) 
 	{
-		System.out.println("WeightService : option ID " + optionID + " procutID " + productID);
-		return em.createQuery("FROM Weight where OPTION_ID =" + optionID + " and PRODUCT_ID = " + productID ).getResultList() ;
+		System.out.println("WeightService : option ID " + optionID + " procutID " + productId);
+		return em.createQuery("FROM Weight where OPTION_ID =" + optionID + " and PRODUCT_ID = " + productId ).getResultList() ;
 	}
 	
 	
