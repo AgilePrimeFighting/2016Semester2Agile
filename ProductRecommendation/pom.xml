@@ -12,8 +12,8 @@
 	<url></url>
 
 	<properties>
-		<property name="current_session_context_class">thread</property> 
-		
+		<property name="current_session_context_class">thread</property>
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 
@@ -136,6 +136,11 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+			<version>2.3.0.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
@@ -206,6 +211,29 @@
 				<configuration>
 					<port>9090</port>
 					<path>/prime</path>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.12.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaLanguage>WSDL</schemaLanguage>
+					<generateDirectory>${project.build.sourceDirectory}
+                      </generateDirectory>
+					<generatePackage>com.prime.wsdl</generatePackage>
+					<schemas>
+						<schema>
+							<url>https://try.myobadvanced.com/Soap/PROVENG.asmx?WSDL</url>
+						</schema>
+					</schemas>
 				</configuration>
 			</plugin>
 		</plugins>
