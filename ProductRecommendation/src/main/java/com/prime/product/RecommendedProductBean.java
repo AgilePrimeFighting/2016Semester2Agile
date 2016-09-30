@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
 import com.prime.question.AnswerQuestionBean;
+import com.prime.question.service.ResponseService;
 
 @Controller
 @Scope("session")
@@ -21,21 +22,9 @@ public class RecommendedProductBean {
 
 	private Product product;
 
-	private boolean isAvailable = false;
-
-	@Autowired
-	private ProductService productService;
-
 	@PostConstruct
 	public void init() {
-		logger.info("initiating");
-		if (productService != null) {
-			product = productService.listAll().get(0);
-		} else {
-			logger.info("product service is null");
-		}
 
-		isAvailable = true;
 	}
 
 	public Product getProduct() {
@@ -46,12 +35,12 @@ public class RecommendedProductBean {
 		this.product = product;
 	}
 
-	public boolean isAvailable() {
-		return isAvailable;
-	}
-
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
-	}
+	// public boolean isAvailable() {
+	// return isAvailable;
+	// }
+	//
+	// public void setAvailable(boolean isAvailable) {
+	// this.isAvailable = isAvailable;
+	// }
 
 }

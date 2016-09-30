@@ -13,15 +13,17 @@
 			<h:form>
 				<div style="width: 600px; margin: auto">
 					<div
-						style="padding-top: 20px; height: 45px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
+						style="padding-top: 20px; height: 40px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
 						align="center" class="text-center">
+						<h:outputText value="According to your answer, " />
 						<h:outputText
-							value="According to your answer, a product is available for you."
-							style=" vertical-align: middle; display: inline-block;" />
+							value="#{recommendedProductBean.product.productName}"
+							style="color:yellow; font-weight:bold" />
+						<h:outputText value=" is available for you." />
 					</div>
 
 					<div
-						style="padding-bottom: 20px; height: 20px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
+						style="padding-bottom: 20px; height: 40px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
 						align="center" class="text-center">
 						<h:outputText
 							value="Please enter your contact details to view product

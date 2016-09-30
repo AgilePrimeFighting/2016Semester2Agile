@@ -14,8 +14,11 @@
 			style="padding-top: 40px; height: 100px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
 			align="center" class="text-center">
 			<h:outputText
-				value="Thank you for answering our questions. We think that #{recommendedProductBean.product.productName} will be a great fit for your business. A free trial is #{recommendedProductBean.product.productTrial ? '':'not'} available for this product."
-				style=" vertical-align: middle; display: inline-block;" />
+				value="Thank you for answering our questions. We think that " />
+			<h:outputText value=" #{recommendedProductBean.product.productName}"
+				style="color:yellow; font-weight:bold" />
+			<h:outputText
+				value=" will be a great fit for your business. A free trial is #{recommendedProductBean.product.productTrial ? '':'not'} available for this product." />
 		</div>
 		<div style="padding-left: 50px; padding-right: 50px">
 			<h:outputText value="#{recommendedProductBean.product.overview}"
@@ -34,7 +37,8 @@
 		<div
 			style="background: url(resources/images/hero-waiter-computer.jpg); padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
 			align="center" class="text-center">
-			<h:outputText value="Watch videos of the product "
+			<h:outputText
+				value="Watch videos of the #{recommendedProductBean.product.productName}"
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
 		<div style="height: 200px"></div>
