@@ -38,14 +38,14 @@
 								<div class="form-group ng-isolate-scope">
 									<p:inputText class="form-control" id="firstNameInput"
 										style="display:inline; width:47%" required="true"
-										value="#{answerQuestionBean.customer.firstName}"
+										value="#{CollectCustomerDetailBean.customer.firstName}"
 										label="First Name">
 										<p:watermark for="firstNameInput"
 											value="First Name (required)" />
 									</p:inputText>
 									<p:inputText class="form-control" id="lastNameInput"
 										style="display:inline; width:47%; float:right" required="true"
-										value="#{answerQuestionBean.customer.lastName}"
+										value="#{CollectCustomerDetailBean.customer.lastName}"
 										label="Last Name">
 
 									</p:inputText>
@@ -61,7 +61,7 @@
 								<div class="form-group ng-isolate-scope">
 									<p:inputText class="form-control" id="emailInput"
 										label="Email Address" required="true"
-										value="#{answerQuestionBean.customer.email}"
+										value="#{CollectCustomerDetailBean.customer.email}"
 										validatorMessage="Please enter a valid email address">
 										<f:validateRegex
 											pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
@@ -76,7 +76,7 @@
 								<div class="form-group ng-isolate-scope">
 
 									<p:inputText class="form-control" id="phoneInput"
-										value="#{answerQuestionBean.customer.phone}" />
+										value="#{CollectCustomerDetailBean.customer.phone}" />
 									<p:watermark for="phoneInput" value="Phone No" />
 								</div>
 							</div>
@@ -86,7 +86,7 @@
 							<div class="myob-component-text-field">
 								<div class="form-group ng-isolate-scope">
 									<p:inputText class="form-control " id="companyInput"
-										value="#{answerQuestionBean.customer.company}" />
+										value="#{CollectCustomerDetailBean.customer.company}" />
 									<p:watermark for="companyInput" value="Company Name" />
 								</div>
 							</div>
@@ -97,7 +97,7 @@
 								<div class="form-group ng-isolate-scope">
 
 									<p:inputText class="form-control " id="conutryInput"
-										type="text" value="#{answerQuestionBean.customer.country}" />
+										type="text" value="#{CollectCustomerDetailBean.customer.country}" />
 									<p:watermark for="conutryInput" value="Country" />
 								</div>
 							</div>
@@ -109,7 +109,7 @@
 
 									<p:inputText class="form-control " id="businessTypeInput"
 										type="text" placeholder="Business type"
-										value="#{answerQuestionBean.customer.businessType}" />
+										value="#{CollectCustomerDetailBean.customer.businessType}" />
 									<p:watermark for="businessTypeInput" value="Business Type" />
 								</div>
 							</div>
@@ -122,7 +122,7 @@
 									<p:inputTextarea
 										class="form-control ng-pristine ng-empty ng-valid-pattern ng-valid ng-valid-required ng-touched"
 										id="addiMsgInput"
-										value="#{answerQuestionBean.customer.addiMsg}" />
+										value="#{CollectCustomerDetailBean.customer.addiMsg}" />
 									<p:watermark for="addiMsgInput" value="Please leave a message" />
 								</div>
 							</div>
@@ -130,12 +130,12 @@
 
 						<p>
 							<p:selectBooleanCheckbox id="isSubscribe"
-								value="#{answerQuestionBean.isSubscribe}" />
+								value="#{CollectCustomerDetailBean.isSubscribe}" />
 							I'd like to subscribe to the latest newsletter from MYOB
 						</p>
 
 						<p:commandButton styleClass="btn btn-default" value="Submit"
-							action="#{answerQuestionBean.submitDetail()}"
+							action="#{CollectCustomerDetailBean.submitDetail()}"
 							update="detailsPanel" />
 
 					</p:panel>
