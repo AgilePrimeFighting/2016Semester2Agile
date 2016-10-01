@@ -21,6 +21,10 @@ public class Video {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer videoId;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "PRODUCT_ID")
+	private Product product;
+	
 	@Column(name = "VIDEO_NAME")
 	private String videoName;
 	
@@ -32,10 +36,6 @@ public class Video {
 	
 	@Column(name = "VIDEO_LENGTH")
 	private Integer videoLength;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "PRODUCT_ID")
-	private Product product;
 
 	
 	public Integer getVideoId() {
@@ -44,6 +44,14 @@ public class Video {
 
 	public void setVideoId(Integer videoId) {
 		this.videoId = videoId;
+	}
+	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setVideoProduct(Product product) {
+		this.product = product;
 	}
 	
 	public String getVideoName() {
@@ -76,13 +84,5 @@ public class Video {
 
 	public void setVideoLength(Integer videoLength) {
 		this.videoLength = videoLength;
-	}
-	
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setVideoProduct(Product product) {
-		this.product = product;
 	}
 }
