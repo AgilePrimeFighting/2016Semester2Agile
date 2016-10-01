@@ -13,22 +13,15 @@
 			<h:form>
 				<div style="width: 600px; margin: auto">
 					<div
-						style="padding-top: 20px; height: 45px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
+						style="padding-top: 20px; height: 90px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
 						align="center" class="text-center">
 						<h:outputText
-							value="According to your answer, a product is available for you."
+							value="Please complete this form to register and have someone from MYOB contact you with more details
+							#{CollectCustomerDetailProductBean.product.productTrial ? 
+							', or to proceed with a free trial of the ':' for the '} 
+							#{ollectCustomerDetailProductBean.product.productName}"
 							style=" vertical-align: middle; display: inline-block;" />
 					</div>
-
-					<div
-						style="padding-bottom: 20px; height: 20px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
-						align="center" class="text-center">
-						<h:outputText
-							value="Please enter your contact details to view product
-							information."
-							style=" vertical-align: middle; display: inline-block;" />
-					</div>
-
 
 					<p:panel id="detailsPanel">
 
@@ -130,8 +123,16 @@
 
 						<p>
 							<p:selectBooleanCheckbox id="isSubscribe"
-								value="#{CollectCustomerDetailBean.isSubscribe}" />
-							I'd like to subscribe to the latest newsletter from MYOB
+								value="#{CollectCustomerDetailBean.isSubscribe}"
+								itemLabel="I'd like to subscribe to the latest newsletter from MYOB" />
+						</p>
+						
+						<p>
+							<p:selectBooleanCheckbox id="isTryTrial" disabled="#{CollectCustomerDetailBean.product.productTrial ? 'false' :'true'}"
+								value="#{CollectCustomerDetailBean.isTryTrial}"
+								itemLabel="I'd like to start trial of the product recommendation"
+								style="#{CollectCustomerDetailBean.product.productTrial ? '' : 'color:Grey;'}" />
+							
 						</p>
 
 						<p:commandButton styleClass="btn btn-default" value="Submit"
