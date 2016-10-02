@@ -27,6 +27,7 @@ public class CustomerService {
 	 @Transactional
 	 public Customer persistCustomer(Customer customer){
 		 if(!em.contains(customer)) em.persist(customer);
+		 em.flush();
 		 return customer;
 	 }
 }

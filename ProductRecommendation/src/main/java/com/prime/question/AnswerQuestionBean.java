@@ -40,7 +40,7 @@ public class AnswerQuestionBean implements Serializable {
 
 	private List<Question> questions;
 	private int currentQuestionIndex;
-	private List<Response> responseList;
+	private List<Response> responses;
 	private List<Option> selectedOptions;
 	private Integer selectedOptionId;
 
@@ -66,33 +66,40 @@ public class AnswerQuestionBean implements Serializable {
 		questions = new ArrayList<Question>();
 		setQuestions(questionService.listAll());
 		currentQuestionIndex = 0;
-		responseList = new ArrayList<Response>();
+		responses = new ArrayList<Response>();
 		selectedOptions = new ArrayList<Option>();
 		selectedOptionId = null;
 	}
 
 	
 	public String doNext() {
+		
 		Question question = questions.get(currentQuestionIndex);
 		Option selectedOption = null;
-		for(Option op : question.getOptions()){
-			if(selectedOptionId == op.getOptionId() ){
-				selectedOption = op;
+		for(Option option : question.getOptions()){
+			if(selectedOptionId == option.getOptionId() ){
+				selectedOption = option;
 			}
 		}
 		Response responseItem = new Response(question.getQuestionId(), question.getQuestionBody(), selectedOption.getOptionBody());
-		responseList.add(responseItem);
+		responses.add(responseItem);
 		selectedOptions.add(selectedOption);
 		currentQuestionIndex++;
+		
 		if (currentQuestionIndex == questions.size()) {
-			Product recommendedProduct = productService.getRecommendedProduct(selectedOptions);
-			for (Response res : responseList) {
-				responseService.createResponse(res);
+			Product recommendedProduct = null;
+			recommendedProduct = productService.getRecommendedProduct(selectedOptions);
+			List<Response> tmpResponses = new ArrayList<Response>();
+			for (Response response : responses) {
+				Response tmpResponse = responseService.createResponse(response);
+				tmpResponses.add(tmpResponse);
 			}
-			recommendedProductBean.setProduct(recommendedProduct);
+			recommendedProductBean.init(recommendedProduct, responses);
+			clearSession();
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			return "RecommendedProduct?faces-redirect=true";
 		}
+		
 		selectedOptionId = null;
 		return "AnswerQuestions";
 	}
@@ -101,11 +108,13 @@ public class AnswerQuestionBean implements Serializable {
 	public String doBack() {
 
 		if (currentQuestionIndex == 0) {
+			clearSession();
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			return "StartToAnswerQuestion";
+			return "StartToAnswerQuestion?faces-redirect=true";
 		}
 
-		responseList.remove(responseList.size() - 1);
+		responses.remove(responses.size() - 1);
+		selectedOptions.remove(selectedOptions.size() - 1);
 		System.out.println("currentQuestionIndex " + currentQuestionIndex);
 		currentQuestionIndex--;
 		System.out.println("currentQuestionIndex " + currentQuestionIndex);

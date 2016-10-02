@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.faces.context.FacesContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,7 @@ public class CollectCustomerDetailBean implements Serializable {
 
 	private Customer customer;
 	private Product product;
-	private List<Response> responseList;
+	private List<Response> responses;
 
 	@Autowired
 	private CustomerService customerService;
@@ -44,28 +46,30 @@ public class CollectCustomerDetailBean implements Serializable {
 	public void init(Product product, List<Response> responseList) {
 		clearSession();
 		setProduct(product);
-		setResponseList(responseList);
+		setResponses(responseList);
 	}
 	
 	private void clearSession(){
 		customer = new Customer();
 		product = new Product();
-		responseList = new ArrayList<Response>();
+		responses = new ArrayList<Response>();
 	}
 
 	
 	public String submitDetail() {
-		customer.setDate(new Date());
-		customer.setProduct(product);
-		customer.setProductName(product.getProductName());
-		customer = customerService.persistCustomer(customer);
-		for (Response res : responseList) {
-			res.setCustomer(customer);
-			//TODO update response
-			//responseService.createResponse(res);
+		if(product != null){
+			customer.setDate(new Date());
+			customer.setProduct(product);
+			customer.setProductName(product.getProductName());
 		}
-		emailService.sendCustomerResponseEmail(customer, responseList);
+		customer = customerService.persistCustomer(customer);
+		for (Response response : responses) {
+			response.setCustomer(customer);
+			responseService.updateResponse(response);
+		}
+		emailService.sendCustomerResponseEmail(customer, responses);
 		clearSession();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "Thankyou?faces-redirect=true";
 	}
 	
@@ -86,12 +90,12 @@ public class CollectCustomerDetailBean implements Serializable {
 		this.product = product;
 	}
 
-	public List<Response> getResponseList() {
-		return responseList;
+	public List<Response> getResponses() {
+		return responses;
 	}
 
-	public void setResponseList(List<Response> responseList) {
-		this.responseList = responseList;
+	public void setResponses(List<Response> responses) {
+		this.responses = responses;
 	}
 	
 	public boolean getIsSubscribe(){
