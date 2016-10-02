@@ -1,0 +1,17 @@
+
+[<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<soap:Body>
+		<soap:Fault>
+			<faultcode>soap:Server</faultcode>
+			<faultstring>System.Web.Services.Protocols.SoapException: Server was unable to process request. ---&gt; PX.Data.PXException: Error #123: Invalid credentials. Please try again.
+   at PX.Data.PXLogin.LoginUser(String&amp; userName, String password, Boolean isApiLogin)
+   at PX.Api.Services.LoginService.Login(String login, String password, String company, String branch, String locale, String prefix)
+   at PX.Api.Soap.Screen.ScreenGate.Login(String name, String password)
+   --- End of inner exception stack trace ---</faultstring>
+			<detail />
+		</soap:Fault>
+	</soap:Body>
+</soap:Envelope>
+]
