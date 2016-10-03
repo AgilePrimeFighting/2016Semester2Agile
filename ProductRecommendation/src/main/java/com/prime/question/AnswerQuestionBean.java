@@ -2,24 +2,16 @@ package com.prime.question;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.prime.customer.model.Customer;
-import com.prime.customer.service.CustomerService;
-import com.prime.email.service.EmailService;
-import com.prime.product.RecommendedProductBean;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
 import com.prime.question.model.Option;
@@ -52,23 +44,20 @@ public class AnswerQuestionBean implements Serializable {
 
 	@Autowired
 	private ProductService productService;
-	
-	@Autowired
-	private RecommendedProductBean recommendedProductBean;
 
 
 	@PostConstruct
 	public void init() {
 		clearSession();
+		setQuestions(questionService.listAll());
 	}
 	
 	private void clearSession() {
 		questions = new ArrayList<Question>();
-		setQuestions(questionService.listAll());
-		currentQuestionIndex = 0;
+		setCurrentQuestionIndex(0);
 		responses = new ArrayList<Response>();
 		selectedOptions = new ArrayList<Option>();
-		selectedOptionId = null;
+		setSelectedOptionId(null);
 	}
 
 	
@@ -94,7 +83,10 @@ public class AnswerQuestionBean implements Serializable {
 				Response tmpResponse = responseService.createResponse(response);
 				tmpResponses.add(tmpResponse);
 			}
-			recommendedProductBean.init(recommendedProduct, responses);
+			FacesContext.getCurrentInstance().getExternalContext().getFlash()
+				.put("product", recommendedProduct);
+			FacesContext.getCurrentInstance().getExternalContext().getFlash()
+				.put("responses", tmpResponses);
 			clearSession();
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			return "RecommendedProduct?faces-redirect=true";
@@ -110,7 +102,7 @@ public class AnswerQuestionBean implements Serializable {
 		if (currentQuestionIndex == 0) {
 			clearSession();
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			return "StartToAnswerQuestion?faces-redirect=true";
+			return "StartToAnswerQuestion";
 		}
 
 		responses.remove(responses.size() - 1);
@@ -146,6 +138,14 @@ public class AnswerQuestionBean implements Serializable {
 
 	public void setCurrentQuestionIndex(int currentQuestionIndex) {
 		this.currentQuestionIndex = currentQuestionIndex;
+	}
+	
+	public List<Response> getResponses() {
+		return responses;
+	}
+
+	public void setResponse(List<Response> responses) {
+		this.responses = responses;
 	}
 
 	public Integer getSelectedOptionId() {

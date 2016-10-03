@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,15 @@ public class RecommendedProductBean {
 	private List<Response> responses;
 	private boolean isAvailable;
 	
-	@Autowired
-	private CollectCustomerDetailBean collectCustomerDetailBean;
-
-	public void init(Product product, List<Response> responses) {
+	
+	@SuppressWarnings("unchecked")
+	@PostConstruct
+	public void init() {
 		clearSession();
-		setProduct(product);
-		setResponses(responses);
+		product = (Product) FacesContext.getCurrentInstance().getExternalContext()
+				.getFlash().get("product");
+		responses = (List<Response>) FacesContext.getCurrentInstance().getExternalContext()
+				.getFlash().get("responses");
 		if(product == null) isAvailable = false;
 		else isAvailable = true;
 	}
@@ -44,8 +47,12 @@ public class RecommendedProductBean {
 	
 	
 	public String doRegister(){
-		collectCustomerDetailBean.init(product, responses);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash()
+			.put("product", product);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash()
+			.put("responses", responses);
 		clearSession();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "CollectCustomerDetail?faces-redirect=true";
 	}
 
@@ -55,14 +62,6 @@ public class RecommendedProductBean {
 
 	public void setProduct(Product product) {
 		this.product = product;
-	}
-	
-	public List<Response> getResponses() {
-		return responses;
-	}
-
-	public void setResponses(List<Response> responses) {
-		this.responses = responses;
 	}
 
 	public boolean isAvailable() {

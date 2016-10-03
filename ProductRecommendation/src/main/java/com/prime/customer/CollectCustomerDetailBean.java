@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class CollectCustomerDetailBean implements Serializable {
 	private Customer customer;
 	private Product product;
 	private List<Response> responses;
+	private boolean isTryTrial;
 
 	@Autowired
 	private CustomerService customerService;
@@ -43,16 +45,21 @@ public class CollectCustomerDetailBean implements Serializable {
 	private EmailService emailService;
 
 	
-	public void init(Product product, List<Response> responseList) {
+	@SuppressWarnings("unchecked")
+	@PostConstruct
+	public void init() {
 		clearSession();
-		setProduct(product);
-		setResponses(responseList);
+		product = (Product) FacesContext.getCurrentInstance().getExternalContext()
+				.getFlash().get("product");
+		responses = (List<Response>) FacesContext.getCurrentInstance().getExternalContext()
+				.getFlash().get("responses");
 	}
 	
 	private void clearSession(){
 		customer = new Customer();
 		product = new Product();
 		responses = new ArrayList<Response>();
+		setIsTryTrial(false);
 	}
 
 	
@@ -70,7 +77,7 @@ public class CollectCustomerDetailBean implements Serializable {
 		emailService.sendCustomerResponseEmail(customer, responses);
 		clearSession();
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "Thankyou?faces-redirect=true";
+		return "Thankyou";
 	}
 	
 
@@ -89,14 +96,6 @@ public class CollectCustomerDetailBean implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
-	public List<Response> getResponses() {
-		return responses;
-	}
-
-	public void setResponses(List<Response> responses) {
-		this.responses = responses;
-	}
 	
 	public boolean getIsSubscribe(){
 		if("Yes".equals(customer.getIsSubscribe())) return true;
@@ -106,5 +105,13 @@ public class CollectCustomerDetailBean implements Serializable {
 	public void setIsSubscribe(boolean isSubscribe){
 		if(isSubscribe) customer.setIsSubscribe("Yes");
 		else customer.setIsSubscribe("No");
+	}
+
+	public boolean getIsTryTrial() {
+		return isTryTrial;
+	}
+
+	public void setIsTryTrial(boolean isTryTrial) {
+		this.isTryTrial = isTryTrial;
 	}
 }

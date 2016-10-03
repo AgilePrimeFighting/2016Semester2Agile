@@ -17,9 +17,9 @@
 						align="center" class="text-center">
 						<h:outputText
 							value="Please complete this form to register and have someone from MYOB contact you with more details
-							#{CollectCustomerDetailProductBean.product.productTrial ? 
+							#{collectCustomerDetailProductBean.product.productTrial ? 
 							', or to proceed with a free trial of the ':' for the '} 
-							#{ollectCustomerDetailProductBean.product.productName}"
+							#{collectCustomerDetailProductBean.product.productName}"
 							style=" vertical-align: middle; display: inline-block;" />
 					</div>
 
@@ -31,14 +31,14 @@
 								<div class="form-group ng-isolate-scope">
 									<p:inputText class="form-control" id="firstNameInput"
 										style="display:inline; width:47%" required="true"
-										value="#{CollectCustomerDetailBean.customer.firstName}"
+										value="#{collectCustomerDetailBean.customer.firstName}"
 										label="First Name">
 										<p:watermark for="firstNameInput"
 											value="First Name (required)" />
 									</p:inputText>
 									<p:inputText class="form-control" id="lastNameInput"
 										style="display:inline; width:47%; float:right" required="true"
-										value="#{CollectCustomerDetailBean.customer.lastName}"
+										value="#{collectCustomerDetailBean.customer.lastName}"
 										label="Last Name">
 
 									</p:inputText>
@@ -54,7 +54,7 @@
 								<div class="form-group ng-isolate-scope">
 									<p:inputText class="form-control" id="emailInput"
 										label="Email Address" required="true"
-										value="#{CollectCustomerDetailBean.customer.email}"
+										value="#{collectCustomerDetailBean.customer.email}"
 										validatorMessage="Please enter a valid email address">
 										<f:validateRegex
 											pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
@@ -69,7 +69,7 @@
 								<div class="form-group ng-isolate-scope">
 
 									<p:inputText class="form-control" id="phoneInput"
-										value="#{CollectCustomerDetailBean.customer.phone}" />
+										value="#{collectCustomerDetailBean.customer.phone}" />
 									<p:watermark for="phoneInput" value="Phone No" />
 								</div>
 							</div>
@@ -79,7 +79,7 @@
 							<div class="myob-component-text-field">
 								<div class="form-group ng-isolate-scope">
 									<p:inputText class="form-control " id="companyInput"
-										value="#{CollectCustomerDetailBean.customer.company}" />
+										value="#{collectCustomerDetailBean.customer.company}" />
 									<p:watermark for="companyInput" value="Company Name" />
 								</div>
 							</div>
@@ -90,7 +90,7 @@
 								<div class="form-group ng-isolate-scope">
 
 									<p:inputText class="form-control " id="conutryInput"
-										type="text" value="#{CollectCustomerDetailBean.customer.country}" />
+										type="text" value="#{collectCustomerDetailBean.customer.country}" />
 									<p:watermark for="conutryInput" value="Country" />
 								</div>
 							</div>
@@ -102,7 +102,7 @@
 
 									<p:inputText class="form-control " id="businessTypeInput"
 										type="text" placeholder="Business type"
-										value="#{CollectCustomerDetailBean.customer.businessType}" />
+										value="#{collectCustomerDetailBean.customer.businessType}" />
 									<p:watermark for="businessTypeInput" value="Business Type" />
 								</div>
 							</div>
@@ -115,7 +115,7 @@
 									<p:inputTextarea
 										class="form-control ng-pristine ng-empty ng-valid-pattern ng-valid ng-valid-required ng-touched"
 										id="addiMsgInput"
-										value="#{CollectCustomerDetailBean.customer.addiMsg}" />
+										value="#{collectCustomerDetailBean.customer.addiMsg}" />
 									<p:watermark for="addiMsgInput" value="Please leave a message" />
 								</div>
 							</div>
@@ -123,20 +123,20 @@
 
 						<p>
 							<p:selectBooleanCheckbox id="isSubscribe"
-								value="#{CollectCustomerDetailBean.isSubscribe}"
+								value="#{collectCustomerDetailBean.isSubscribe}"
 								itemLabel="I'd like to subscribe to the latest newsletter from MYOB" />
 						</p>
 						
 						<p>
-							<p:selectBooleanCheckbox id="isTryTrial" disabled="#{CollectCustomerDetailBean.product.productTrial ? 'false' :'true'}"
-								value="#{CollectCustomerDetailBean.isTryTrial}"
+							<p:selectBooleanCheckbox id="isTryTrial" disabled="#{collectCustomerDetailBean.product.productTrial ? 'false' :'true'}"
+								value="#{collectCustomerDetailBean.isTryTrial}"
 								itemLabel="I'd like to start trial of the product recommendation"
-								style="#{CollectCustomerDetailBean.product.productTrial ? '' : 'color:Grey;'}" />
+								style="#{collectCustomerDetailBean.product.productTrial ? '' : 'color:Grey;'}" />
 							
 						</p>
 
 						<p:commandButton styleClass="btn btn-default" value="Submit"
-							action="#{CollectCustomerDetailBean.submitDetail()}"
+							action="#{collectCustomerDetailBean.submitDetail()}"
 							update="detailsPanel" />
 
 					</p:panel>
