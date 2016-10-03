@@ -36,8 +36,28 @@
 			<br />
 
 			<h3>Product URL</h3>
-			<p:inputText value="Temp URL"
-				style="display:block; width:80%" label="Product URL" maxlength="200" />
+			<h:form enctype="multipart/form-data">
+
+				<p:dataTable id="urlTable"
+					value="#{editProductBean.product.urlList}" var="url">
+
+					<p:column headerText="Urlname">
+						<h:outputText value="#{url.url}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Remove">
+						<p:commandButton icon="ui-icon-close"
+							actionListener="#{editProductBean.removeUrl(url)}"
+							update="urlTable" immediate="true">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				
+				<p:commandButton class="commandButton" value="Add URL"
+			action="#{EditProductBean.addUrl}" update="urlTable"  />
+
+
+			</h:form>
 			
 			
 			
