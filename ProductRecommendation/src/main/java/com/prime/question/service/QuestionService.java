@@ -24,7 +24,8 @@ public class QuestionService {
 	@PersistenceContext
 	private EntityManager em;
 
-	public List<Question> listAll() {
+	public List<Question> listAll() 
+	{
 		return em.createQuery("SELECT u FROM Question u", Question.class).getResultList();
 	}
 
@@ -105,15 +106,21 @@ public class QuestionService {
 
 	}
 	
-	public Weight[][] buildWeightMatrix(List<Option> options, List<Product> products) {
+	public Weight[][] buildWeightMatrix(List<Option> options, List<Product> products) 
+	{
 		Weight[][] weightMatrix = new Weight[options.size()][products.size()];
 		Map<Integer, Integer> productIdIndex = new HashMap<Integer, Integer>();
-		for(int i = 0; i < products.size(); i ++){
+		for(int i = 0; i < products.size(); i ++)
+		{
 			productIdIndex.put( products.get(i).getProductId(), i);
 		}
-		for(int optionIndex = 0; optionIndex < options.size(); optionIndex ++ ){
+		
+		
+		for(int optionIndex = 0; optionIndex < options.size(); optionIndex ++ )
+		{
 			Option option = options.get(optionIndex);
-			for(Weight weight: option.getWeightList()){
+			for(Weight weight: option.getWeightList())
+			{
 				Integer productId = weight.getproductId();
 				if(productId ==null){
 					productId = weight.getProduct().getProductId();
