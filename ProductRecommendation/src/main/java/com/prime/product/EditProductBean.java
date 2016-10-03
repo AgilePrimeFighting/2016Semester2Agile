@@ -18,22 +18,33 @@ import org.springframework.stereotype.Controller;
 import com.prime.PDF.model.PDF;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
+import com.prime.url.model.Url;
 
 @Controller
 @Scope("session")
-public class EditProductBean 
-{
-	
-	private static final Logger logger = Logger.getLogger(EditProductBean.class.getName());
+public class EditProductBean {
+
+	private static final Logger logger = Logger.getLogger(EditProductBean.class
+			.getName());
 
 	private Product product;
-	
-	//private PDF pdfFileList ;
-	
-	//Map<Integer, PDF> pdfFileList = new HashMap<Integer, PDF>();
-	
-	private List<PDF> pdfTempList = new ArrayList<PDF>(); 
-	
+
+	// private PDF pdfFileList ;
+
+	// Map<Integer, PDF> pdfFileList = new HashMap<Integer, PDF>();
+
+	private List<Url> urlTempList = new ArrayList<Url>();
+
+	private List<PDF> pdfTempList = new ArrayList<PDF>();
+
+	public List<Url> getUrlTempList() {
+		return urlTempList;
+	}
+
+	public void setUrlTempList(List<Url> urlTempList) {
+		this.urlTempList = urlTempList;
+	}
+
 	public List<PDF> getPdfTempList() {
 		return pdfTempList;
 	}
@@ -42,28 +53,24 @@ public class EditProductBean
 		this.pdfTempList = pdfTempList;
 	}
 
-
-	static int fileListIndex = 0 ;
-
+	static int fileListIndex = 0;
 
 	@Autowired
 	private ProductService productService;
 
 	@PostConstruct
-	public void init()
-	{
+	public void init() {
 		logger.info("initiated");
 	}
 
-	public void initEdit(Product product) 
-	{
+	public void initEdit(Product product) {
 		logger.info("product received");
 		this.product = product;
-		pdfTempList = product.getPdfList() ;
+		urlTempList = product.getUrlList();
+		pdfTempList = product.getPdfList();
 	}
 
-	public String doSave() 
-	{	
+	public String doSave() {
 		if (product != null) {
 			productService.update(product);
 		}
@@ -86,38 +93,33 @@ public class EditProductBean
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-	
-	
-	public void removePDF ( PDF pdf ) 
-	{
-		this.product.getPdfList().remove(pdf) ;
+
+	public void removeUrl(Url url) {
+		this.product.getUrlList().remove(url);
 	}
-	
-	
-	public void handleFileUpload(FileUploadEvent event) 
-	{
+
+	public void removePDF(PDF pdf) {
+		this.product.getPdfList().remove(pdf);
+	}
+
+	public void handleFileUpload(FileUploadEvent event) {
 		System.out.println("EditProductBean: handleFileUpload function.");
-		if ( event == null ) 
-		{
+		if (event == null) {
 			System.out.println("Event is null ,exception ");
 		}
-		PDF pdfFile = new PDF() ;
+		PDF pdfFile = new PDF();
 		pdfFile.setPDF_Name(event.getFile().getFileName());
 		pdfFile.setFileContent(event.getFile().getContents());
 		pdfFile.setProduct(product);
-		//pdfFile.setPDF_ID(product.getProductId());
-		System.out.println("pdfName : " + event.getFile().getFileName());
-	    System.out.println("fileLength " + event.getFile().getSize());
-	   // System.out.println("productID  " + pdfFile.getPDF_ID());
-        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-        //pdfFileList.put(fileListIndex, pdfFile) ;
-        product.getPdfList().add(pdfFile) ;
-       // pdfTempList.add(pdfFile) ;
-   //     fileListIndex ++ ;
-  //      System.out.println("pdfFileList : " + pdfFileList.size());
-        FacesContext.getCurrentInstance().addMessage(null, message);
-        return  ;
-    }
-	
-	
+		FacesMessage message = new FacesMessage("Succesful", event.getFile()
+				.getFileName() + " is uploaded.");
+		// pdfFileList.put(fileListIndex, pdfFile) ;
+		product.getPdfList().add(pdfFile);
+		// pdfTempList.add(pdfFile) ;
+		// fileListIndex ++ ;
+		// System.out.println("pdfFileList : " + pdfFileList.size());
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		return;
+	}
+
 }

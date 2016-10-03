@@ -50,7 +50,7 @@ public class ProductService {
 		product.setProductName(productName);
 		product.setProductActive(productActive);
 		product.setProductTrial(productTrial);
-		product.setProductURL(productURL);
+//		product.setUrlList(productURL);
 		product.setOverview(overview);
 
 		List<Option> options = optionService.listAll();
