@@ -77,7 +77,7 @@ public class CollectCustomerDetailBean implements Serializable {
 		emailService.sendCustomerResponseEmail(customer, responses);
 		clearSession();
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "Thankyou";
+		return "ThankYou";
 	}
 	
 
