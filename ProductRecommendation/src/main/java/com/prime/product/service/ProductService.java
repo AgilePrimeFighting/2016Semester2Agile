@@ -40,29 +40,21 @@ public class ProductService {
 	}
 
 	@Transactional
-	public void createNewProduct(String productName, boolean productActive, boolean productTrial, String procutURL) {
-		Product product = new Product();
-		product.setProductName(productName);
-		product.setProductActive(productActive);
-		product.setProductTrial(productTrial);
-		product.setProductURL(procutURL);
+	public Product createNewProduct(Product product) {
 		
 		List<Option> options = optionService.listAll();
-		
-		for(Option option: options)
-		{
+		for(Option option: options){
 			Weight weight = new Weight();
 			weight.setProduct(product);
 			weight.setOption(option);
 			weight.setWeightValue(0);
 			product.getWeightList().add(weight);
 		}
+		em.persist(product);
 		
-		em.persist(product);		
+		return product;
 	}
 	
-	
-
 	@Transactional
 	public void delete(Product product) {
 		logger.info(" delete  product with id : " + product.getProductId());
