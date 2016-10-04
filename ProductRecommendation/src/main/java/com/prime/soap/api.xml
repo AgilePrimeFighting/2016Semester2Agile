@@ -1,24 +1,8 @@
-
-[<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<soap:Body>
-		<LoginResponse xmlns="http://www.acumatica.com/generic/">
-			<LoginResult>
-				<Code>OK</Code>
-				<Session>lviwhmtytgh0afj2vc2m0fcn</Session>
-			</LoginResult>
-		</LoginResponse>
+		<SM201010SubmitResponse xmlns="http://www.acumatica.com/generic/">
+			<SubmitResult />
+		</SM201010SubmitResponse>
 	</soap:Body>
 </soap:Envelope>
-] for request [
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
-	<SOAP-ENV:Header />
-	<SOAP-ENV:Body>
-		<ns2:Login xmlns:ns2="http://www.acumatica.com/generic/">
-			<ns2:name>MYOB@prime</ns2:name>
-			<ns2:password>n0kbFAgA</ns2:password>
-		</ns2:Login>
-	</SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
-]

@@ -19,8 +19,16 @@ public class SoapCientJaxTest {
 	private SoapClientJax client;
 	
 	@Test
-	public void testLogin(){
+	public void testLogin() throws InterruptedException{
+		System.setProperty("com.sun.xml.ws.transport.http.client.HttpTransportPipe.dump", "true");
+		System.setProperty("com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.dump", "true");
+		System.setProperty("com.sun.xml.ws.transport.http.HttpAdapter.dump", "true");
+		System.setProperty("com.sun.xml.internal.ws.transport.http.HttpAdapter.dump", "true");
 		client.login();
+		
+		Thread.sleep(1000L);
+		logger.info("test test");
+		//cc.login();
 	}
 
 }
