@@ -18,7 +18,9 @@ import org.springframework.stereotype.Controller;
 import com.prime.PDF.model.PDF;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
+import com.prime.question.model.Option;
 import com.prime.url.model.Url;
+import com.prime.weight.model.Weight;
 
 @Controller
 @Scope("session")
@@ -100,6 +102,18 @@ public class EditProductBean {
 
 	public void removePDF(PDF pdf) {
 		this.product.getPdfList().remove(pdf);
+	}
+
+	public void addUrl() {
+		if (urlTempList == null) {
+			urlTempList = new ArrayList<Url>();
+		}
+		Url url = new Url();
+		url.setProductId(product.getProductId());
+		url.setUrl("www.defaultURL.com");
+		url.setDisplayText("QWER");
+
+		urlTempList.add(url);
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
