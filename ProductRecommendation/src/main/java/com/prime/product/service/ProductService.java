@@ -1,6 +1,5 @@
 package com.prime.product.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,10 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prime.product.model.Product;
-import com.prime.question.AnswerQuestionBean;
 import com.prime.question.model.Option;
 import com.prime.question.service.OptionService;
-import com.prime.response.model.Response;
 import com.prime.weight.model.Weight;
 
 @Service
@@ -25,46 +22,36 @@ public class ProductService {
 	@PersistenceContext
 	private EntityManager em;
 
-	private static final Logger logger = Logger.getLogger(ProductService.class
-			.getName());
-
+	private static final Logger logger = Logger.getLogger(ProductService.class.getName());
+	
 	@Autowired
 	private OptionService optionService;
 
 	public List<Product> listAll() {
 		logger.info("List all products");
-		return em.createQuery("SELECT u FROM Product u", Product.class)
-				.getResultList();
+		return em.createQuery("SELECT u FROM Product u", Product.class).getResultList();
 	}
 
 	public List<Product> listActiveProducts() {
-		return em.createQuery(
-				"SELECT u FROM Product u where u.productActive = 1",
-				Product.class).getResultList();
+		return em.createQuery("SELECT u FROM Product u where u.productActive = 1", Product.class).getResultList();
 	}
 
 	@Transactional
-	public void createNewProduct(String productName, boolean productActive,
-			boolean productTrial, String productURL) {
-		Product product = new Product();
-		product.setProductName(productName);
-		product.setProductActive(productActive);
-		product.setProductTrial(productTrial);
-//		product.setUrlList(productURL);
-
+	public Product createNewProduct(Product product) {
+		
 		List<Option> options = optionService.listAll();
-
-		for (Option option : options) {
+		for(Option option: options){
 			Weight weight = new Weight();
 			weight.setProduct(product);
 			weight.setOption(option);
 			weight.setWeightValue(0);
 			product.getWeightList().add(weight);
 		}
-
 		em.persist(product);
+		
+		return product;
 	}
-
+	
 	@Transactional
 	public void delete(Product product) {
 		logger.info(" delete  product with id : " + product.getProductId());

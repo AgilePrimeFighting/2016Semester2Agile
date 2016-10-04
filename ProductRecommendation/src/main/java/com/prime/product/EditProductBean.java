@@ -1,14 +1,15 @@
 package com.prime.product;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
+import com.prime.url.model.Url;
+import com.prime.video.model.Video;
 
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +19,21 @@ import org.springframework.stereotype.Controller;
 import com.prime.PDF.model.PDF;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
-import com.prime.question.model.Option;
-import com.prime.url.model.Url;
-import com.prime.weight.model.Weight;
+
 
 @Controller
 @Scope("session")
-public class EditProductBean {
-
-	private static final Logger logger = Logger.getLogger(EditProductBean.class
-			.getName());
+public class EditProductBean 
+{
+	
+	private static final Logger logger = Logger.getLogger(EditProductBean.class.getName());
 
 	private Product product;
-
+	
 	private List<Url> urlTempList = new ArrayList<Url>();
 
 	private List<PDF> pdfTempList = new ArrayList<PDF>();
-
+	
 	public List<Url> getUrlTempList() {
 		return urlTempList;
 	}
@@ -52,7 +51,7 @@ public class EditProductBean {
 	}
 
 	static int fileListIndex = 0;
-
+	
 	@Autowired
 	private ProductService productService;
 
@@ -64,9 +63,6 @@ public class EditProductBean {
 	public void initEdit(Product product) {
 		logger.info("product received");
 		this.product = product;
-		urlTempList = product.getUrlList();
-		pdfTempList = product.getPdfList();
-
 	}
 
 	public String doSave() {
@@ -92,7 +88,7 @@ public class EditProductBean {
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-
+	
 	public void removeUrl(Url url) {
 		this.product.getUrlList().remove(url);
 	}
@@ -130,6 +126,24 @@ public class EditProductBean {
 		// System.out.println("pdfFileList : " + pdfFileList.size());
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return;
+	}
+	
+	public void removeVideo(Video video){
+		product.removeVideo(video);
+	}
+
+	public void addVideo(Video video){
+		product.addVideo(video);
+	}
+
+	public void addVideo(String name, String description, String url, int length) {
+		Video video=new Video();
+		video.setVideoName(name);
+		video.setVideoDescription(description);
+		video.setVideoUrl(url);
+		video.setVideoLength(length);
+		video.setVideoProduct(product);
+		addVideo(video);
 	}
 
 }
