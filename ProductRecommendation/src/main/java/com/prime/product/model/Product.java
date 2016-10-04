@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.prime.PDF.model.PDF;
 import com.prime.url.model.Url;
+import com.prime.video.model.Video;
 import com.prime.weight.model.Weight;
 
 @Entity
@@ -35,20 +36,20 @@ public class Product {
 	@Column(name = "PRODUCT_TRIAL")
 	private boolean productTrial;
 
-	// @Column (name = "PRODUCT_URL")
-	// private String productURL ;
-
 	@Column(name = "OVERVIEW")
 	private String overview;
-
-	@OneToMany(mappedBy = "product", targetEntity = Url.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Url> urlList = new ArrayList<Url>();
 
 	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Weight> weightList = new ArrayList<Weight>();
 
+	@OneToMany(mappedBy = "product", targetEntity = Url.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Url> urlList = new ArrayList<Url>();
+
 	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<PDF> pdfList = new ArrayList<PDF>();
+
+	@OneToMany(mappedBy = "product", targetEntity = Video.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Video> videoList = new ArrayList<Video>();
 
 	public String getOverview() {
 		return overview;
@@ -64,6 +65,34 @@ public class Product {
 
 	public void setWeightList(List<Weight> weightList) {
 		this.weightList = weightList;
+	}
+
+	public void addUrl(Url url) {
+		if (!urlList.contains(url))
+			urlList.add(url);
+	}
+
+	public void removeUrl(Url url) {
+		if (urlList.contains(url))
+			urlList.remove(url);
+	}
+
+	public List<Video> getVideoList() {
+		return videoList;
+	}
+
+	public void setVideoList(List<Video> videoList) {
+		this.videoList = videoList;
+	}
+
+	public void addVideo(Video video) {
+		if (!videoList.contains(video))
+			videoList.add(video);
+	}
+
+	public void removeVideo(Video video) {
+		if (videoList.contains(video))
+			videoList.remove(video);
 	}
 
 	public String outputActive() {
