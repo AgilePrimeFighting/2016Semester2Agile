@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.prime.PDF.model.PDF;
 import com.prime.weight.model.Weight;
 
 
@@ -39,12 +40,24 @@ public class Product
 	@Column (name = "PRODUCT_URL")
 	private String productURL ;
 	
+	public List<PDF> getPdfList() {
+		return pdfList;
+	}
+
+	public void setPdfList(List<PDF> pdfList) {
+		this.pdfList = pdfList;
+	}
+
 	@Column (name = "OVERVIEW")
 	private String overview ;
 	
 	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval=true,
 	fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Weight> weightList = new ArrayList<Weight>();
+	
+	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval=true,
+	fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<PDF> pdfList = new ArrayList<PDF>(); 
 	
 	
 	
@@ -123,11 +136,5 @@ public class Product
 	public void setProductURL(String productURL) {
 		this.productURL = productURL;
 	}
-
-
-
-	
-	
-	
 	
 }

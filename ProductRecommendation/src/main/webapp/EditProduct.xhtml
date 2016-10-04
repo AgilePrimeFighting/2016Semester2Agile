@@ -47,6 +47,44 @@
 				maxlength="4000" />
 			<br />
 
+			<h:form enctype="multipart/form-data">
+
+				<p:dataTable id="pdfTable"
+					value="#{editProductBean.product.pdfList}" var="pdf">
+					<!-- <p:column headerText="Filename">
+					<h:outputText value="#{pdf.PDF_Name}" />
+				</p:column> -->
+
+					<p:column headerText="Filename">
+						<h:outputText value="#{pdf.PDF_Name}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Save">
+						<p:commandButton value="download" ajax="false"
+							icon="ui-icon-arrowthick-1-s"
+							actionListener="#{pdfDownload.downloadAction(pdf)}">
+
+							<p:fileDownload value="#{pdfDownload.pdfFile}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="Remove">
+						<p:commandButton icon="ui-icon-close"
+							actionListener="#{editProductBean.removePDF(pdf)}"
+							update="pdfTable" immediate="true">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<p:fileUpload
+					fileUploadListener="#{editProductBean.handleFileUpload}"
+					mode="advanced" dragDropSupport="false" multiple="true"
+					update="pdfTable" sizeLimit="4194304" fileLimit="5"
+					allowTypes="/(\.|\/)(pdf)$/" auto="true" label="Upload a pdf"
+					uploadLabel="Select a file to upload" />
+				<p:growl id="messages" showDetail="true" />
+
+			</h:form>
+
 			<p:commandButton class="commandButton" value="save"
 				action="#{editProductBean.doSave}" style="margin-top:15px;" />
 			<p:button value="cancel" outcome="ViewProducts"
@@ -58,7 +96,12 @@
 					style="float:left;" styleClass="ui-confirmdialog-yes"
 					icon="ui-icon-check" />
 			</p:confirmDialog>
+			
+			<br/>
+
 		</p:panel>
+
+	
 	</h:form>
 
 </h:body>

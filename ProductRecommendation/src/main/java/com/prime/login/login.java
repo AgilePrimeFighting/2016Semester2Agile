@@ -13,8 +13,6 @@ import javax.faces.validator.ValidatorException;
 public class login 
 {
 	
-	
-	
 	private String user ;
 	private String pwd ;
 	
