@@ -34,6 +34,14 @@ public class Url {
 	@JoinColumn(name = "PRODUCT_ID", insertable = true, updatable = true)
 	private Product product;
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	public Integer getUrlId() {
 		return urlId;
 	}

@@ -70,6 +70,7 @@ public class EditProductBean {
 		this.product = product;
 		urlTempList = product.getUrlList();
 		pdfTempList = product.getPdfList();
+
 	}
 
 	public String doSave() {
@@ -109,11 +110,13 @@ public class EditProductBean {
 			urlTempList = new ArrayList<Url>();
 		}
 		Url url = new Url();
-		url.setProductId(product.getProductId());
+//		url.setProductId(product.getProductId());
+		url.setProduct(product);
 		url.setUrl("www.defaultURL.com");
 		url.setDisplayText("QWER");
 
 		urlTempList.add(url);
+		product.setUrlList(urlTempList);
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {

@@ -45,13 +45,12 @@ public class ProductService {
 
 	@Transactional
 	public void createNewProduct(String productName, boolean productActive,
-			boolean productTrial, String productURL, String overview) {
+			boolean productTrial, String productURL) {
 		Product product = new Product();
 		product.setProductName(productName);
 		product.setProductActive(productActive);
 		product.setProductTrial(productTrial);
 //		product.setUrlList(productURL);
-		product.setOverview(overview);
 
 		List<Option> options = optionService.listAll();
 
