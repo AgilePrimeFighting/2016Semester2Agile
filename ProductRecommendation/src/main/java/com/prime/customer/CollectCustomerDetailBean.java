@@ -19,6 +19,7 @@ import com.prime.email.service.EmailService;
 import com.prime.product.model.Product;
 import com.prime.question.service.ResponseService;
 import com.prime.response.model.Response;
+import com.prime.soap.SoapClientJax;
 
 @Controller
 @Scope("session")
@@ -44,6 +45,8 @@ public class CollectCustomerDetailBean implements Serializable {
 	@Autowired
 	private EmailService emailService;
 
+	@Autowired
+	private SoapClientJax soapService;
 	
 	@SuppressWarnings("unchecked")
 	@PostConstruct
@@ -75,6 +78,9 @@ public class CollectCustomerDetailBean implements Serializable {
 			responseService.updateResponse(response);
 		}
 		emailService.sendCustomerResponseEmail(customer, responses);
+		if(isTryTrial){
+		soapService.createTrialUser(customer.getEmail());
+		}
 		clearSession();
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "ThankYou";

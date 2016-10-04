@@ -19,6 +19,7 @@ import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.question.service.ResponseService;
 import com.prime.response.model.Response;
+import com.prime.soap.SoapClientJax;
 
 @Controller
 @Scope("session")
@@ -44,6 +45,9 @@ public class AnswerQuestionBean implements Serializable {
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private SoapClientJax soapService;
 
 
 	@PostConstruct
@@ -52,13 +56,7 @@ public class AnswerQuestionBean implements Serializable {
 		setQuestions(questionService.listAll());
 	}
 	
-	private void clearSession() {
-		questions = new ArrayList<Question>();
-		setCurrentQuestionIndex(0);
-		responses = new ArrayList<Response>();
-		selectedOptions = new ArrayList<Option>();
-		setSelectedOptionId(null);
-	}
+	
 
 	
 	public String doNext() {
@@ -113,10 +111,43 @@ public class AnswerQuestionBean implements Serializable {
 
 		return "AnswerQuestions";
 	}
-	
-	
-	public List<Question> getQuestions() {
+
+		public List<Question> getQuestions() {
 		return questions;
+}
+/*
+	public String submitDetail() {
+		Product recommendedProduct = productService.getRecommendedProduct(selectedOptions);
+		customer = customerService.persistCustomer(customer,recommendedProduct);
+		for (Response res : responseList) {
+			res.setCustomer(customer);
+			responseService.createResponse(res);
+		}
+		emailService.sendCustomerResponseEmail(customer, responseList);
+		soapService.createTrialUser(customer.getEmail());
+		recommendedProductBean.setProduct(recommendedProduct);
+		clearSession();
+		return "RecommendedProduct?faces-redirect=true";
+	}*/
+
+
+	private void clearSession() {
+		questions = new ArrayList<Question>();
+		setCurrentQuestionIndex(0);
+		responses = new ArrayList<Response>();
+		selectedOptions = new ArrayList<Option>();
+		setSelectedOptionId(null);
+	}
+/*	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+*/
+	public QuestionService getQuestionService() {
+		return questionService;
 	}
 
 	public void setQuestions(List<Question> questions) {
