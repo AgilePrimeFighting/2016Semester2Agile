@@ -104,7 +104,7 @@ public class pdfDownload  implements Serializable
 		
         try 
         {
-			pdfFile = new DefaultStreamedContent(new FileInputStream(file), new MimetypesFileTypeMap().getContentType(".pdf"));
+			pdfFile = new DefaultStreamedContent(new FileInputStream(file),new String("pdf")  , tempPDF.getPDF_Name());
 		} catch (FileNotFoundException e)
         {
 			// TODO Auto-generated catch block

@@ -59,6 +59,15 @@
 						<h:outputText value="#{pdf.PDF_Name}"></h:outputText>
 					</p:column>
 
+					<p:column headerText="Save">
+						<p:commandButton value="download" ajax="false"
+							icon="ui-icon-arrowthick-1-s"
+							actionListener="#{pdfDownload.downloadAction(pdf)}">
+
+							<p:fileDownload value="#{pdfDownload.pdfFile}" />
+						</p:commandButton>
+					</p:column>
+
 					<p:column headerText="Remove">
 						<p:commandButton icon="ui-icon-close"
 							actionListener="#{editProductBean.removePDF(pdf)}"
