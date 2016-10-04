@@ -26,13 +26,13 @@
 			<h3>Product Active</h3>
 			<p:selectBooleanButton id="productActive"
 				value="#{editProductBean.product.productActive}" onLabel="Yes"
-				offLabel="No" style="width:60px" />
+				offLabel="No" style="width:80px" />
 			<br />
 
 			<h3>Trial Available?</h3>
 			<p:selectBooleanButton id="productTrail"
 				value="#{editProductBean.product.productTrial}" onLabel="Yes"
-				offLabel="No" style="width:60px" />
+				offLabel="No" style="width:80px" />
 			<br />
 
 			<h3>Product URL</h3>
@@ -42,19 +42,25 @@
 					value="#{editProductBean.product.urlList}" var="url">
 
 					<p:column headerText="Urlname">
-						<h:outputText value="#{url.url}"></h:outputText>
+						<p:inputText value="#{url.url}" required="true" label="URL" />
+					</p:column>
+
+					<p:column headerText="displayedText">
+						<p:inputText value="#{url.displayText}" required="ture"
+							label="displayedText" />
 					</p:column>
 
 					<p:column headerText="Remove">
 						<p:commandButton icon="ui-icon-close"
 							actionListener="#{editProductBean.removeUrl(url)}"
-							update="urlTable" immediate="true">
+							update="urlTable" immediate="true" style="marginTop:20px">
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 
 				<p:commandButton class="commandButton" value="Add URL"
-					action="#{editProductBean.addUrl}" update="urlTable" />
+					action="#{editProductBean.addUrl}" update="urlTable"
+					style="margin-top:15px;" />
 
 			</h:form>
 			<br />

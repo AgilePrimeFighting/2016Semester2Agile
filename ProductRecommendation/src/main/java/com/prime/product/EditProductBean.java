@@ -31,10 +31,6 @@ public class EditProductBean {
 
 	private Product product;
 
-	// private PDF pdfFileList ;
-
-	// Map<Integer, PDF> pdfFileList = new HashMap<Integer, PDF>();
-
 	private List<Url> urlTempList = new ArrayList<Url>();
 
 	private List<PDF> pdfTempList = new ArrayList<PDF>();
@@ -110,10 +106,7 @@ public class EditProductBean {
 			urlTempList = new ArrayList<Url>();
 		}
 		Url url = new Url();
-//		url.setProductId(product.getProductId());
 		url.setProduct(product);
-		url.setUrl("www.defaultURL.com");
-		url.setDisplayText("QWER");
 
 		urlTempList.add(url);
 		product.setUrlList(urlTempList);
