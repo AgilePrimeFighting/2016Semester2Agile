@@ -67,7 +67,6 @@ public class EmailServiceTest {
 		    customer.setBusinessType("Cattle raising");
 		    customer.setCompany("Pepperidge Farm");
 		    customer.setCountry("New Zealand");
-		    customer.setHasTrial("No");
 		    customer.setIsSubscribe("No");
 		    Product product = new Product();
 		    product.setProductName("MYOB EXO");

@@ -48,9 +48,7 @@ public class SoapClientJax {
 		LoginResult loginResult = screenSoap.login("MYOB@prime", "n0kbFAgA");
 		//LoginResult loginResult = screenSoap.login("api@api", "Qianer1006!");
 		Map<String, List<String>> headers = (Map<String, List<String>>)((BindingProvider)screenSoap).getResponseContext().get(MessageContext.HTTP_RESPONSE_HEADERS);
-		logger.info(headers.keySet());
 		 List<String> setCookie = headers.get("Set-Cookie");
-		 logger.info(setCookie);
 		((BindingProvider)screenSoap).getRequestContext().put(
 	            MessageContext.HTTP_REQUEST_HEADERS,
 	                Collections.singletonMap("Cookie", setCookie
@@ -121,11 +119,8 @@ public class SoapClientJax {
 		Screen screen = new Screen();
 		ScreenSoap screenSoap = screen.getScreenSoap();
 		LoginResult loginResult = screenSoap.login("MYOB@prime", "n0kbFAgA");
-		//LoginResult loginResult = screenSoap.login("api@api", "Qianer1006!");
 		Map<String, List<String>> headers = (Map<String, List<String>>)((BindingProvider)screenSoap).getResponseContext().get(MessageContext.HTTP_RESPONSE_HEADERS);
-		logger.info(headers.keySet());
 		 List<String> setCookie = headers.get("Set-Cookie");
-		 logger.info(setCookie);
 		((BindingProvider)screenSoap).getRequestContext().put(
 	            MessageContext.HTTP_REQUEST_HEADERS,
 	                Collections.singletonMap("Cookie", setCookie

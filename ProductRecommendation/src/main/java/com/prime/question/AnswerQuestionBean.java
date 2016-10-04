@@ -56,13 +56,7 @@ public class AnswerQuestionBean implements Serializable {
 		setQuestions(questionService.listAll());
 	}
 	
-	private void clearSession() {
-		questions = new ArrayList<Question>();
-		setCurrentQuestionIndex(0);
-		responses = new ArrayList<Response>();
-		selectedOptions = new ArrayList<Option>();
-		setSelectedOptionId(null);
-	}
+	
 
 	
 	public String doNext() {
@@ -121,7 +115,7 @@ public class AnswerQuestionBean implements Serializable {
 		public List<Question> getQuestions() {
 		return questions;
 }
-
+/*
 	public String submitDetail() {
 		Product recommendedProduct = productService.getRecommendedProduct(selectedOptions);
 		customer = customerService.persistCustomer(customer,recommendedProduct);
@@ -134,24 +128,24 @@ public class AnswerQuestionBean implements Serializable {
 		recommendedProductBean.setProduct(recommendedProduct);
 		clearSession();
 		return "RecommendedProduct?faces-redirect=true";
-	}
+	}*/
+
 
 	private void clearSession() {
-		currentQuestionIndex = 0;
-		responseList = new ArrayList<Response>();
-		customer = new Customer();
-		selectedOptionId= null;
-		selectedOptions.clear();
+		questions = new ArrayList<Question>();
+		setCurrentQuestionIndex(0);
+		responses = new ArrayList<Response>();
+		selectedOptions = new ArrayList<Option>();
+		setSelectedOptionId(null);
 	}
-
-	public Customer getCustomer() {
+/*	public Customer getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
+*/
 	public QuestionService getQuestionService() {
 		return questionService;
 	}
