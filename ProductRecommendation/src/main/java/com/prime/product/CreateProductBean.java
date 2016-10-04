@@ -35,7 +35,7 @@ public class CreateProductBean
 		product.setProductName(null);
 		product.setProductActive(false);
 		product.setProductTrial(false);
-		product.setProductURL(null);
+//		product.setProductURL(null);
 		product.setOverview(null);
 	}
 
