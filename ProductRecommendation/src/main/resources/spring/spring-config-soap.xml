@@ -18,14 +18,6 @@
 	<!-- Define Hibernate JPA Vendor Adapter -->
 	<!-- property file -->
 	<context:property-placeholder location="classpath*:prime.properties" />
-	<sws:interceptors>
-		<bean
-			class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor" />
-	</sws:interceptors>
-	<sws:interceptors>
-		<bean
-			class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor" />
-	</sws:interceptors>
 	
 	<!-- define velocity engine -->
 </beans>
