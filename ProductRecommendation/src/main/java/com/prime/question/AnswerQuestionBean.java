@@ -27,6 +27,7 @@ import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.question.service.ResponseService;
 import com.prime.response.model.Response;
+import com.prime.soap.SoapClientJax;
 
 @Controller
 @Scope("session")
@@ -62,6 +63,9 @@ public class AnswerQuestionBean implements Serializable {
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private SoapClientJax soapService;
 
 	@PostConstruct
 	public void init() {
@@ -124,6 +128,7 @@ public class AnswerQuestionBean implements Serializable {
 			responseService.createResponse(res);
 		}
 		emailService.sendCustomerResponseEmail(customer, responseList);
+		soapService.createTrialUser(customer.getEmail());
 		recommendedProductBean.setProduct(recommendedProduct);
 		clearSession();
 		return "RecommendedProduct?faces-redirect=true";
