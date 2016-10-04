@@ -24,8 +24,7 @@ import com.prime.weight.model.Weight;
 
 @Controller
 @Scope("session")
-public class EditQuestionBean implements Serializable
-{
+public class EditQuestionBean implements Serializable {
 
 	/**
 	 * 
@@ -42,27 +41,30 @@ public class EditQuestionBean implements Serializable
 	@Autowired
 	private QuestionService questionService;
 	
+	
 	@Autowired
 	private ProductService productService;
 	
 
+
 	@PostConstruct
-	public void init() 
-	{
+	public void init() {
 		logger.info("initiated");
 		products = productService.listAll();
 	}
 
-	public void initEdit(Question question) 
-	{
+	public void initEdit(Question question) {
 		logger.info("question received");
 		this.question = question;
 		weightMatrix = questionService.buildWeightMatrix(question.getOptions(), products);
 		
 	}
 
-	public String doSave() 
-	{
+	
+
+	public String doSave() {
+		
+		
 		if (question != null) 
 		{
 			questionService.update(question);
@@ -71,17 +73,12 @@ public class EditQuestionBean implements Serializable
 		return "ViewQuestions?faces-redirect=true";
 	}
 	
-	public void addOption()
-	{
-		if(question.getOptions() == null)
-		{
+	public void addOption(){
+		if(question.getOptions() == null){
 			question.setOptions(new ArrayList<Option>());
 		}
-		
 		Option newOption = new Option();
-		
-		for (Product product : products) 
-		{
+		for (Product product : products) {
 			Weight weight = new Weight();
 			weight.setOption(newOption);
 			weight.setProduct(product);
@@ -93,50 +90,41 @@ public class EditQuestionBean implements Serializable
 	}
 	
 
-	public void removeOption(Option option)
-	{
+	public void removeOption(Option option){
 		question.getOptions().remove(option);
 		weightMatrix = questionService.buildWeightMatrix(question.getOptions(), products);
 	}
 
-	public QuestionService getQuestionService()
-	{
+	public QuestionService getQuestionService() {
 		return questionService;
 	}
 
-	public void setQuestionService(QuestionService questionService) 
-	{
+	public void setQuestionService(QuestionService questionService) {
 		this.questionService = questionService;
 	}
 
-	public Question getQuestion()
-	{
+	public Question getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(Question question) 
-	{
+	public void setQuestion(Question question) {
 		this.question = question;
 	}
 
 
-	public List<Product> getProducts() 
-	{
+	public List<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) 
-	{
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 
-	public Weight[][] getWeightMatrix()
-	{
+	public Weight[][] getWeightMatrix() {
 		return weightMatrix;
 	}
 
-	public void setWeightMatrix(Weight[][] weightMatrix)
-	{
+	public void setWeightMatrix(Weight[][] weightMatrix) {
 		this.weightMatrix = weightMatrix;
 	}
 

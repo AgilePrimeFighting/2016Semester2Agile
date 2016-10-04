@@ -5,4 +5,4 @@
  * @author Jack
  *
  */
-package com.prime.PDF.service;
+package com.prime.weight.service;
