@@ -18,144 +18,124 @@ import com.prime.url.model.Url;
 import com.prime.video.model.Video;
 import com.prime.weight.model.Weight;
 
-
 @Entity
 @Table
 public class Product {
 
-    @Id
-    @Column(name = "PRODUCT_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer productId;
+	@Id
+	@Column(name = "PRODUCT_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer productId;
 
-    @Column(name = "PRODUCT_NAME")
-    private String productName;
+	@Column(name = "PRODUCT_NAME")
+	private String productName;
 
-    @Column(name = "PRODUCT_ACTIVE")
-    private boolean productActive;
+	@Column(name = "PRODUCT_ACTIVE")
+	private boolean productActive;
 
-    @Column(name = "PRODUCT_TRIAL")
-    private boolean productTrial;
+	@Column(name = "PRODUCT_TRIAL")
+	private boolean productTrial;
 
-//    @Column(name = "PRODUCT_URL")
-//    private String productURL;
+	@Column(name = "OVERVIEW")
+	private String overview;
 
-    @Column(name = "OVERVIEW")
-    private String overview;
-
-    @OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval = true,
-            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Weight> weightList = new ArrayList<Weight>();
+	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Weight> weightList = new ArrayList<Weight>();
 
 	@OneToMany(mappedBy = "product", targetEntity = Url.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Url> urlList = new ArrayList<Url>();
-	
+
 	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<PDF> pdfList = new ArrayList<PDF>();
-	
-    @OneToMany(mappedBy = "product", targetEntity = Video.class, orphanRemoval = true,
-            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Video> videoList = new ArrayList<Video>();
 
-    public String getOverview() {
-        return overview;
-    }
+	@OneToMany(mappedBy = "product", targetEntity = Video.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Video> videoList = new ArrayList<Video>();
 
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
+	public String getOverview() {
+		return overview;
+	}
 
+	public void setOverview(String overview) {
+		this.overview = overview;
+	}
 
-    public List<Weight> getWeightList() {
-        return weightList;
-    }
+	public List<Weight> getWeightList() {
+		return weightList;
+	}
 
-    public void setWeightList(List<Weight> weightList) {
-        this.weightList = weightList;
-    }
+	public void setWeightList(List<Weight> weightList) {
+		this.weightList = weightList;
+	}
 
-//    public List<Url> getUrlList() {
-//        return urlList;
-//    }
-//
-//    public void setUrlList(List<Url> urlList) {
-//        this.urlList = urlList;
-//    }
+	public void addUrl(Url url) {
+		if (!urlList.contains(url))
+			urlList.add(url);
+	}
 
-    public void addUrl(Url url) {
-        if (!urlList.contains(url)) urlList.add(url);
-    }
+	public void removeUrl(Url url) {
+		if (urlList.contains(url))
+			urlList.remove(url);
+	}
 
-    public void removeUrl(Url url) {
-        if (urlList.contains(url)) urlList.remove(url);
-    }
+	public List<Video> getVideoList() {
+		return videoList;
+	}
 
-    public List<Video> getVideoList() {
-    	return videoList;
-    }
-    
-    public void setVideoList(List<Video> videoList) {
-    	this.videoList = videoList;
-    }
-    
-    public void addVideo(Video video) {
-    	if (!videoList.contains(video)) videoList.add(video);
-    }
-    
-    public void removeVideo(Video video) {
-    	if (videoList.contains(video)) videoList.remove(video);
-    }
-    
-    public String outputActive() {
-        return this.productActive == true ? "Active" : "Inactive";
-    }
+	public void setVideoList(List<Video> videoList) {
+		this.videoList = videoList;
+	}
 
-    public Integer getProductId() {
-        return productId;
-    }
+	public void addVideo(Video video) {
+		if (!videoList.contains(video))
+			videoList.add(video);
+	}
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+	public void removeVideo(Video video) {
+		if (videoList.contains(video))
+			videoList.remove(video);
+	}
 
-    public String getProductName() {
-        return productName;
-    }
+	public String outputActive() {
+		return this.productActive == true ? "Active" : "Inactive";
+	}
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+	public Integer getProductId() {
+		return productId;
+	}
 
-    public boolean isProductActive() {
-        return productActive;
-    }
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
 
-    public void setProductActive(boolean productActive) {
-        this.productActive = productActive;
-//		if ( productActive == true ) 
-//		{
-//			activeOutput = "active" ;
-//		}
-//		else 
-//		{
-//			activeOutput = "disactive" ;
-//		}
-    }
+	public String getProductName() {
+		return productName;
+	}
 
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
-    public boolean isProductTrial() {
-        return productTrial;
-    }
+	public boolean isProductActive() {
+		return productActive;
+	}
 
-    public void setProductTrial(boolean productTrial) {
-        this.productTrial = productTrial;
-    }
+	public void setProductActive(boolean productActive) {
+		this.productActive = productActive;
+	}
 
-    public String outputTrial() {
-        return this.productTrial == true ? "YES" : "NO";
-    }
+	public boolean isProductTrial() {
+		return productTrial;
+	}
 
-    public List<Url> getUrlList() {
+	public void setProductTrial(boolean productTrial) {
+		this.productTrial = productTrial;
+	}
+
+	public String outputTrial() {
+		return this.productTrial == true ? "YES" : "NO";
+	}
+
+	public List<Url> getUrlList() {
 		return urlList;
 	}
 
@@ -170,14 +150,4 @@ public class Product {
 	public void setPdfList(List<PDF> pdfList) {
 		this.pdfList = pdfList;
 	}
-    
-//    public String getProductURL() {
-//        return productURL;
-//    }
-//
-//    public void setProductURL(String productURL) {
-//        this.productURL = productURL;
-//    }
-
-
 }
