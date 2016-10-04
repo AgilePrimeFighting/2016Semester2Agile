@@ -19,50 +19,49 @@ import com.prime.question.CreateQuestionBean;
 
 @Controller
 @Scope("session")
-public class CreateProductBean
-{
-	
-	private static final Logger logger = Logger.getLogger( CreateQuestionBean.class.getName() );
+public class CreateProductBean {
 
+	private static final Logger logger = Logger
+			.getLogger(CreateQuestionBean.class.getName());
 
 	@Autowired
 	private ProductService productService;
-	
+
 	private Product product;
 
-	public void initBean (){
+	public void initBean() {
 		product = new Product();
 		product.setProductName(null);
 		product.setProductActive(false);
 		product.setProductTrial(false);
-//		product.setProductURL(null);
 		product.setOverview(null);
 	}
 
-	
-	public String onSave(){
+	public String onSave() {
 		logger.info("onSave");
 		product = productService.createNewProduct(product);
 		initBean();
 		return "ViewProducts?faces-redirect=true";
 	}
-	
-	public void validateURL (FacesContext context , UIComponent component , Object value ) throws ValidatorException{
-		if ( product.isProductTrial() 
-				&& (value == null || value.toString().compareTo("") == 0 )) {
-			FacesMessage message = new FacesMessage ("This is a trial product , you must give a URL");
-			throw new ValidatorException(message) ; 
+
+	public void validateURL(FacesContext context, UIComponent component,
+			Object value) throws ValidatorException {
+		if (product.isProductTrial()
+				&& (value == null || value.toString().compareTo("") == 0)) {
+			FacesMessage message = new FacesMessage(
+					"This is a trial product , you must give a URL");
+			throw new ValidatorException(message);
 		}
 	}
-	
+
 	public static Logger getLogger() {
 		return logger;
 	}
-	
+
 	public ProductService getProductService() {
 		return productService;
 	}
-	
+
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
@@ -75,16 +74,16 @@ public class CreateProductBean
 		this.product = product;
 	}
 
-	public void removeVideo(Video video){
+	public void removeVideo(Video video) {
 		product.removeVideo(video);
 	}
 
-	public void addVideo(Video video){
+	public void addVideo(Video video) {
 		product.addVideo(video);
 	}
 
 	public void addVideo(String name, String description, String url, int length) {
-		Video video=new Video();
+		Video video = new Video();
 		video.setVideoName(name);
 		video.setVideoDescription(description);
 		video.setVideoUrl(url);
@@ -93,14 +92,12 @@ public class CreateProductBean
 		addVideo(video);
 	}
 
-
-	public void removeUrl(Url url){
+	public void removeUrl(Url url) {
 		product.removeUrl(url);
 	}
 
-	public void addUrl(Url url){
+	public void addUrl(Url url) {
 		product.addUrl(url);
 	}
-
 
 }
