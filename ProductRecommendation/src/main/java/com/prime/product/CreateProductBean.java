@@ -7,6 +7,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
+import com.prime.url.model.Url;
+import com.prime.video.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -72,5 +74,33 @@ public class CreateProductBean
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
+
+	public void removeVideo(Video video){
+		product.removeVideo(video);
+	}
+
+	public void addVideo(Video video){
+		product.addVideo(video);
+	}
+
+	public void addVideo(String name, String description, String url, int length) {
+		Video video=new Video();
+		video.setVideoName(name);
+		video.setVideoDescription(description);
+		video.setVideoUrl(url);
+		video.setVideoLength(length);
+		video.setVideoProduct(product);
+		addVideo(video);
+	}
+
+
+	public void removeUrl(Url url){
+		product.removeUrl(url);
+	}
+
+	public void addUrl(Url url){
+		product.addUrl(url);
+	}
+
+
 }

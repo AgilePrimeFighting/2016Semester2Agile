@@ -1,9 +1,12 @@
 package com.prime.product;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 
+import com.prime.video.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -20,7 +23,6 @@ public class EditProductBean
 	private static final Logger logger = Logger.getLogger(EditProductBean.class.getName());
 
 	private Product product;
-	
 
 	@Autowired
 	private ProductService productService;
@@ -61,8 +63,22 @@ public class EditProductBean
 		this.productService = productService;
 	}
 	
+	public void removeVideo(Video video){
+		product.removeVideo(video);
+	}
 
-	
+	public void addVideo(Video video){
+		product.addVideo(video);
+	}
 
+	public void addVideo(String name, String description, String url, int length) {
+		Video video=new Video();
+		video.setVideoName(name);
+		video.setVideoDescription(description);
+		video.setVideoUrl(url);
+		video.setVideoLength(length);
+		video.setVideoProduct(product);
+		addVideo(video);
+	}
 
 }
