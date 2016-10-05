@@ -2575,3 +2575,7 @@ body{
 .ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
 	font-family: 'Ubuntu';
 }
+.recommendation-header{
+	padding-top: 40px; height: 100px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;
+	}
+}

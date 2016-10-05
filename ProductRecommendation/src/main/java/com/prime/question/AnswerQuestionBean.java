@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.prime.customer.CollectCustomerDetailBean;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
 import com.prime.question.model.Option;
@@ -40,14 +41,14 @@ public class AnswerQuestionBean implements Serializable {
 	@Autowired
 	private QuestionService questionService;
 
-	@Autowired
-	private ResponseService responseService;
 
 	@Autowired
 	private ProductService productService;
 	
 	@Autowired
-	private SoapClientJax soapService;
+	private CollectCustomerDetailBean detailBean;
+	
+
 
 
 	@PostConstruct
@@ -56,7 +57,12 @@ public class AnswerQuestionBean implements Serializable {
 		setQuestions(questionService.listAll());
 	}
 	
-	
+	private void clearSession() {
+		setCurrentQuestionIndex(0);
+		responses = new ArrayList<Response>();
+		selectedOptions = new ArrayList<Option>();
+		setSelectedOptionId(null);
+	}
 
 	
 	public String doNext() {
@@ -76,18 +82,10 @@ public class AnswerQuestionBean implements Serializable {
 		if (currentQuestionIndex == questions.size()) {
 			Product recommendedProduct = null;
 			recommendedProduct = productService.getRecommendedProduct(selectedOptions);
-			List<Response> tmpResponses = new ArrayList<Response>();
-			for (Response response : responses) {
-				Response tmpResponse = responseService.createResponse(response);
-				tmpResponses.add(tmpResponse);
-			}
-			FacesContext.getCurrentInstance().getExternalContext().getFlash()
-				.put("product", recommendedProduct);
-			FacesContext.getCurrentInstance().getExternalContext().getFlash()
-				.put("responses", tmpResponses);
+			detailBean.setProduct(recommendedProduct);
+			detailBean.setResponses(responses);
 			clearSession();
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			return "RecommendedProduct?faces-redirect=true";
+			return "CollectCustomerDetail?faces-redirect=true";
 		}
 		
 		selectedOptionId = null;
@@ -131,13 +129,6 @@ public class AnswerQuestionBean implements Serializable {
 	}*/
 
 
-	private void clearSession() {
-		questions = new ArrayList<Question>();
-		setCurrentQuestionIndex(0);
-		responses = new ArrayList<Response>();
-		selectedOptions = new ArrayList<Option>();
-		setSelectedOptionId(null);
-	}
 /*	public Customer getCustomer() {
 		return customer;
 	}

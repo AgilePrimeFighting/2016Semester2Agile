@@ -1,5 +1,6 @@
 package com.prime.customer.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class Customer {
 	
 	@OneToMany(mappedBy = "customer", targetEntity = Response.class, orphanRemoval=true,
 			fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Response> responses;
+	private List<Response> responses = new ArrayList<Response>();
 
 
 	public Integer getCustomerId() {

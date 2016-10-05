@@ -1,7 +1,9 @@
 package com.prime.product.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.prime.PDF.model.PDF;
 import com.prime.url.model.Url;
@@ -39,16 +42,16 @@ public class Product {
 	@Column(name = "OVERVIEW")
 	private String overview;
 
-	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Weight> weightList = new ArrayList<Weight>();
+	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval = true,  fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Weight> weightSet = new HashSet<Weight>();
 
 	@OneToMany(mappedBy = "product", targetEntity = Url.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Url> urlList = new ArrayList<Url>();
+	private Set<Url> urlSet = new HashSet<Url>();
 
-	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PDF> pdfList = new ArrayList<PDF>();
 
-	@OneToMany(mappedBy = "product", targetEntity = Video.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", targetEntity = Video.class, orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Video> videoList = new ArrayList<Video>();
 
 	public String getOverview() {
@@ -59,23 +62,14 @@ public class Product {
 		this.overview = overview;
 	}
 
-	public List<Weight> getWeightList() {
-		return weightList;
+	public Set<Weight> getWeightSet() {
+		return weightSet;
 	}
 
-	public void setWeightList(List<Weight> weightList) {
-		this.weightList = weightList;
+	public void setWeightSet(Set<Weight> weightSet) {
+		this.weightSet = weightSet;
 	}
 
-	public void addUrl(Url url) {
-		if (!urlList.contains(url))
-			urlList.add(url);
-	}
-
-	public void removeUrl(Url url) {
-		if (urlList.contains(url))
-			urlList.remove(url);
-	}
 
 	public List<Video> getVideoList() {
 		return videoList;
@@ -85,19 +79,7 @@ public class Product {
 		this.videoList = videoList;
 	}
 
-	public void addVideo(Video video) {
-		if (!videoList.contains(video))
-			videoList.add(video);
-	}
 
-	public void removeVideo(Video video) {
-		if (videoList.contains(video))
-			videoList.remove(video);
-	}
-
-	public String outputActive() {
-		return this.productActive == true ? "Active" : "Inactive";
-	}
 
 	public Integer getProductId() {
 		return productId;
@@ -123,6 +105,10 @@ public class Product {
 		this.productActive = productActive;
 	}
 
+	public String outputActive() {
+		return this.productActive == true ? "Active" : "Inactive";
+	}
+
 	public boolean isProductTrial() {
 		return productTrial;
 	}
@@ -135,12 +121,12 @@ public class Product {
 		return this.productTrial == true ? "YES" : "NO";
 	}
 
-	public List<Url> getUrlList() {
-		return urlList;
+	public Set<Url> getUrlSet() {
+		return urlSet;
 	}
 
-	public void setUrlList(List<Url> urlList) {
-		this.urlList = urlList;
+	public void setUrlSet(Set<Url> urlList) {
+		this.urlSet = urlList;
 	}
 
 	public List<PDF> getPdfList() {
@@ -150,4 +136,6 @@ public class Product {
 	public void setPdfList(List<PDF> pdfList) {
 		this.pdfList = pdfList;
 	}
+
+
 }

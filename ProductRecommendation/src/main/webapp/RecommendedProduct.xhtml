@@ -10,78 +10,86 @@
 
 <ui:composition template="templates/ProspectTemplate.xhtml">
 	<ui:define name="content">
-		<div
-			style="padding-top: 40px; height: 200px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
-			align="center" class="text-center">
+		<div align="center" class="text-center recommendation-header">
 			<h:outputText
-				value="Thank you for answering our questions. We think that #{recommendedProductBean.product.productName} will be a great fit for your business. A free trial is #{recommendedProductBean.product.productTrial ? '':'not'} available for this product."
+				value="Thank you for answering our questions. We think that #{recommendedProductBean.product.productName} will be a great fit for your business."
 				style=" vertical-align: middle; display: inline-block;" />
-			<h:outputText
-				value="#{recommendedProductBean.product.productTrial ? 
-				'Registration to start a free trial for product recommendation, and have someone from MYOB contact you with more details.'
-				:'Registration to have someone from MYOB contact you with more details of product recommendation'}"
-				style=" vertical-align: middle; display: inline-block;" /> <br/><br/>
-			<p:commandButton value="Register" styleClass="btn btn-default" 
-				action="#{recommendedProductBean.doRegister()}"/>
+			<br />
+			<br />
 		</div>
 		<div style="padding-left: 50px; padding-right: 50px">
 			<h:outputText value="#{recommendedProductBean.product.overview}"
 				escape="false" />
 		</div>
 
-		<p:dataTable id="pdfTable" value="#{recommendedProductBean.product.pdfList}"
-			var="pdf">
 
-			<p:column headerText="Filename">
-				<h:outputText value="#{pdf.PDF_Name}"></h:outputText>
+		<br />
+		<br />
+		<p:panel id="pdfPanel"
+			rendered="#{not empty recommendedProductBean.product.pdfList}">
+			<div align="center" class="text-center recommendation-header">
+				<h:outputText
+					value="Read more about #{recommendedProductBean.product.productName}. "
+					style=" vertical-align: middle; display: inline-block;" />
+			</div>
+			<div>
 
-			</p:column>
+				<p:dataGrid var="pdf"
+					value="#{recommendedProductBean.product.pdfList}" columns="6"
+					layout="tabular" id="pdfs">
+					<p:panel style="width:200px; height:250px">
+						<p:row>
+							<p:graphicImage value="resources/images/pdf.jpg"
+								styleClass="content" style=" width:150px;" />
+							<h:commandLink style=" width:100px;">
+								<h:outputText value="#{pdf.PDF_Name}"
+									style="width:100px; word-break: break-all;" />
+								<p:fileDownload
+									value="#{recommendedProductBean.downloadPdf(pdf)}" />
+							</h:commandLink>
+						</p:row>
+					</p:panel>
 
-			<p:column headerText="Save">
-				<p:commandButton value="download" ajax="false"
-					icon="ui-icon-arrowthick-1-s"
-					actionListener="#{pdfDownload.downloadAction(pdf)}">
-
-					<p:fileDownload value="#{pdfDownload.pdfFile}" />
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
-
-		<div
-			style="background: url(resources/images/hero-using-advanced-on-ipad.jpg); padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
-			align="center" class="text-center">
-			<h:outputText
-				value="Read more about #{recommendedProductBean.product.productName}. "
-				style=" vertical-align: middle; display: inline-block;" />
-		</div>
-		<div style="height: 200px"></div>
-
-		<div
-			style="background: url(resources/images/hero-waiter-computer.jpg); padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
-			align="center" class="text-center">
+				</p:dataGrid>
+			</div>
+		</p:panel>
+		
+		<div align="center" class="text-center recommendation-header">
 			<h:outputText value="Watch videos of the product "
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-		<div style="height: 200px"></div>
-		<div
-			style="background: url(resources/images/hero-photographer-on-beach.jpg) 0 -250px; padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
-			align="center" class="text-center">
+		<p:dataGrid var="video"
+					value="#{recommendedProductBean.product.videoList}" columns="3"
+					layout="tabular" id="videos">
+					<p:panel >
+						<div>
+							<p:media value="#{video.videoUrl}" width="350" height="315" player="flash"/>
+						</div>
+						<div>
+							<h:outputText value ="#{video.videoName}" style="font-weight:bold; font-size:20px; color:#5c247b"/>
+							</div>
+						<div>
+							<h:outputText value ="#{video.videoDescription}" />
+						</div>
+					</p:panel>
+
+				</p:dataGrid>
+		
+		<div style="height: 20px"></div>
+		<div align="center" class="text-center recommendation-header">
 			<h:outputText value="Other useful links "
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-		<div style="height: 200px"></div>
-		<div
-			style="padding-top: 40px; height: 150px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
-			align="center" class="text-center">
-			<h:outputText
-				value="#{recommendedProductBean.product.productTrial ? 
-				'Registration to start a free trial for product recommendation, and have someone from MYOB contact you with more details.'
-				:'Registration to have someone from MYOB contact you with more details of product recommendation'}"
-				style=" vertical-align: middle; display: inline-block;" /> <br/><br/>
-			<p:commandButton value="Register" styleClass="btn btn-default" 
-				action="#{recommendedProductBean.doRegister()}" />
-		</div>
-		<br/><br/>
+
+		<div style="height: 10px"></div>
+			<p:dataList value="#{recommendedProductBean.product.urlSet}"
+				var="url" type="ordered" rowIndexVar="rowIndex">
+					<a style="color: blue" href="#{url.url}">#{url.displayText}</a>
+			</p:dataList>
+		<div style="height: 20px"></div>
+
+		<br />
+		<br />
 	</ui:define>
 </ui:composition>
 </html>

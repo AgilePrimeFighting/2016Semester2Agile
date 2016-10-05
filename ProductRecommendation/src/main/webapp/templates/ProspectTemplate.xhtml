@@ -30,6 +30,13 @@
 		<div style="margin: auto; width:80%; margin-top:50px">
 			<ui:insert name="content"/>
 		</div>
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+					closable="false" resizable="false" showHeader="false">
+					<p:graphicImage name="images/ajaxloadingbar.gif" />
+				</p:dialog>
 	</h:form>
  		
 
