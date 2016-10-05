@@ -10,22 +10,14 @@ import javax.xml.ws.handler.MessageContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.prime.jax.Action;
 import com.prime.jax.ArrayOfCommand;
 import com.prime.jax.Command;
 import com.prime.jax.Key;
 import com.prime.jax.LoginResult;
 import com.prime.jax.SM201010Content;
-import com.prime.jax.SM201010ExportResponse;
-import com.prime.jax.SM203520Content;
 import com.prime.jax.Screen;
 import com.prime.jax.ScreenSoap;
 import com.prime.jax.Value;
