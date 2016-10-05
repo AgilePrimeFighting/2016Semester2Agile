@@ -1,8 +1,0 @@
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<soap:Body>
-		<SM201010SubmitResponse xmlns="http://www.acumatica.com/generic/">
-			<SubmitResult />
-		</SM201010SubmitResponse>
-	</soap:Body>
-</soap:Envelope>

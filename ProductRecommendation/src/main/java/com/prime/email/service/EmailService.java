@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.prime.customer.model.Customer;
@@ -96,7 +95,7 @@ public class EmailService {
 	    velocityEngine.mergeTemplate("templates/CustomerResponse.vm", "UTF-8", velocityContext, stringWriter);
 	    return stringWriter.toString();
 	}
-	@Async
+	
 	public void sendCustomerResponseEmail(Customer customer, List<Response> allResponses){
 		String emailContent = this.formatCustomerResponseEmail(customer, allResponses);
 		String toAddress = notificationService.getCurrentNotificationEmail();
