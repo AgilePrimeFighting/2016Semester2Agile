@@ -27,7 +27,4 @@ public class WeightService
 		return em.createQuery("SELECT w from Weight w where w.productId = :productID AND w.optionId IN :optionId"
 				, Weight.class).setParameter("productID", productId).setParameter("optionId", optionIds).getResultList();
 	}
-	
-	
-	
 }

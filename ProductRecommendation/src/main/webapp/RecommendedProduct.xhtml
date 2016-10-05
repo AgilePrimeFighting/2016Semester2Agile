@@ -29,24 +29,6 @@
 				escape="false" />
 		</div>
 
-		<p:dataTable id="pdfTable" value="#{recommendedProductBean.product.pdfList}"
-			var="pdf">
-
-			<p:column headerText="Filename">
-				<h:outputText value="#{pdf.PDF_Name}"></h:outputText>
-
-			</p:column>
-
-			<p:column headerText="Save">
-				<p:commandButton value="download" ajax="false"
-					icon="ui-icon-arrowthick-1-s"
-					actionListener="#{pdfDownload.downloadAction(pdf)}">
-
-					<p:fileDownload value="#{pdfDownload.pdfFile}" />
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
-
 		<div
 			style="background: url(resources/images/hero-using-advanced-on-ipad.jpg); padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
 			align="center" class="text-center">

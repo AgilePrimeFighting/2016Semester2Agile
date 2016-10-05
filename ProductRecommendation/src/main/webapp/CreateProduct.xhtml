@@ -36,49 +36,12 @@
 				onLabel="Yes" offLabel="No" style="width:60px" />
 			<br />
 		
-<<<<<<< HEAD
 			<h3>Product URL</h3>
 			<p:inputText id = "URLinput" value="#{createProductBean.product.productURL}"
 				style="display:block; width:80%"   maxlength="200">
 			</p:inputText>
 			<h:message for="URLinput" styleClass = "error"></h:message>	
 			<br />
-=======
-		<h3>Product URL</h3>
-		<p:inputText id = "URLinput" value="#{createProductBean.productURL}"
-			style="display:block; width:80%"   maxlength="200">
-		</p:inputText>
-			<h:message for="URLinput" styleClass = "error"></h:message>
-			
-		<br />
-		<h:form enctype="multipart/form-data">
-			<p:dataTable id="pdfTable" value="#{createProductBean.pdfList}"  var = "pdf">
-				<p:column headerText="Filename">
-					<h:outputText value="#{pdf.PDF_Name}"></h:outputText>
-				</p:column>
-
-				<p:column headerText="Remove">
-					<p:commandButton icon="ui-icon-close"
-						actionListener="#{createProductBean.removePDF(pdf)}"
-						update="pdfTable" immediate="true">
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
-			
-			<p:fileUpload
-					fileUploadListener="#{createProductBean.handleFileUpload}"
-					mode="advanced" dragDropSupport="false" multiple="true"
-					update="pdfTable" sizeLimit="4194304" fileLimit="5"
-					allowTypes="/(\.|\/)(pdf)$/" auto="true" label="Upload a pdf"
-					uploadLabel="Select a file to upload" />
-				<p:growl id="messages" showDetail="true" />
-
-			</h:form>
-			<p:commandButton value="save" action="#{createProductBean.onSave}"
-			style="margin-top:15px;" />
-		<p:button value="cancel" outcome="ViewProducts"
-			style="margin-left:20px;" />
->>>>>>> JacJackJack2
 		
 			<h3>Product Overview</h3>
 			<p>Please enter HTML as the product overview to be displayed to prospects.</p>

@@ -1,23 +1,16 @@
 package com.prime.product;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
-import org.primefaces.event.FileUploadEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.prime.PDF.model.PDF;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
+
 
 @Controller
 @Scope("session")
@@ -28,42 +21,23 @@ public class EditProductBean
 
 	private Product product;
 	
-	//private PDF pdfFileList ;
-	
-	//Map<Integer, PDF> pdfFileList = new HashMap<Integer, PDF>();
-	
-	private List<PDF> pdfTempList = new ArrayList<PDF>(); 
-	
-	public List<PDF> getPdfTempList() {
-		return pdfTempList;
-	}
-
-	public void setPdfTempList(List<PDF> pdfTempList) {
-		this.pdfTempList = pdfTempList;
-	}
-
-
-	static int fileListIndex = 0 ;
-
 
 	@Autowired
 	private ProductService productService;
 
 	@PostConstruct
-	public void init()
-	{
+	public void init() {
 		logger.info("initiated");
 	}
 
-	public void initEdit(Product product) 
-	{
+	public void initEdit(Product product) {
 		logger.info("product received");
 		this.product = product;
-		pdfTempList = product.getPdfList() ;
 	}
 
-	public String doSave() 
-	{	
+	public String doSave() {
+		
+		
 		if (product != null) {
 			productService.update(product);
 		}
@@ -87,37 +61,8 @@ public class EditProductBean
 		this.productService = productService;
 	}
 	
+
 	
-	public void removePDF ( PDF pdf ) 
-	{
-		this.product.getPdfList().remove(pdf) ;
-	}
-	
-	
-	public void handleFileUpload(FileUploadEvent event) 
-	{
-		System.out.println("EditProductBean: handleFileUpload function.");
-		if ( event == null ) 
-		{
-			System.out.println("Event is null ,exception ");
-		}
-		PDF pdfFile = new PDF() ;
-		pdfFile.setPDF_Name(event.getFile().getFileName());
-		pdfFile.setFileContent(event.getFile().getContents());
-		pdfFile.setProduct(product);
-		//pdfFile.setPDF_ID(product.getProductId());
-		System.out.println("pdfName : " + event.getFile().getFileName());
-	    System.out.println("fileLength " + event.getFile().getSize());
-	   // System.out.println("productID  " + pdfFile.getPDF_ID());
-        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-        //pdfFileList.put(fileListIndex, pdfFile) ;
-        product.getPdfList().add(pdfFile) ;
-       // pdfTempList.add(pdfFile) ;
-   //     fileListIndex ++ ;
-  //      System.out.println("pdfFileList : " + pdfFileList.size());
-        FacesContext.getCurrentInstance().addMessage(null, message);
-        return  ;
-    }
-	
-	
+
+
 }

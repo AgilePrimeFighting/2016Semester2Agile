@@ -5,4 +5,4 @@
  * @author Jack
  *
  */
-package com.prime.PDF.model;
+package com.prime.weight;
