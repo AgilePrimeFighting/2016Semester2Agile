@@ -34,46 +34,15 @@
 				value="#{editProductBean.product.productTrial}" onLabel="Yes"
 				offLabel="No" style="width:80px" />
 			<br />
-
-			<h3>Product URL</h3>
-			<h:form enctype="multipart/form-data">
-
-				<p:dataTable id="urlTable"
-					value="#{editProductBean.product.urlList}" var="url">
-
-					<p:column headerText="Urlname">
-						<p:inputText value="#{url.url}" required="true" label="URL" />
-					</p:column>
-
-					<p:column headerText="displayedText">
-						<p:inputText value="#{url.displayText}" required="ture"
-							label="displayedText" />
-					</p:column>
-
-					<p:column headerText="Remove">
-						<p:commandButton icon="ui-icon-close"
-							actionListener="#{editProductBean.removeUrl(url)}"
-							update="urlTable" immediate="true" style="marginTop:20px">
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
-
-				<p:commandButton class="commandButton" value="Add URL"
-					action="#{editProductBean.addUrl}" update="urlTable"
-					style="margin-top:15px;" />
-
-			</h:form>
-			<br />
-
-			<h3>Product Overview</h3>
-			<p>Please enter HTML as the product overview to be displayed to
-				prospects.</p>
+			
+			<h3>Product Summary</h3>
+			<p>Please enter product description.(HTML formatting supported)</p>
 			<p:inputTextarea value="#{editProductBean.product.overview}"
 				style="display:block; width:80%" label="Product Overview"
 				maxlength="4000" />
 			<br />
 
-			<h3>Product PDF</h3>
+			<h3>Marketing Collateral</h3>
 			<h:form enctype="multipart/form-data">
 
 				<p:dataTable id="pdfTable"
@@ -102,7 +71,35 @@
 				<p:growl id="messages" showDetail="true" />
 
 			</h:form>
+				
 
+			<h3>Useful Links</h3>
+				<p:dataTable id="urlTable"
+					value="#{editProductBean.product.urlSet}" var="url">
+
+					<p:column headerText="Url">
+						<p:inputText value="#{url.url}" required="true" label="URL" />
+					</p:column>
+
+					<p:column headerText="displayedText">
+						<p:inputText value="#{url.displayText}" required="ture"
+							label="displayedText" />
+					</p:column>
+
+					<p:column headerText="Remove">
+						<p:commandButton icon="ui-icon-close"
+							actionListener="#{editProductBean.removeUrl(url)}"
+							update="urlTable" immediate="true" style="marginTop:20px">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:commandButton class="commandButton" value="Add URL"
+					action="#{editProductBean.addUrl}" update="urlTable"
+					style="margin-top:15px;" />
+			<br />
+
+			
 			<p:commandButton class="commandButton" value="save"
 				action="#{editProductBean.doSave}" style="margin-top:15px;" />
 			<p:button value="cancel" outcome="ViewProducts"

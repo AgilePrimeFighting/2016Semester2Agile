@@ -2,6 +2,7 @@ package com.prime.product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
@@ -30,17 +31,9 @@ public class EditProductBean
 
 	private Product product;
 	
-	private List<Url> urlTempList = new ArrayList<Url>();
 
 	private List<PDF> pdfTempList = new ArrayList<PDF>();
 	
-	public List<Url> getUrlTempList() {
-		return urlTempList;
-	}
-
-	public void setUrlTempList(List<Url> urlTempList) {
-		this.urlTempList = urlTempList;
-	}
 
 	public List<PDF> getPdfTempList() {
 		return pdfTempList;
@@ -63,8 +56,9 @@ public class EditProductBean
 	public void initEdit(Product product) {
 		
 		logger.info("product received");
+		logger.info("no of urls " + product.getUrlSet().size()) ;
 		this.product= productService.initializeCollections(product);
-		
+		logger.info("no of urls " + product.getUrlSet().size()) ;
 	}
 
 	public String doSave() {
@@ -92,7 +86,7 @@ public class EditProductBean
 	}
 	
 	public void removeUrl(Url url) {
-		this.product.getUrlList().remove(url);
+		this.product.getUrlSet().remove(url);
 	}
 
 	public void removePDF(PDF pdf) {
@@ -100,14 +94,10 @@ public class EditProductBean
 	}
 
 	public void addUrl() {
-		if (urlTempList == null) {
-			urlTempList = new ArrayList<Url>();
-		}
 		Url url = new Url();
 		url.setProduct(product);
 
-		urlTempList.add(url);
-		product.setUrlList(urlTempList);
+		product.getUrlSet().add(url);
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
@@ -146,6 +136,11 @@ public class EditProductBean
 		video.setVideoLength(length);
 		video.setProduct(product);
 		addVideo(video);
+	}
+	
+	public Set<Url> links(){
+		logger.info("get links " + product.getUrlSet().size());
+		return product.getUrlSet();
 	}
 
 }

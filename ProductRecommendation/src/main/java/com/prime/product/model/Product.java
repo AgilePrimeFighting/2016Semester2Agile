@@ -1,7 +1,9 @@
 package com.prime.product.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,11 +42,11 @@ public class Product {
 	@Column(name = "OVERVIEW")
 	private String overview;
 
-	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Weight> weightList = new ArrayList<Weight>();
+	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval = true,  fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Weight> weightSet = new HashSet<Weight>();
 
 	@OneToMany(mappedBy = "product", targetEntity = Url.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Url> urlList = new ArrayList<Url>();
+	private Set<Url> urlSet = new HashSet<Url>();
 
 	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PDF> pdfList = new ArrayList<PDF>();
@@ -60,23 +62,14 @@ public class Product {
 		this.overview = overview;
 	}
 
-	public List<Weight> getWeightList() {
-		return weightList;
+	public Set<Weight> getWeightSet() {
+		return weightSet;
 	}
 
-	public void setWeightList(List<Weight> weightList) {
-		this.weightList = weightList;
+	public void setWeightSet(Set<Weight> weightSet) {
+		this.weightSet = weightSet;
 	}
 
-	public void addUrl(Url url) {
-		if (!urlList.contains(url))
-			urlList.add(url);
-	}
-
-	public void removeUrl(Url url) {
-		if (urlList.contains(url))
-			urlList.remove(url);
-	}
 
 	public List<Video> getVideoList() {
 		return videoList;
@@ -136,12 +129,12 @@ public class Product {
 		return this.productTrial == true ? "YES" : "NO";
 	}
 
-	public List<Url> getUrlList() {
-		return urlList;
+	public Set<Url> getUrlSet() {
+		return urlSet;
 	}
 
-	public void setUrlList(List<Url> urlList) {
-		this.urlList = urlList;
+	public void setUrlSet(Set<Url> urlList) {
+		this.urlSet = urlList;
 	}
 
 	public List<PDF> getPdfList() {
