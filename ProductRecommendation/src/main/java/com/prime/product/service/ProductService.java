@@ -1,6 +1,5 @@
 package com.prime.product.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,10 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prime.product.model.Product;
-import com.prime.question.AnswerQuestionBean;
 import com.prime.question.model.Option;
 import com.prime.question.service.OptionService;
-import com.prime.response.model.Response;
 import com.prime.weight.model.Weight;
 
 @Service
