@@ -115,6 +115,7 @@ public class SoapClientJax {
 	
 	@Async
 	public void createTrialUser(String email){
+		logger.info("starting trial provisioning for " + email);
 		try{
 		Screen screen = new Screen();
 		ScreenSoap screenSoap = screen.getScreenSoap();
@@ -131,7 +132,7 @@ public class SoapClientJax {
 		loginNameValue.setValue(email);
 		loginNameValue.setLinkedCommand(sM201010Content.getUserInformation().getLogin());
 		Value emailValue = new Value();
-		emailValue.setValue("tliu861@aucklanduni.ac.nz");
+		emailValue.setValue(email);
 		emailValue.setLinkedCommand(sM201010Content.getUserInformation().getEmail());
 		
 		Key roleNameKey = new Key();
