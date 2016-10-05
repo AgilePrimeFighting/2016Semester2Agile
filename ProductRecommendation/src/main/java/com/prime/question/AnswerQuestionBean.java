@@ -41,8 +41,6 @@ public class AnswerQuestionBean implements Serializable {
 	@Autowired
 	private QuestionService questionService;
 
-	@Autowired
-	private ResponseService responseService;
 
 	@Autowired
 	private ProductService productService;
@@ -60,7 +58,6 @@ public class AnswerQuestionBean implements Serializable {
 	}
 	
 	private void clearSession() {
-		questions = new ArrayList<Question>();
 		setCurrentQuestionIndex(0);
 		responses = new ArrayList<Response>();
 		selectedOptions = new ArrayList<Option>();
@@ -132,12 +129,6 @@ public class AnswerQuestionBean implements Serializable {
 	}*/
 
 
-	private void clearSession() {
-		setCurrentQuestionIndex(0);
-		responses = new ArrayList<Response>();
-		selectedOptions = new ArrayList<Option>();
-		setSelectedOptionId(null);
-	}
 /*	public Customer getCustomer() {
 		return customer;
 	}
