@@ -26,6 +26,7 @@ public class RecommendedProductBean {
 
 	private static final Logger logger = Logger
 			.getLogger(RecommendedProductBean.class.getName());
+	
 
 	private Product product;
 	private List<Response> responses;

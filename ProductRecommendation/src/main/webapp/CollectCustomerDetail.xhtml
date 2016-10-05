@@ -127,7 +127,7 @@
 						</p>
 						
 						<p>
-							<p:selectBooleanCheckbox id="isTryTrial" rendered="#{collectCustomerDetailBean.product.productTrial ? 'false' :'true'}"
+							<p:selectBooleanCheckbox id="isTryTrial" rendered="#{collectCustomerDetailBean.product.productTrial}"
 								value="#{collectCustomerDetailBean.isTryTrial}"
 								itemLabel="I'd like to start a free trial of the product"
 								style="#{collectCustomerDetailBean.product.productTrial ? '' : 'color:Grey;'}" />
