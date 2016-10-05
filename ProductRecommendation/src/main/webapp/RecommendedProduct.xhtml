@@ -64,7 +64,18 @@
 			<h:outputText value="Watch videos of the product "
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-		<div style="height: 200px"></div>
+
+		<div style="height: 10px"></div>
+		<p:media style="align-content: center" value="http://malsup.github.com/video/clear.avi" width="650"
+			height="300">
+			<f:param name="autostart" value="false" />
+			<p:outputPanel layout="block">
+        Windows Media is required to view this media. <h:outputLink
+					value="http://www.microsoft.com/Windows/MediaPlayer/">Download Here</h:outputLink>
+			</p:outputPanel>
+		</p:media>
+		<div style="height: 20px"></div>
+
 		<div
 			style="background: url(resources/images/hero-photographer-on-beach.jpg) 0 -250px; padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
 			align="center" class="text-center">
@@ -80,14 +91,10 @@
             Additional Links
         </f:facet>
         #{rowIndex + 1} . #{url.url}
-					<a style="color: blue" href="#{url.displayText}">#{url.displayText}</a>
+					<a style="color: blue" href="http://#{url.displayText}">#{url.displayText}</a>
 			</p:dataList>
-
 		</h:form>
-
 		<div style="height: 20px"></div>
-
-
 
 		<div
 			style="padding-top: 40px; height: 150px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
