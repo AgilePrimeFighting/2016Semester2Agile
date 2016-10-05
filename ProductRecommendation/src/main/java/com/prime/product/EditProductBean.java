@@ -21,13 +21,12 @@ import com.prime.PDF.model.PDF;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
 
-
 @Controller
 @Scope("session")
-public class EditProductBean 
-{
-	
-	private static final Logger logger = Logger.getLogger(EditProductBean.class.getName());
+public class EditProductBean {
+
+	private static final Logger logger = Logger.getLogger(EditProductBean.class
+			.getName());
 
 	private Product product;
 	
@@ -43,8 +42,16 @@ public class EditProductBean
 		this.pdfTempList = pdfTempList;
 	}
 
+	public List<Video> getVideoTempList() {
+		return videoTempList;
+	}
+
+	public void setVideoTempList(List<Video> videoTempList) {
+		this.videoTempList = videoTempList;
+	}
+
 	static int fileListIndex = 0;
-	
+
 	@Autowired
 	private ProductService productService;
 
@@ -100,6 +107,10 @@ public class EditProductBean
 		product.getUrlSet().add(url);
 	}
 
+	public void removeUrl(Url url) {
+		this.product.getUrlList().remove(url);
+	}
+
 	public void handleFileUpload(FileUploadEvent event) {
 		System.out.println("EditProductBean: handleFileUpload function.");
 		if (event == null) {
@@ -119,28 +130,36 @@ public class EditProductBean
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return;
 	}
-	
-	public void removeVideo(Video video){
+
+	public void removePDF(PDF pdf) {
+		this.product.getPdfList().remove(pdf);
+	}
+
+	public void addVideo() {
+		if (videoTempList == null) {
+			videoTempList = new ArrayList<Video>();
+		}
+
+		Video video = new Video();
+		video.setVideoProduct(product);
+		video.setVideoLength(0);
+		videoTempList.add(video);
+		product.setVideoList(videoTempList);
+	}
+
+	// public void addVideo(String name, String description, String url, int
+	// length) {
+	// Video video = new Video();
+	// video.setVideoName(name);
+	// video.setVideoDescription(description);
+	// video.setVideoUrl(url);
+	// video.setVideoLength(length);
+	// video.setVideoProduct(product);
+	// addVideo(video);
+	// }
+
+	public void removeVideo(Video video) {
 		product.removeVideo(video);
-	}
-
-	public void addVideo(Video video){
-		product.addVideo(video);
-	}
-
-	public void addVideo(String name, String description, String url, int length) {
-		Video video=new Video();
-		video.setVideoName(name);
-		video.setVideoDescription(description);
-		video.setVideoUrl(url);
-		video.setVideoLength(length);
-		video.setProduct(product);
-		addVideo(video);
-	}
-	
-	public Set<Url> links(){
-		logger.info("get links " + product.getUrlSet().size());
-		return product.getUrlSet();
 	}
 
 }
