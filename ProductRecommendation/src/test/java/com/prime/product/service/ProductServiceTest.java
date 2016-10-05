@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.hibernate.Hibernate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.prime.email.service.EmailService;
 import com.prime.email.service.EmailServiceTest;
@@ -42,11 +44,15 @@ private static final Logger logger = Logger.getLogger(ProductServiceTest.class.g
 	}
 	
 	@Test
+	@Transactional
 	public void testListActiveProducts(){
 		List<Product> activeProducts = productService.listActiveProducts();
 		for(Product product : activeProducts){
 			logger.info(product.getProductName());
 		}
+		productService.initializeCollections(activeProducts.get(0));
+		logger.info(activeProducts.get(0).getPdfList().size() + "1231321312123");
+		logger.info(activeProducts.get(0).getVideoList().size() + "1231321312123");
 	}
 
 }

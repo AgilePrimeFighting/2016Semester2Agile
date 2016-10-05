@@ -61,8 +61,10 @@ public class EditProductBean
 	}
 
 	public void initEdit(Product product) {
+		
 		logger.info("product received");
-		this.product = product;
+		this.product= productService.initializeCollections(product);
+		
 	}
 
 	public String doSave() {
@@ -142,7 +144,7 @@ public class EditProductBean
 		video.setVideoDescription(description);
 		video.setVideoUrl(url);
 		video.setVideoLength(length);
-		video.setVideoProduct(product);
+		video.setProduct(product);
 		addVideo(video);
 	}
 

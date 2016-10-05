@@ -33,8 +33,19 @@ public class PDF
 	//@ (name="PRODUCT_ID")
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PRODUCT_ID",insertable=true,updatable=true)
+	@JoinColumn(name = "PRODUCT_ID")
 	private Product product ;
+	
+	@Column (name = "PRODUCT_ID", insertable=false,updatable=false)
+	private Integer productId ;
+
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
 
 	public Product getProduct() {
 		return product;

@@ -88,7 +88,7 @@ public class CreateProductBean {
 		video.setVideoDescription(description);
 		video.setVideoUrl(url);
 		video.setVideoLength(length);
-		video.setVideoProduct(product);
+		video.setProduct(product);
 		addVideo(video);
 	}
 

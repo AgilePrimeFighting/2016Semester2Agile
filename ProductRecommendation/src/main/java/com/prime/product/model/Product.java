@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.prime.PDF.model.PDF;
 import com.prime.url.model.Url;
@@ -45,10 +46,10 @@ public class Product {
 	@OneToMany(mappedBy = "product", targetEntity = Url.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Url> urlList = new ArrayList<Url>();
 
-	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PDF> pdfList = new ArrayList<PDF>();
 
-	@OneToMany(mappedBy = "product", targetEntity = Video.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", targetEntity = Video.class, orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Video> videoList = new ArrayList<Video>();
 
 	public String getOverview() {
