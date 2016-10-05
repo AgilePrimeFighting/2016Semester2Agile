@@ -21,30 +21,18 @@ import com.prime.PDF.model.PDF;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
 
-
 @Controller
 @Scope("session")
-public class EditProductBean 
-{
-	
-	private static final Logger logger = Logger.getLogger(EditProductBean.class.getName());
+public class EditProductBean {
+
+	private static final Logger logger = Logger.getLogger(EditProductBean.class
+			.getName());
 
 	private Product product;
 	
 
-	private List<PDF> pdfTempList = new ArrayList<PDF>();
-	
-
-	public List<PDF> getPdfTempList() {
-		return pdfTempList;
-	}
-
-	public void setPdfTempList(List<PDF> pdfTempList) {
-		this.pdfTempList = pdfTempList;
-	}
-
 	static int fileListIndex = 0;
-	
+
 	@Autowired
 	private ProductService productService;
 
@@ -119,28 +107,29 @@ public class EditProductBean
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return;
 	}
-	
-	public void removeVideo(Video video){
-		product.removeVideo(video);
-	}
 
-	public void addVideo(Video video){
-		product.addVideo(video);
-	}
 
-	public void addVideo(String name, String description, String url, int length) {
-		Video video=new Video();
-		video.setVideoName(name);
-		video.setVideoDescription(description);
-		video.setVideoUrl(url);
-		video.setVideoLength(length);
+	public void addVideo() {
+
+		Video video = new Video();
 		video.setProduct(product);
-		addVideo(video);
+		video.setVideoLength(0);
+		product.getVideoList().add(video);
 	}
-	
-	public Set<Url> links(){
-		logger.info("get links " + product.getUrlSet().size());
-		return product.getUrlSet();
+
+	// public void addVideo(String name, String description, String url, int
+	// length) {
+	// Video video = new Video();
+	// video.setVideoName(name);
+	// video.setVideoDescription(description);
+	// video.setVideoUrl(url);
+	// video.setVideoLength(length);
+	// video.setVideoProduct(product);
+	// addVideo(video);
+	// }
+
+	public void removeVideo(Video video) {
+		product.getVideoList().remove(video);
 	}
 
 }

@@ -79,19 +79,7 @@ public class Product {
 		this.videoList = videoList;
 	}
 
-	public void addVideo(Video video) {
-		if (!videoList.contains(video))
-			videoList.add(video);
-	}
 
-	public void removeVideo(Video video) {
-		if (videoList.contains(video))
-			videoList.remove(video);
-	}
-
-	public String outputActive() {
-		return this.productActive == true ? "Active" : "Inactive";
-	}
 
 	public Integer getProductId() {
 		return productId;
@@ -115,6 +103,10 @@ public class Product {
 
 	public void setProductActive(boolean productActive) {
 		this.productActive = productActive;
+	}
+
+	public String outputActive() {
+		return this.productActive == true ? "Active" : "Inactive";
 	}
 
 	public boolean isProductTrial() {
@@ -144,4 +136,6 @@ public class Product {
 	public void setPdfList(List<PDF> pdfList) {
 		this.pdfList = pdfList;
 	}
+
+
 }
