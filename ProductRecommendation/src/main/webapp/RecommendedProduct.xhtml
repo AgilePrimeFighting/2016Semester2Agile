@@ -11,11 +11,18 @@
 <ui:composition template="templates/ProspectTemplate.xhtml">
 	<ui:define name="content">
 		<div
-			style="padding-top: 40px; height: 100px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
+			style="padding-top: 40px; height: 200px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
 			align="center" class="text-center">
 			<h:outputText
 				value="Thank you for answering our questions. We think that #{recommendedProductBean.product.productName} will be a great fit for your business. A free trial is #{recommendedProductBean.product.productTrial ? '':'not'} available for this product."
 				style=" vertical-align: middle; display: inline-block;" />
+			<h:outputText
+				value="#{recommendedProductBean.product.productTrial ? 
+				'Registration to start a free trial for product recommendation, and have someone from MYOB contact you with more details.'
+				:'Registration to have someone from MYOB contact you with more details of product recommendation'}"
+				style=" vertical-align: middle; display: inline-block;" /> <br/><br/>
+			<p:commandButton value="Register" styleClass="btn btn-default" 
+				action="#{recommendedProductBean.doRegister()}"/>
 		</div>
 		<div style="padding-left: 50px; padding-right: 50px">
 			<h:outputText value="#{recommendedProductBean.product.overview}"
@@ -63,6 +70,18 @@
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
 		<div style="height: 200px"></div>
+		<div
+			style="padding-top: 40px; height: 150px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
+			align="center" class="text-center">
+			<h:outputText
+				value="#{recommendedProductBean.product.productTrial ? 
+				'Registration to start a free trial for product recommendation, and have someone from MYOB contact you with more details.'
+				:'Registration to have someone from MYOB contact you with more details of product recommendation'}"
+				style=" vertical-align: middle; display: inline-block;" /> <br/><br/>
+			<p:commandButton value="Register" styleClass="btn btn-default" 
+				action="#{recommendedProductBean.doRegister()}" />
+		</div>
+		<br/><br/>
 	</ui:define>
 </ui:composition>
 </html>

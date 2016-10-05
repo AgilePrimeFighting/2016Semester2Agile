@@ -29,20 +29,16 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerId;
 	
-	
 	@OneToOne
 	@JoinColumn(name = "PRODUCT_ID")
 	private Product product;
 	
+	@Column(name = "PRODUCT_NAME")
+	private String productName;
+	
 	@Column(name = "DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date  date;
-	
-	@Column(name = "PRODUCT")
-	private String productName;
-	
-	@Column(name = "HAS_TRIAL")
-	private String hasTrial;
 	
 	@Column(name = "FIRST_NAME")
 	private String  firstName;
@@ -75,7 +71,7 @@ public class Customer {
 			fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Response> responses;
 
-	
+
 	public Integer getCustomerId() {
 		return customerId;
 	}
@@ -92,14 +88,6 @@ public class Customer {
 		this.product = product;
 	}
 	
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
 	public String getProductName() {
 		return productName;
 	}
@@ -108,12 +96,12 @@ public class Customer {
 		this.productName = productName;
 	}
 	
-	public String getHasTrial() {
-		return hasTrial;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setHasTrial(String hasTrial) {
-		this.hasTrial = hasTrial;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	public String getFirstName(){
@@ -183,7 +171,7 @@ public class Customer {
 	public String getIsSubscribe() {
 		return isSubscribe;
 	}
-	
+
 	public void setIsSubscribe(String isSubscribe) {
 		this.isSubscribe = isSubscribe;
 	}
