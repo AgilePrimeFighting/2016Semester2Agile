@@ -12,11 +12,13 @@
    <ui:define name="content">
 		<div align="center" class="text-center recommendation-header">
 			<h:outputText
+				value="Thank you for answering our questions. We think that #{previewRecommendedProductBean.product.productName} will be a great fit for your business."
 				style=" vertical-align: middle; display: inline-block;" />
 			<br />
 			<br />
 		</div>
 		<div style="padding-left: 50px; padding-right: 50px">
+			<h:outputText value="#{previewRecommendedProductBean.product.overview}"
 				escape="false" />
 		</div>
 
@@ -27,11 +29,13 @@
 			rendered="#{not empty recommendedProductBean.product.pdfList}">
 			<div align="center" class="text-center recommendation-header">
 				<h:outputText
+					value="Read more about #{previewRecommendedProductBean.product.productName}. "
 					style=" vertical-align: middle; display: inline-block;" />
 			</div>
 			<div>
 
 				<p:dataGrid var="pdf"
+					value="#{previewRecommendedProductBean.product.pdfList}" columns="6"
 					layout="tabular" id="pdfs">
 					<p:panel style="width:200px; height:250px">
 						<p:row>
@@ -41,6 +45,7 @@
 								<h:outputText value="#{pdf.PDF_Name}"
 									style="width:100px; word-break: break-all;" />
 								<p:fileDownload
+									value="#{previewRecommendedProductBean.downloadPdf(pdf)}" />
 							</h:commandLink>
 						</p:row>
 					</p:panel>
@@ -54,6 +59,7 @@
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
 		<p:dataGrid var="video"
+					value="#{previewRecommendedProductBean.product.videoList}" columns="3"
 					layout="tabular" id="videos">
 					<p:panel >
 						<div>
@@ -76,6 +82,7 @@
 		</div>
 
 		<div style="height: 10px"></div>
+			<p:dataList value="#{previewRecommendedProductBean.product.urlSet}"
 				var="url" type="ordered" rowIndexVar="rowIndex">
 					<a style="color: blue" href="#{url.url}">#{url.displayText}</a>
 			</p:dataList>
