@@ -53,18 +53,36 @@
 				</p:dataGrid>
 			</div>
 		</p:panel>
+		
 		<div align="center" class="text-center recommendation-header">
 			<h:outputText value="Watch videos of the product "
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
-		<div style="height: 200px"></div>
+		<p:dataGrid var="video"
+					value="#{recommendedProductBean.product.videoList}" columns="3"
+					layout="tabular" id="videos">
+					<p:panel >
+						<div>
+							<p:media value="#{video.videoUrl}" width="350" height="315" player="flash"/>
+						</div>
+						<div>
+							<h:outputText value ="#{video.videoName}" style="font-weight:bold; font-size:20px; color:#5c247b"/>
+							</div>
+						<div>
+							<h:outputText value ="#{video.videoDescription}" />
+						</div>
+					</p:panel>
+
+				</p:dataGrid>
+		
+		<div style="height: 20px"></div>
 		<div align="center" class="text-center recommendation-header">
 			<h:outputText value="Other useful links "
 				style=" vertical-align: middle; display: inline-block;" />
 		</div>
 
 		<div style="height: 10px"></div>
-			<p:dataList value="#{recommendedProductBean.product.urlList}"
+			<p:dataList value="#{recommendedProductBean.product.urlSet}"
 				var="url" type="ordered" rowIndexVar="rowIndex">
 					<a style="color: blue" href="#{url.url}">#{url.displayText}</a>
 			</p:dataList>
