@@ -20,9 +20,10 @@
                     value="#{previewRecommendedProductBean.product.productTrial ? 
 				'Registration to start a free trial for product recommendation, and have someone from MYOB contact you with more details.'
 				:'Registration to have someone from MYOB contact you with more details of product recommendation'}"
-                    style=" vertical-align: middle; display: inline-block;" /> <br/><br/>
+                    style=" vertical-align: middle; display: inline-block;" />
+            <br /> <br />
             <p:commandButton value="Register" styleClass="btn btn-default"
-                             action="#{previewRecommendedProductBean.doRegister()}"/>
+                             action="#{previewRecommendedProductBean.doRegister()}" />
         </div>
         <div style="padding-left: 50px; padding-right: 50px">
             <h:outputText value="#{previewRecommendedProductBean.product.overview}"
@@ -36,7 +37,26 @@
                     value="Read more about #{previewRecommendedProductBean.product.productName}. "
                     style=" vertical-align: middle; display: inline-block;" />
         </div>
-        <div style="height: 200px"></div>
+
+        <div style="height: 10px"></div>
+        <p:dataTable id="pdfTable"
+                     value="#{previewRecommendedProductBean.product.pdfList}" var="pdf">
+
+            <p:column headerText="Filename">
+                <h:outputText value="#{pdf.PDF_Name}"></h:outputText>
+
+            </p:column>
+
+            <p:column headerText="Save">
+                <p:commandButton value="download" ajax="false"
+                                 icon="ui-icon-arrowthick-1-s"
+                                 actionListener="#{pdfDownload.downloadAction(pdf)}">
+
+                    <p:fileDownload value="#{pdfDownload.pdfFile}" />
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+        <div style="height: 20px"></div>
 
         <div
                 style="background: url(resources/images/hero-waiter-computer.jpg); padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
@@ -44,14 +64,38 @@
             <h:outputText value="Watch videos of the product "
                           style=" vertical-align: middle; display: inline-block;" />
         </div>
-        <div style="height: 200px"></div>
+
+        <div style="height: 10px"></div>
+        <p:media style="align-content: center" value="http://malsup.github.com/video/clear.avi" width="650"
+                 height="300">
+            <f:param name="autostart" value="false" />
+            <p:outputPanel layout="block">
+                Windows Media is required to view this media. <h:outputLink
+                    value="http://www.microsoft.com/Windows/MediaPlayer/">Download Here</h:outputLink>
+            </p:outputPanel>
+        </p:media>
+        <div style="height: 20px"></div>
+
         <div
                 style="background: url(resources/images/hero-photographer-on-beach.jpg) 0 -250px; padding-top: 40px; height: 100px; color: white; vertical-align: middle; align-content: center;"
                 align="center" class="text-center">
             <h:outputText value="Other useful links "
                           style=" vertical-align: middle; display: inline-block;" />
         </div>
-        <div style="height: 200px"></div>
+
+        <div style="height: 10px"></div>
+        <h:form id="form">
+            <p:dataList value="#{previewRecommendedProductBean.product.urlList}"
+                        var="url" type="ordered" rowIndexVar="rowIndex">
+                <f:facet name="header">
+                    Additional Links
+                </f:facet>
+                #{rowIndex + 1} . #{url.url}
+                <a style="color: blue" href="http://#{url.displayText}">#{url.displayText}</a>
+            </p:dataList>
+        </h:form>
+        <div style="height: 20px"></div>
+
         <div
                 style="padding-top: 40px; height: 150px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
                 align="center" class="text-center">
@@ -59,11 +103,13 @@
                     value="#{previewRecommendedProductBean.product.productTrial ? 
 				'Registration to start a free trial for product recommendation, and have someone from MYOB contact you with more details.'
 				:'Registration to have someone from MYOB contact you with more details of product recommendation'}"
-                    style=" vertical-align: middle; display: inline-block;" /> <br/><br/>
+                    style=" vertical-align: middle; display: inline-block;" />
+            <br /> <br />
             <p:commandButton value="Register" styleClass="btn btn-default"
                              action="#{previewRecommendedProductBean.doRegister()}" />
         </div>
-        <br/><br/>
+        <br />
+        <br />
     </ui:define>
 </ui:composition>
 </html>
