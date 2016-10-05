@@ -31,25 +31,6 @@ public class EditProductBean {
 	private Product product;
 	
 
-	private List<PDF> pdfTempList = new ArrayList<PDF>();
-	
-
-	public List<PDF> getPdfTempList() {
-		return pdfTempList;
-	}
-
-	public void setPdfTempList(List<PDF> pdfTempList) {
-		this.pdfTempList = pdfTempList;
-	}
-
-	public List<Video> getVideoTempList() {
-		return videoTempList;
-	}
-
-	public void setVideoTempList(List<Video> videoTempList) {
-		this.videoTempList = videoTempList;
-	}
-
 	static int fileListIndex = 0;
 
 	@Autowired
@@ -107,10 +88,6 @@ public class EditProductBean {
 		product.getUrlSet().add(url);
 	}
 
-	public void removeUrl(Url url) {
-		this.product.getUrlList().remove(url);
-	}
-
 	public void handleFileUpload(FileUploadEvent event) {
 		System.out.println("EditProductBean: handleFileUpload function.");
 		if (event == null) {
@@ -131,20 +108,13 @@ public class EditProductBean {
 		return;
 	}
 
-	public void removePDF(PDF pdf) {
-		this.product.getPdfList().remove(pdf);
-	}
 
 	public void addVideo() {
-		if (videoTempList == null) {
-			videoTempList = new ArrayList<Video>();
-		}
 
 		Video video = new Video();
-		video.setVideoProduct(product);
+		video.setProduct(product);
 		video.setVideoLength(0);
-		videoTempList.add(video);
-		product.setVideoList(videoTempList);
+		product.getVideoList().add(video);
 	}
 
 	// public void addVideo(String name, String description, String url, int
@@ -159,7 +129,7 @@ public class EditProductBean {
 	// }
 
 	public void removeVideo(Video video) {
-		product.removeVideo(video);
+		product.getVideoList().remove(video);
 	}
 
 }

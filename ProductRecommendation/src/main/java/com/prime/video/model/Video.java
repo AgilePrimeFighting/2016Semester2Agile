@@ -21,10 +21,6 @@ public class Video {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer videoId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PRODUCT_ID")
-	private Product product;
-	
 	@Column (name = "PRODUCT_ID", insertable=false,updatable=false)
 	private Integer productId ;
 	

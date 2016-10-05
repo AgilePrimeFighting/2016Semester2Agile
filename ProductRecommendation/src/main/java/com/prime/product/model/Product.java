@@ -79,19 +79,7 @@ public class Product {
 		this.videoList = videoList;
 	}
 
-	public void addVideo(Video video) {
-		if (!videoList.contains(video))
-			videoList.add(video);
-	}
 
-	public void removeVideo(Video video) {
-		if (videoList.contains(video))
-			videoList.remove(video);
-	}
-
-	public String outputActive() {
-		return this.productActive == true ? "Active" : "Inactive";
-	}
 
 	public Integer getProductId() {
 		return productId;
@@ -140,16 +128,6 @@ public class Product {
 	public void setUrlSet(Set<Url> urlList) {
 		this.urlSet = urlList;
 	}
-	
-	public void addUrl(Url url) {
-		if (!urlList.contains(url))
-			urlList.add(url);
-	}
-
-	public void removeUrl(Url url) {
-		if (urlList.contains(url))
-			urlList.remove(url);
-	}
 
 	public List<PDF> getPdfList() {
 		return pdfList;
@@ -159,21 +137,5 @@ public class Product {
 		this.pdfList = pdfList;
 	}
 
-	public List<Video> getVideoList() {
-		return videoList;
-	}
 
-	public void setVideoList(List<Video> videoList) {
-		this.videoList = videoList;
-	}
-
-	public void addVideo(Video video) {
-		if (!videoList.contains(video))
-			videoList.add(video);
-	}
-
-	public void removeVideo(Video video) {
-		if (videoList.contains(video))
-			videoList.remove(video);
-	}
 }

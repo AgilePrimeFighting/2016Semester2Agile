@@ -55,7 +55,7 @@
 						<h:outputText value="#{pdf.PDF_Name}"></h:outputText>
 					</p:column>
 
-					<p:column headerText="Remove">
+					<p:column headerText="Remove" width="70">
 						<p:commandButton icon="ui-icon-close"
 							actionListener="#{editProductBean.removePDF(pdf)}"
 							update="pdfTable" immediate="true">
@@ -86,7 +86,7 @@
 							label="displayedText" />
 					</p:column>
 
-					<p:column headerText="Remove">
+					<p:column headerText="Remove" width="70">
 						<p:commandButton icon="ui-icon-close"
 							actionListener="#{editProductBean.removeUrl(url)}"
 							update="urlTable" immediate="true" style="marginTop:20px">
@@ -100,25 +100,10 @@
 			<br />
 
 			
-			<p:commandButton class="commandButton" value="save"
-				action="#{editProductBean.doSave}" style="margin-top:15px;" />
-			<p:button value="cancel" outcome="ViewProducts"
-				style="margin-left:20px;" />
-			<p:commandButton value="preview" style="margin-left: 20px"
-				actionListener="#{previewRecommendedProductBean.initPreview(editProductBean.product)}"
-				action="PreviewRecommendedProduct" />
-			<p:confirmDialog global="true">
-				<p:commandButton class="commandButton" value="No" type="button"
-					id="noButton" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				<p:commandButton class="commandButton" value="Yes" type="button"
-					style="float:left;" styleClass="ui-confirmdialog-yes"
-					icon="ui-icon-check" />
-			</p:confirmDialog>
-
+		
 			<br />
 
 			<h3>Product Video</h3>
-			<h:form enctype="multipart/form-data">
 
 				<p:dataTable id="videoTable"
 					value="#{editProductBean.product.videoList}" var="video">
@@ -132,24 +117,41 @@
 					</p:column>
 
 					<p:column headerText="Description">
-						<p:inputText value="#{video.VideoDescription}" required="ture"
+						<p:inputText value="#{video.videoDescription}" required="ture"
 							label="videoDescription" />
 					</p:column>
 
-					<p:column headerText="Remove">
+					<p:column headerText="Remove" width="70">
 						<p:commandButton icon="ui-icon-close"
-							actionListener="#{editProductBean.removeUrl(url)}"
-							update="urlTable" immediate="true" style="marginTop:20px">
+							actionListener="#{editProductBean.removeVideo(video)}"
+							update="videoTable" immediate="true" style="marginTop:20px">
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 
-				<p:commandButton class="commandButton" value="Add URL"
-					action="#{editProductBean.addUrl}" update="urlTable"
+				<p:commandButton class="commandButton" value="Add Video"
+					action="#{editProductBean.addVideo}" update="videoTable"
 					style="margin-top:15px;" />
 
-			</h:form>
 			<br />
+			
+				<p:commandButton class="commandButton" value="save"
+				action="#{editProductBean.doSave}" style="margin-top:15px;" />
+			<p:button value="cancel" outcome="ViewProducts"
+				style="margin-left:20px;" />
+					<p:commandButton value="preview" style="margin-left: 20px"
+				actionListener="#{previewRecommendedProductBean.initPreview(editProductBean.product)}"
+				action="PreviewRecommendedProduct" />
+			
+			<p:confirmDialog global="true">
+				<p:commandButton class="commandButton" value="No" type="button"
+					id="noButton" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				<p:commandButton class="commandButton" value="Yes" type="button"
+					style="float:left;" styleClass="ui-confirmdialog-yes"
+					icon="ui-icon-check" />
+			</p:confirmDialog>
+			
+		
 
 		</p:panel>
 
