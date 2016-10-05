@@ -93,11 +93,11 @@ public class CreateProductBean {
 	}
 
 	public void removeUrl(Url url) {
-		product.removeUrl(url);
+		product.getUrlSet().remove(url);
 	}
 
 	public void addUrl(Url url) {
-		product.addUrl(url);
+		product.getUrlSet().add(url);
 	}
 
 }

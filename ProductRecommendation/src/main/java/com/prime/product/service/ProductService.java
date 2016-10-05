@@ -49,7 +49,7 @@ public class ProductService {
 			weight.setProduct(product);
 			weight.setOption(option);
 			weight.setWeightValue(0);
-			product.getWeightList().add(weight);
+			product.getWeightSet().add(weight);
 		}
 		em.persist(product);
 		
@@ -108,9 +108,11 @@ public class ProductService {
 	
 	@Transactional
 	public Product initializeCollections(Product product){
+		logger.info("initializeCollections " + product.getUrlSet().size());
 		Product returnedProduct = em.find(Product.class, product.getProductId());
 		Hibernate.initialize(returnedProduct.getPdfList());
 		Hibernate.initialize(returnedProduct.getVideoList());
+		logger.info("initializeCollections " + returnedProduct.getUrlSet().size());
 		return returnedProduct;
 		
 	}
