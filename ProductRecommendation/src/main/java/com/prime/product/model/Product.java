@@ -13,18 +13,22 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.prime.PDF.model.PDF;
+<<<<<<< HEAD
+=======
+import com.prime.url.model.Url;
+import com.prime.video.model.Video;
+>>>>>>> origin/sprint-5
 import com.prime.weight.model.Weight;
 
-
-
-@Entity 
+@Entity
 @Table
-public class Product 
-{
+public class Product {
 
-	@Id 
-	@Column (name = "PRODUCT_ID")
+	@Id
+	@Column(name = "PRODUCT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
 	private Integer productId ; 
 	
 	@Column (name = "PRODUCT_NAME")
@@ -39,6 +43,14 @@ public class Product
 	@Column (name = "PRODUCT_URL")
 	private String productURL ;
 	
+	public List<PDF> getPdfList() {
+		return pdfList;
+	}
+
+	public void setPdfList(List<PDF> pdfList) {
+		this.pdfList = pdfList;
+	}
+
 	@Column (name = "OVERVIEW")
 	private String overview ;
 	
@@ -46,8 +58,40 @@ public class Product
 	fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Weight> weightList = new ArrayList<Weight>();
 	
+	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval=true,
+	fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<PDF> pdfList = new ArrayList<PDF>(); 
 	
 	
+	
+=======
+	private Integer productId;
+
+	@Column(name = "PRODUCT_NAME")
+	private String productName;
+
+	@Column(name = "PRODUCT_ACTIVE")
+	private boolean productActive;
+
+	@Column(name = "PRODUCT_TRIAL")
+	private boolean productTrial;
+
+	@Column(name = "OVERVIEW")
+	private String overview;
+
+	@OneToMany(mappedBy = "product", targetEntity = Weight.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Weight> weightList = new ArrayList<Weight>();
+
+	@OneToMany(mappedBy = "product", targetEntity = Url.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Url> urlList = new ArrayList<Url>();
+
+	@OneToMany(mappedBy = "product", targetEntity = PDF.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<PDF> pdfList = new ArrayList<PDF>();
+
+	@OneToMany(mappedBy = "product", targetEntity = Video.class, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Video> videoList = new ArrayList<Video>();
+
+>>>>>>> origin/sprint-5
 	public String getOverview() {
 		return overview;
 	}
@@ -56,7 +100,6 @@ public class Product
 		this.overview = overview;
 	}
 
-	
 	public List<Weight> getWeightList() {
 		return weightList;
 	}
@@ -65,9 +108,36 @@ public class Product
 		this.weightList = weightList;
 	}
 
-	public String outputActive() 
-	{
-		return this.productActive == true ? "Active" : "Inactive" ;
+	public void addUrl(Url url) {
+		if (!urlList.contains(url))
+			urlList.add(url);
+	}
+
+	public void removeUrl(Url url) {
+		if (urlList.contains(url))
+			urlList.remove(url);
+	}
+
+	public List<Video> getVideoList() {
+		return videoList;
+	}
+
+	public void setVideoList(List<Video> videoList) {
+		this.videoList = videoList;
+	}
+
+	public void addVideo(Video video) {
+		if (!videoList.contains(video))
+			videoList.add(video);
+	}
+
+	public void removeVideo(Video video) {
+		if (videoList.contains(video))
+			videoList.remove(video);
+	}
+
+	public String outputActive() {
+		return this.productActive == true ? "Active" : "Inactive";
 	}
 
 	public Integer getProductId() {
@@ -92,17 +162,8 @@ public class Product
 
 	public void setProductActive(boolean productActive) {
 		this.productActive = productActive;
-//		if ( productActive == true ) 
-//		{
-//			activeOutput = "active" ;
-//		}
-//		else 
-//		{
-//			activeOutput = "disactive" ;
-//		}
 	}
 
-	
 	public boolean isProductTrial() {
 		return productTrial;
 	}
@@ -110,24 +171,28 @@ public class Product
 	public void setProductTrial(boolean productTrial) {
 		this.productTrial = productTrial;
 	}
-	
-	public String outputTrial () 
-	{
-		return this.productTrial == true ? "YES" : "NO" ;
+
+	public String outputTrial() {
+		return this.productTrial == true ? "YES" : "NO";
 	}
 
-	public String getProductURL() {
-		return productURL;
+	public List<Url> getUrlList() {
+		return urlList;
+	}
+<<<<<<< HEAD
+	
+=======
+
+	public void setUrlList(List<Url> urlList) {
+		this.urlList = urlList;
 	}
 
-	public void setProductURL(String productURL) {
-		this.productURL = productURL;
+	public List<PDF> getPdfList() {
+		return pdfList;
 	}
 
-
-
-	
-	
-	
-	
+	public void setPdfList(List<PDF> pdfList) {
+		this.pdfList = pdfList;
+	}
+>>>>>>> origin/sprint-5
 }

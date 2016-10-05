@@ -26,31 +26,103 @@
 			<h3>Product Active</h3>
 			<p:selectBooleanButton id="productActive"
 				value="#{editProductBean.product.productActive}" onLabel="Yes"
-				offLabel="No" style="width:60px" />
+				offLabel="No" style="width:80px" />
 			<br />
 
 			<h3>Trial Available?</h3>
 			<p:selectBooleanButton id="productTrail"
 				value="#{editProductBean.product.productTrial}" onLabel="Yes"
-				offLabel="No" style="width:60px" />
+				offLabel="No" style="width:80px" />
 			<br />
 
 			<h3>Product URL</h3>
-			<p:inputText value="#{editProductBean.product.productURL}"
-				style="display:block; width:80%"  label="Product URL"
-				maxlength="200" />
+			<h:form enctype="multipart/form-data">
+
+				<p:dataTable id="urlTable"
+					value="#{editProductBean.product.urlList}" var="url">
+
+					<p:column headerText="Urlname">
+						<p:inputText value="#{url.url}" required="true" label="URL" />
+					</p:column>
+
+					<p:column headerText="displayedText">
+						<p:inputText value="#{url.displayText}" required="ture"
+							label="displayedText" />
+					</p:column>
+
+					<p:column headerText="Remove">
+						<p:commandButton icon="ui-icon-close"
+							actionListener="#{editProductBean.removeUrl(url)}"
+							update="urlTable" immediate="true" style="marginTop:20px">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:commandButton class="commandButton" value="Add URL"
+					action="#{editProductBean.addUrl}" update="urlTable"
+					style="margin-top:15px;" />
+
+			</h:form>
 			<br />
+
 			<h3>Product Overview</h3>
-			<p>Please enter HTML as the product overview to be displayed to prospects.</p>
+			<p>Please enter HTML as the product overview to be displayed to
+				prospects.</p>
 			<p:inputTextarea value="#{editProductBean.product.overview}"
-				style="display:block; width:80%"  label="Product Overview"
+				style="display:block; width:80%" label="Product Overview"
 				maxlength="4000" />
 			<br />
+
+<<<<<<< HEAD
+=======
+			<h3>Product PDF</h3>
+>>>>>>> origin/sprint-5
+			<h:form enctype="multipart/form-data">
+
+				<p:dataTable id="pdfTable"
+					value="#{editProductBean.product.pdfList}" var="pdf">
+					<!-- <p:column headerText="Filename">
+					<h:outputText value="#{pdf.PDF_Name}" />
+				</p:column> -->
+
+					<p:column headerText="Filename">
+						<h:outputText value="#{pdf.PDF_Name}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Save">
+						<p:commandButton value="download" ajax="false"
+							icon="ui-icon-arrowthick-1-s"
+							actionListener="#{pdfDownload.downloadAction(pdf)}">
+
+							<p:fileDownload value="#{pdfDownload.pdfFile}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="Remove">
+						<p:commandButton icon="ui-icon-close"
+							actionListener="#{editProductBean.removePDF(pdf)}"
+							update="pdfTable" immediate="true">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<p:fileUpload
+					fileUploadListener="#{editProductBean.handleFileUpload}"
+					mode="advanced" dragDropSupport="false" multiple="true"
+					update="pdfTable" sizeLimit="4194304" fileLimit="5"
+					allowTypes="/(\.|\/)(pdf)$/" auto="true" label="Upload a pdf"
+					uploadLabel="Select a file to upload" />
+				<p:growl id="messages" showDetail="true" />
+
+			</h:form>
 
 			<p:commandButton class="commandButton" value="save"
 				action="#{editProductBean.doSave}" style="margin-top:15px;" />
 			<p:button value="cancel" outcome="ViewProducts"
 				style="margin-left:20px;" />
+			<p:commandButton value="preview" style="margin-left: 20px"
+							 actionListener="#{previewRecommendedProductBean.initPreview(editProductBean.product)}"
+							 action="PreviewRecommendedProduct"
+			/>
 			<p:confirmDialog global="true">
 				<p:commandButton class="commandButton" value="No" type="button"
 					id="noButton" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
@@ -58,7 +130,21 @@
 					style="float:left;" styleClass="ui-confirmdialog-yes"
 					icon="ui-icon-check" />
 			</p:confirmDialog>
+<<<<<<< HEAD
+			
+			<br/>
+
 		</p:panel>
+
+	
+=======
+
+			<br />
+
+		</p:panel>
+
+
+>>>>>>> origin/sprint-5
 	</h:form>
 
 </h:body>

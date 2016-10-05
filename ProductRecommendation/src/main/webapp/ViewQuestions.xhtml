@@ -15,7 +15,7 @@
 <h:body>
 
 	<h:form>
-		<div style="margin: auto; width: 80%; margin-top: 50px">
+		 <div style="margin: auto; width: 80%; margin-top: 50px">
 			<h1>Range of Possible Product Weights</h1>
 			<div>
 				<p:dataTable id="rangeTable" value="#{viewQuestionsBean.rangeList}"
@@ -40,13 +40,13 @@
 
 			<h1>Questions</h1>
 			<div>
-				<p:dataTable id="questionTable"
+				<p:dataTable id="questionTable"  
 					value="#{viewQuestionsBean.questions}" var="question"
 					rowIndexVar="rowIndex">
 					<p:column headerText="No." width="50">
 						<h:outputText value="#{rowIndex + 1}" />
 					</p:column>
-					<p:column headerText="Question Body">
+					<p:column headerText="Question Body" >
 						<h:outputText value="#{question.questionBody}" />
 					</p:column>
 					<p:column headerText="Options">
@@ -62,7 +62,7 @@
 					</p:column>
 
 					<p:columns var="product" value="#{viewQuestionsBean.products}"
-						columnIndexVar="colIndex">
+						columnIndexVar="colIndex"   colspan="200">
 						<f:facet name="header">
 							<h:outputText value="#{product.productName} Weight #{product.productActive ? '': ' (Inactive)'}" />
 						</f:facet>
@@ -103,7 +103,7 @@
 					style="float:left;" styleClass="ui-confirmdialog-yes"
 					icon="ui-icon-check" />
 			</p:confirmDialog>
-		</div>
+	</div> 
 	</h:form>
 </h:body>
 </html>

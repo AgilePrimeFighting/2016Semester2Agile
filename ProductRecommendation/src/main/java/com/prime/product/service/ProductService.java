@@ -1,6 +1,5 @@
 package com.prime.product.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.prime.PDF.model.PDF;
 import com.prime.product.model.Product;
-import com.prime.question.AnswerQuestionBean;
 import com.prime.question.model.Option;
 import com.prime.question.service.OptionService;
-import com.prime.response.model.Response;
 import com.prime.weight.model.Weight;
 
 @Service
@@ -40,7 +38,22 @@ public class ProductService {
 	}
 
 	@Transactional
+<<<<<<< HEAD
 	public Product createNewProduct(Product product) {
+=======
+	public void createNewProduct(String productName, boolean productActive, boolean productTrial, String procutURL , List<PDF> pdfList ) 
+	{
+		Product product = new Product();
+		product.setProductName(productName);
+		product.setProductActive(productActive);
+		product.setProductTrial(productTrial);
+		product.setProductURL(procutURL);
+		product.setPdfList(pdfList);
+		for ( PDF pdf : pdfList) 
+		{
+			pdf.setProduct(product);
+		}
+>>>>>>> JacJackJack2
 		
 		List<Option> options = optionService.listAll();
 		for(Option option: options){
@@ -50,9 +63,13 @@ public class ProductService {
 			weight.setWeightValue(0);
 			product.getWeightList().add(weight);
 		}
+<<<<<<< HEAD
 		em.persist(product);
 		
 		return product;
+=======
+		em.persist(product);		
+>>>>>>> JacJackJack2
 	}
 	
 	@Transactional
@@ -103,5 +120,7 @@ public class ProductService {
 		logger.info("recommended product Id is " + recommendedproductId);
 		return idToProductMap.get(recommendedproductId);
 	}
+	
+	
 
 }

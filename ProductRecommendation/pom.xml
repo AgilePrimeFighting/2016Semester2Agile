@@ -12,8 +12,8 @@
 	<url></url>
 
 	<properties>
-		<property name="current_session_context_class">thread</property> 
-		
+		<property name="current_session_context_class">thread</property>
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 
@@ -23,6 +23,8 @@
 
 		<maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
 		<tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
+		<log4j.version>2.6.2</log4j.version>
+		<logback.version>1.0.1</logback.version>
 		<spring.version>4.3.2.RELEASE</spring.version>
 	</properties>
 
@@ -136,21 +138,16 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+			<version>2.3.0.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.6.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.6.2</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -177,7 +174,25 @@
 			<artifactId>velocity-tools</artifactId>
 			<version>2.0</version>
 		</dependency>
+		<!-- logging -->
 
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
@@ -208,6 +223,12 @@
 					<path>/prime</path>
 				</configuration>
 			</plugin>
+			<!-- <plugin> <groupId>org.jvnet.jaxb2.maven2</groupId> <artifactId>maven-jaxb2-plugin</artifactId> 
+				<version>0.12.3</version> <executions> <execution> <goals> <goal>generate</goal> 
+				</goals> </execution> </executions> <configuration> <schemaLanguage>WSDL</schemaLanguage> 
+				<generateDirectory>${project.build.sourceDirectory} </generateDirectory> 
+				<generatePackage>com.prime.wsdl</generatePackage> <schemas> <schema> <url>https://try.myobadvanced.com/Soap/PROVENG.asmx?WSDL</url> 
+				</schema> </schemas> </configuration> </plugin> -->
 		</plugins>
 	</build>
 </project>
