@@ -59,8 +59,45 @@
 		</div>
 		<div style="height: 200px"></div>
 		<div align="center" class="text-center recommendation-header">
+				<div style="height: 10px"></div>
+		<p:media value="http://malsup.github.com/video/clear.avi" width="250"
+			height="300">
+			<f:param name="autostart" value="false" />
+			<p:outputPanel layout="block">
+        Windows Media is required to view this media. <h:outputLink
+					value="http://www.microsoft.com/Windows/MediaPlayer/">Download Here</h:outputLink>
+			</p:outputPanel>
+		</p:media>
+		<div style="height: 20px"></div>
+			
 			<h:outputText value="Other useful links "
 				style=" vertical-align: middle; display: inline-block;" />
+		</div>
+
+		<div style="height: 10px"></div>
+		<h:form id="form">
+			<p:dataList value="#{recommendedProductBean.product.urlList}"
+				var="url" type="ordered" rowIndexVar="rowIndex">
+				<f:facet name="header">
+            Additional Links
+        </f:facet>
+        #{rowIndex + 1} . #{url.url}
+					<a style="color: blue" href="http://#{url.displayText}">#{url.displayText}</a>
+			</p:dataList>
+		</h:form>
+		<div style="height: 20px"></div>
+
+		<div
+			style="padding-top: 40px; height: 150px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
+			align="center" class="text-center">
+			<h:outputText
+				value="#{recommendedProductBean.product.productTrial ? 
+				'Registration to start a free trial for product recommendation, and have someone from MYOB contact you with more details.'
+				:'Registration to have someone from MYOB contact you with more details of product recommendation'}"
+				style=" vertical-align: middle; display: inline-block;" />
+			<br /> <br />
+			<p:commandButton value="Register" styleClass="btn btn-default"
+				action="#{recommendedProductBean.doRegister()}" />
 		</div>
 		<br />
 		<br />

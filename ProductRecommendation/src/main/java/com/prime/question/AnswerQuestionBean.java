@@ -52,13 +52,22 @@ public class AnswerQuestionBean implements Serializable {
 	
 
 
+
 	@PostConstruct
 	public void init() {
 		clearSession();
 		setQuestions(questionService.listAll());
 	}
 	
+	private void clearSession() {
+		questions = new ArrayList<Question>();
+		setCurrentQuestionIndex(0);
+		responses = new ArrayList<Response>();
+		selectedOptions = new ArrayList<Option>();
+		setSelectedOptionId(null);
+	}
 
+	
 	public String doNext() {
 		
 		Question question = questions.get(currentQuestionIndex);
