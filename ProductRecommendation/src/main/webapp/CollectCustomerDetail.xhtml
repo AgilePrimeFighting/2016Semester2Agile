@@ -13,13 +13,12 @@
 			<h:form>
 				<div style="width: 600px; margin: auto">
 					<div
-						style="padding-top: 20px; height: 90px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
+						style="padding: 20px; height: 90px; background-color: #5c247b; color: white; vertical-align: middle; align-content: center;"
 						align="center" class="text-center">
 						<h:outputText
-							value="Please complete this form to register and have someone from MYOB contact you with more details
-							#{collectCustomerDetailProductBean.product.productTrial ? 
-							', or to proceed with a free trial of the ':' for the '} 
-							#{collectCustomerDetailProductBean.product.productName}"
+							value="#{collectCustomerDetailBean.product.productName} is the best product for you. Please complete this form to know more #{collectCustomerDetailBean.product.productTrial ? 
+							', and proceed with a free trial.':'' }"
+							
 							style=" vertical-align: middle; display: inline-block;" />
 					</div>
 
@@ -128,9 +127,9 @@
 						</p>
 						
 						<p>
-							<p:selectBooleanCheckbox id="isTryTrial" disabled="#{collectCustomerDetailBean.product.productTrial ? 'false' :'true'}"
+							<p:selectBooleanCheckbox id="isTryTrial" rendered="#{collectCustomerDetailBean.product.productTrial}"
 								value="#{collectCustomerDetailBean.isTryTrial}"
-								itemLabel="I'd like to start trial of the product recommendation"
+								itemLabel="I'd like to start a free trial of the product"
 								style="#{collectCustomerDetailBean.product.productTrial ? '' : 'color:Grey;'}" />
 							
 						</p>
@@ -141,13 +140,7 @@
 
 					</p:panel>
 				</div>
-				<p:ajaxStatus onstart="PF('statusDialog').show()"
-					onsuccess="PF('statusDialog').hide()" />
-
-				<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-					closable="false" resizable="false" showHeader="false">
-					<p:graphicImage name="images/ajaxloadingbar.gif" />
-				</p:dialog>
+				
 
 			</h:form>
 		</div>

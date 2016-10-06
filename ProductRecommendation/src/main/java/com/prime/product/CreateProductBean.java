@@ -75,11 +75,11 @@ public class CreateProductBean {
 	}
 
 	public void removeVideo(Video video) {
-		product.removeVideo(video);
+		product.getVideoList().remove(video);
 	}
 
 	public void addVideo(Video video) {
-		product.addVideo(video);
+		product.getVideoList().add(video);
 	}
 
 	public void addVideo(String name, String description, String url, int length) {
@@ -88,16 +88,16 @@ public class CreateProductBean {
 		video.setVideoDescription(description);
 		video.setVideoUrl(url);
 		video.setVideoLength(length);
-		video.setVideoProduct(product);
+		video.setProduct(product);
 		addVideo(video);
 	}
 
 	public void removeUrl(Url url) {
-		product.removeUrl(url);
+		product.getUrlSet().remove(url);
 	}
 
 	public void addUrl(Url url) {
-		product.addUrl(url);
+		product.getUrlSet().add(url);
 	}
 
 }

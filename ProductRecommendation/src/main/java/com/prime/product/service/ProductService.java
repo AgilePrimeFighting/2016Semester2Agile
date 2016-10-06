@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,9 @@ public class ProductService {
 	
 	@Autowired
 	private OptionService optionService;
+	
+	@Autowired
+	private ProductService productService;
 
 	public List<Product> listAll() {
 		logger.info("List all products");
@@ -45,7 +49,7 @@ public class ProductService {
 			weight.setProduct(product);
 			weight.setOption(option);
 			weight.setWeightValue(0);
-			product.getWeightList().add(weight);
+			product.getWeightSet().add(weight);
 		}
 		em.persist(product);
 		
@@ -98,7 +102,19 @@ public class ProductService {
 			}
 		}
 		logger.info("recommended product Id is " + recommendedproductId);
-		return idToProductMap.get(recommendedproductId);
+		
+		return productService.initializeCollections(idToProductMap.get(recommendedproductId));
+	}
+	
+	@Transactional
+	public Product initializeCollections(Product product){
+		logger.info("initializeCollections " + product.getUrlSet().size());
+		Product returnedProduct = em.find(Product.class, product.getProductId());
+		Hibernate.initialize(returnedProduct.getPdfList());
+		Hibernate.initialize(returnedProduct.getVideoList());
+		logger.info("initializeCollections " + returnedProduct.getUrlSet().size());
+		return returnedProduct;
+		
 	}
 
 }

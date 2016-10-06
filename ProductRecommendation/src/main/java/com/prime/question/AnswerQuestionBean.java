@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.prime.customer.CollectCustomerDetailBean;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
 import com.prime.question.model.Option;
@@ -19,6 +20,7 @@ import com.prime.question.model.Question;
 import com.prime.question.service.QuestionService;
 import com.prime.question.service.ResponseService;
 import com.prime.response.model.Response;
+import com.prime.soap.SoapClientJax;
 
 @Controller
 @Scope("session")
@@ -39,11 +41,14 @@ public class AnswerQuestionBean implements Serializable {
 	@Autowired
 	private QuestionService questionService;
 
-	@Autowired
-	private ResponseService responseService;
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CollectCustomerDetailBean detailBean;
+	
+
 
 
 	@PostConstruct
@@ -53,7 +58,6 @@ public class AnswerQuestionBean implements Serializable {
 	}
 	
 	private void clearSession() {
-		questions = new ArrayList<Question>();
 		setCurrentQuestionIndex(0);
 		responses = new ArrayList<Response>();
 		selectedOptions = new ArrayList<Option>();
@@ -78,18 +82,10 @@ public class AnswerQuestionBean implements Serializable {
 		if (currentQuestionIndex == questions.size()) {
 			Product recommendedProduct = null;
 			recommendedProduct = productService.getRecommendedProduct(selectedOptions);
-			List<Response> tmpResponses = new ArrayList<Response>();
-			for (Response response : responses) {
-				Response tmpResponse = responseService.createResponse(response);
-				tmpResponses.add(tmpResponse);
-			}
-			FacesContext.getCurrentInstance().getExternalContext().getFlash()
-				.put("product", recommendedProduct);
-			FacesContext.getCurrentInstance().getExternalContext().getFlash()
-				.put("responses", tmpResponses);
+			detailBean.setProduct(recommendedProduct);
+			detailBean.setResponses(responses);
 			clearSession();
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			return "RecommendedProduct?faces-redirect=true";
+			return "CollectCustomerDetail?faces-redirect=true";
 		}
 		
 		selectedOptionId = null;
@@ -113,10 +109,36 @@ public class AnswerQuestionBean implements Serializable {
 
 		return "AnswerQuestions";
 	}
-	
-	
-	public List<Question> getQuestions() {
+
+		public List<Question> getQuestions() {
 		return questions;
+}
+/*
+	public String submitDetail() {
+		Product recommendedProduct = productService.getRecommendedProduct(selectedOptions);
+		customer = customerService.persistCustomer(customer,recommendedProduct);
+		for (Response res : responseList) {
+			res.setCustomer(customer);
+			responseService.createResponse(res);
+		}
+		emailService.sendCustomerResponseEmail(customer, responseList);
+		soapService.createTrialUser(customer.getEmail());
+		recommendedProductBean.setProduct(recommendedProduct);
+		clearSession();
+		return "RecommendedProduct?faces-redirect=true";
+	}*/
+
+
+/*	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+*/
+	public QuestionService getQuestionService() {
+		return questionService;
 	}
 
 	public void setQuestions(List<Question> questions) {

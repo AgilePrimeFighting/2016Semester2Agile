@@ -2,6 +2,7 @@ package com.prime.product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
@@ -20,38 +21,18 @@ import com.prime.PDF.model.PDF;
 import com.prime.product.model.Product;
 import com.prime.product.service.ProductService;
 
-
 @Controller
 @Scope("session")
-public class EditProductBean 
-{
-	
-	private static final Logger logger = Logger.getLogger(EditProductBean.class.getName());
+public class EditProductBean {
+
+	private static final Logger logger = Logger.getLogger(EditProductBean.class
+			.getName());
 
 	private Product product;
 	
-	private List<Url> urlTempList = new ArrayList<Url>();
-
-	private List<PDF> pdfTempList = new ArrayList<PDF>();
-	
-	public List<Url> getUrlTempList() {
-		return urlTempList;
-	}
-
-	public void setUrlTempList(List<Url> urlTempList) {
-		this.urlTempList = urlTempList;
-	}
-
-	public List<PDF> getPdfTempList() {
-		return pdfTempList;
-	}
-
-	public void setPdfTempList(List<PDF> pdfTempList) {
-		this.pdfTempList = pdfTempList;
-	}
 
 	static int fileListIndex = 0;
-	
+
 	@Autowired
 	private ProductService productService;
 
@@ -61,8 +42,11 @@ public class EditProductBean
 	}
 
 	public void initEdit(Product product) {
+		
 		logger.info("product received");
-		this.product = product;
+		logger.info("no of urls " + product.getUrlSet().size()) ;
+		this.product= productService.initializeCollections(product);
+		logger.info("no of urls " + product.getUrlSet().size()) ;
 	}
 
 	public String doSave() {
@@ -90,7 +74,7 @@ public class EditProductBean
 	}
 	
 	public void removeUrl(Url url) {
-		this.product.getUrlList().remove(url);
+		this.product.getUrlSet().remove(url);
 	}
 
 	public void removePDF(PDF pdf) {
@@ -98,14 +82,10 @@ public class EditProductBean
 	}
 
 	public void addUrl() {
-		if (urlTempList == null) {
-			urlTempList = new ArrayList<Url>();
-		}
 		Url url = new Url();
 		url.setProduct(product);
 
-		urlTempList.add(url);
-		product.setUrlList(urlTempList);
+		product.getUrlSet().add(url);
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
@@ -127,23 +107,29 @@ public class EditProductBean
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return;
 	}
-	
-	public void removeVideo(Video video){
-		product.removeVideo(video);
+
+
+	public void addVideo() {
+
+		Video video = new Video();
+		video.setProduct(product);
+		video.setVideoLength(0);
+		product.getVideoList().add(video);
 	}
 
-	public void addVideo(Video video){
-		product.addVideo(video);
-	}
+	// public void addVideo(String name, String description, String url, int
+	// length) {
+	// Video video = new Video();
+	// video.setVideoName(name);
+	// video.setVideoDescription(description);
+	// video.setVideoUrl(url);
+	// video.setVideoLength(length);
+	// video.setVideoProduct(product);
+	// addVideo(video);
+	// }
 
-	public void addVideo(String name, String description, String url, int length) {
-		Video video=new Video();
-		video.setVideoName(name);
-		video.setVideoDescription(description);
-		video.setVideoUrl(url);
-		video.setVideoLength(length);
-		video.setVideoProduct(product);
-		addVideo(video);
+	public void removeVideo(Video video) {
+		product.getVideoList().remove(video);
 	}
 
 }
