@@ -16,7 +16,7 @@ http://default-environment.qxgr2c9ehj.ap-southeast-2.elasticbeanstalk.com/
 b. For prospect,
 
 To access the page for the prospect, use this link
-http://default-environment.qxgr2c9ehj.ap-southeast-2.elasticbeanstalk.com/StartToAnswerQuestion.xhtml
+http://default-environment.qxgr2c9ehj.ap-southeast-2.elasticbeanstalk.com/AnswerQuestions.xhtml
 
 c. For developer,
 
